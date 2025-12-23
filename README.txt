@@ -9,3 +9,4 @@ In theory you will make a new folder for each step of the analysis and in that f
 4. Any other things needed to run the data!
 
 
+Just checking to see if I can write a basic text info in the UBUNTU linux profile.   And then push this to git later
