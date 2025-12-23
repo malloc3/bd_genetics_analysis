@@ -1,0 +1,1 @@
+This script is to help align all the sequences we have to a base genome using bowtie.   The setup and writing of this will be a little tricky.   Might do this through the command line of my linux system on the think pad.
