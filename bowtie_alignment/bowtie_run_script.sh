@@ -2,11 +2,16 @@
 
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
+#Add the complete path to the reference genome you want to use!
+reference_genome="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+refernce_genome_name="Near_complete_bd"
+
 # update this location for where your files are located
 fastq_file_location="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/unpaired/"
 
 # update this location for what the names of files you want to analyze are
 fastq_files_csv_path="./unpaired_fastq_names.csv"
+
 
 if [ -f $fastq_files_csv_path ]; then
     mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
@@ -15,8 +20,19 @@ else
 fi
 
 echo "============================"
-echo "Checking if all fastq files exist..."
 
+if [ -f "$reference_genome" ]; then
+    echo "Reference Genome used:"
+    echo "	$reference_genome"
+else
+    echo "Reference genome not found."
+    echo "	$reference_genome"
+    exit 1
+fi
+
+echo "============================"
+
+# Steps to check if all new fastq files exist
 fastq_files=()
 
 all_files_exist=true
@@ -43,6 +59,16 @@ else
     echo "Run Failed"
     exit 1 
 fi
+# Completed steps to check on new fastq files
+
+# We have our reference genome sequences (each file should represent a single chromosome in bd)
+# We also have the all the files we want to align to our reference.
+#First! However!   we must build an index of our reference genomes that will be used for our analysis late!
+
+# Lets move to our output files folder and begin!
+cd output_files
+echo "Begin bowtie index build"
+conda run -n bowtie_environ  bowtie2-build "$reference_genome" "$reference_genome_name" 
 
 
 echo "end run"
