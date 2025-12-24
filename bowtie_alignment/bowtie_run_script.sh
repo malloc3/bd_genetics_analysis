@@ -109,7 +109,7 @@ for file in "${fastq_files[@]}"; do
     echo "[$start_time] Aligning $file to $reference_genome_name"
     echo "  results will be saved in $sam_save_file"
 
-    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 36 -S sam_save_file #Run bowtie alignment
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 24 -S "$sam_save_file" #Run bowtie alignment
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] Alignment of $(basename "$file") complete!"
