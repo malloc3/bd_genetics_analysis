@@ -3,13 +3,15 @@
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
 #Add the complete path to the reference genome you want to use!
-reference_genome="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+reference_genome="/home/cmallory/Genetic_analysis/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+
+#this is the name of the index files that will be created for this reference genome
 reference_genome_name="Near_complete_bd"
 
 # update this location for where your files are located
-fastq_file_location="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/unpaired/"
+fastq_file_location="/home/cmallory/Genetic_analysis/fast_q_files/unpaired"
 
-# update this location for what the names of files you want to analyze are
+# update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="./unpaired_fastq_names.csv"
 
 
@@ -74,7 +76,14 @@ echo "Reference genome indexing complete!"
 echo "=========================================="
 
 echo "Lets align things!"
-conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "${fastq_files[0]}"
 
+for fq in "${fastq_files[@]}"; do
+    start_time=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$start_time] Aligning ${fastq_files[fq]} to $reference_genome_name "
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "${fastq_files[fq]}" #Need to figure out how to set the outputs
+    end_time=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$end_time] Alignment complete!"
+    echo "=========================================="
+done
 
 echo "end run"
