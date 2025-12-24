@@ -17,7 +17,7 @@ run_files_top_directory="./home/cmallory/Genetic_analysis/bd_genetics_analysis/b
 echo "the current path is: $pwd"
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
 
-echo "the current path now is: $pwd"
+echo "the current path now is: $SLURM_SUBMIT_DIR"
 module load anaconda
 #./bowtie_run_script.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
 
