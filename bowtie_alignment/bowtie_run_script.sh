@@ -22,6 +22,7 @@ else
 fi
 
 echo "============================"
+echo "Looking for reference genome..."
 
 if [ -f "$reference_genome" ]; then
     echo "Reference Genome used:"
