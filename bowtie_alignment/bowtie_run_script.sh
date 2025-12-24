@@ -25,13 +25,20 @@ echo "============================"
 echo "Looking for reference genome..."
 
 if [ -f "$reference_genome" ]; then
-    echo "Reference Genome used:"
+    echo "Reference Genome found:"
     echo "	$reference_genome"
 else
     echo "Reference genome not found."
     echo "	$reference_genome"
     exit 1
 fi
+
+if [ -r "$reference_genome" ]; then
+    echo "Refrerence genomes is readable"
+else
+    echo "reference genome is not readable"; exit 1
+fi
+
 
 echo "============================"
 
@@ -41,24 +48,34 @@ fastq_files=()
 
 all_files_exist=true
 non_existing_files=()
+non_readable_fast_q_files=()
 
 for i in "${!fastq_files_names[@]}"; do
     full_path="$fastq_file_location${fastq_files_names[$i]}"
     if [ -f "$full_path" ]; then
-	fastq_files+=("$full_path")
+        if [ -r $full_path ]; then
+            fastq_files+=("$full_path")
+        else
+            all_files_exist=false
+            non_readable_fast_q_files+=("$full_path")
+        fi
     else
-	all_files_exist=false
-	non_existing_files+=("$full_path")
+	    all_files_exist=false
+	    non_existing_files+=("$full_path")
     fi
 done
 
 if $all_files_exist; then
-    echo "All fastq files exist!"
+    echo "All fastq files exist and are readable!"
     echo "============================"
 else
     echo "The following files do not exist:"
     for i in "${!non_existing_files[@]}"; do
-	echo "	${non_existing_files[$i]}"
+	    echo "	${non_existing_files[$i]}"
+    done
+    echo "The following files are not readable:"
+    for i in "${!non_readable_fast_q_files[@]}"; do
+	    echo "	${non_readable_fast_q_files[$i]}"
     done
     echo "Run Failed"
     exit 1 
