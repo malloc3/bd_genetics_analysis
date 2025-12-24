@@ -11,13 +11,12 @@ reference_genome="$SLURM_SUBMIT_DIR""/fast_q_files/Reference_genomes/Near_comple
 reference_genome_name="Near_complete_bd"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/unpaired/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/paired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_fastq_names.csv"
 
 build_index=false #I typically aligned the paired genomes after the index has already been built so this can be set to false
-
 
 if [ -f $fastq_files_csv_path ]; then
     mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
@@ -106,16 +105,31 @@ if $build_index; then
     echo "=========================================="
 fi
 
-#echo "Lets align things!"
 
-for file in "${fastq_files[@]}"; do
+for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-    sam_save_file="$sam_output_folder""/$(basename "$file" .fastq).sam"
+
+    first_file="${fastq_files[i]}"
+    second_file="${fastq_files[i+1]}"
+
+    fist_file_base_name="$(basename "$first_file" .fastq)"
+    second_file_base_name=$(basename "$second_file" .fastq)
+
+    if ![[ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]]; then
+        echo "$fist_file_base_name doesn't appear to pair with $second_file_base_name"
+        echo "We need paired file names to ensure paired end alignment works properly"
+        exit 1   
+    fi
+
+    sam_save_file="$sam_output_folder""/""${fist_file_base_name::-5}"".sam"
+
+    
     touch "$sam_save_file"
     echo "[$start_time] Aligning $file to $reference_genome_name"
-    echo "  results will be saved in $sam_save_file"
-
-    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 24 -S "$sam_save_file" #Run bowtie alignment
+    echo "Reesults will be saved in $sam_save_file"
+    
+    #Run bowtie alignment
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -1 "$first_file" -2 "$second_file" -p 24 -S "$sam_save_file"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] Alignment of $(basename "$file") complete!"
