@@ -99,10 +99,10 @@ echo "=========================================="
 
 #echo "Lets align things!"
 
-for fq in "${fastq_files[@]}"; do
+for file in "${fastq_files[@]}"; do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$start_time] Aligning ${fastq_files[fq]} to $reference_genome_name "
-    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "${fastq_files[fq]}" -p 24 #Need to figure out how to set the outputs#    end_time=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$start_time] Aligning $file to $reference_genome_name "
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 24 #Need to figure out how to set the outputs#    end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] Alignment complete!"
     echo "=========================================="
 done
