@@ -3,13 +3,13 @@
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
 #Add the complete path to the reference genome you want to use!
-reference_genome="~/home/cmallory/Genetic_analysis/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+reference_genome="~/Genetic_analysis/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
 
 #this is the name of the index files that will be created for this reference genome
 reference_genome_name="Near_complete_bd"
 
 # update this location for where your files are located
-fastq_file_location="~/home/cmallory/Genetic_analysis/fast_q_files/unpaired"
+fastq_file_location="~/Genetic_analysis/fast_q_files/unpaired"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="./unpaired_fastq_names.csv"
