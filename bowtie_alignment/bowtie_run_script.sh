@@ -90,7 +90,10 @@ fi
 
 # Lets move to our output files folder and begin!
 mkdir -p  "./output_files/$reference_genome_name" #makes the output data directory if directory doesn't exist
-cd "./output_files/$reference_genome_name" #moves to that directory if the directory doesn't exist
+cd "./output_files/$reference_genome_name" #moves to that directory
+
+sam_output_folder="./sam_outputs"
+mkdir -p "$sam_output_folder"
 
 echo "Begin bowtie index build"
 conda run -n bowtie_environ  bowtie2-build "$reference_genome" "$reference_genome_name" 
@@ -101,8 +104,10 @@ echo "=========================================="
 
 for file in "${fastq_files[@]}"; do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
+    sam_save_file="$sam_output_folder""/$(basename "$file" .fastq)".sam"
+    touch "$sam_save_file"
     echo "[$start_time] Aligning $file to $reference_genome_name "
-    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 36 #Need to figure out how to set the outputs#    end_time=$(date '+%Y-%m-%d %H:%M:%S')
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 36 -S sam_save_file #Need to figure out how to set the outputs#    end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] Alignment complete!"
     echo "=========================================="
 done
