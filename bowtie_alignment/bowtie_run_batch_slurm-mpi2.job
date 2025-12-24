@@ -14,7 +14,7 @@
 # Typically we will submit our slurm.job file from the right directory.  However
 # it is probably good to move to the right folder just in case!
 run_files_top_directory="~/Genetic_analysis/bd_genetics_analysis/bowtie_alignment"  # This variable can be changed to hold the directory where stuff is!
-echo pwd
+echo "$pwd"
 cd $run_files_top_directory # THis will set the current direcotry to the run_files_top_directory.    
 
 module load anaconda
