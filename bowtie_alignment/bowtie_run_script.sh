@@ -4,7 +4,7 @@
 
 #Add the complete path to the reference genome you want to use!
 reference_genome="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
-refernce_genome_name="Near_complete_bd"
+reference_genome_name="Near_complete_bd"
 
 # update this location for where your files are located
 fastq_file_location="/mnt/c/Users/Briggs Lab/Documents/Cannon/BD_genetics_data/fast_q_files/unpaired/"
@@ -66,9 +66,15 @@ fi
 #First! However!   we must build an index of our reference genomes that will be used for our analysis late!
 
 # Lets move to our output files folder and begin!
-cd output_files
+mkdir -p  "./output_files/$reference_genome_name" #makes the output data directory if directory doesn't exist
+cd "./output_files/$reference_genome_name" #moves to that directory if the directory doesn't exist
 echo "Begin bowtie index build"
 conda run -n bowtie_environ  bowtie2-build "$reference_genome" "$reference_genome_name" 
+echo "Reference genome indexing complete!"
+echo "=========================================="
+
+echo "Lets align things!"
+conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "${fastq_files[0]}"
 
 
 echo "end run"
