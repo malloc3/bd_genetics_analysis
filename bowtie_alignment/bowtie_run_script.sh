@@ -3,13 +3,13 @@
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
 #Add the complete path to the reference genome you want to use!
-reference_genome="./fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+reference_genome="./../../fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
 
 #this is the name of the index files that will be created for this reference genome
 reference_genome_name="Near_complete_bd"
 
 # update this location for where your files are located
-fastq_file_location="./fast_q_files/unpaired/"
+fastq_file_location="./../../fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="./unpaired_fastq_names.csv"
@@ -89,6 +89,9 @@ fi
 # Lets move to our output files folder and begin!
 mkdir -p  "./output_files/$reference_genome_name" #makes the output data directory if directory doesn't exist
 cd "./output_files/$reference_genome_name" #moves to that directory if the directory doesn't exist
+
+echo "lets check what the master directory is right now the one we submitted from: $SLURM_SUBMIT_DIR"
+
 echo "Begin bowtie index build"
 conda run -n bowtie_environ  bowtie2-build "$reference_genome" "$reference_genome_name" 
 echo "Reference genome indexing complete!"
