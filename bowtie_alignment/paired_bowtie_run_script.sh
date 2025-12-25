@@ -115,7 +115,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
 
-    if ![[ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]]; then
+    if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
         echo "$fist_file_base_name doesn't appear to pair with $second_file_base_name"
         echo "We need paired file names to ensure paired end alignment works properly"
         exit 1   
