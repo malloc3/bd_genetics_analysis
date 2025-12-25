@@ -132,7 +132,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -1 "$first_file" -2 "$second_file" -p 24 -S "$sam_save_file"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$end_time] Alignment of $(basename "$file") complete!"
+    echo "[$end_time] Alignment of $fist_file_base_name complete!"
     echo "=========================================="
 done
 
