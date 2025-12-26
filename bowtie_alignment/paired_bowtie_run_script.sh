@@ -14,7 +14,7 @@ reference_genome_name="Near_complete_bd"
 fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/paired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_fastq_names.csv"
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_fastq_names_run.csv"
 
 build_index=false #I typically aligned the paired genomes after the index has already been built so this can be set to false
 
