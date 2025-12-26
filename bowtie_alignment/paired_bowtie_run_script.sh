@@ -125,7 +125,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
 
     
     touch "$sam_save_file"
-    echo "[$start_time] Aligning $file to $reference_genome_name"
+    echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"
     
     #Run bowtie alignment
