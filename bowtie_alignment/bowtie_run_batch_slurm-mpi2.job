@@ -15,11 +15,22 @@
 # it is probably good to move to the right folder just in case!
 #run_files_top_directory="./home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment"  # This variable can be changed to hold the directory where stuff is!
 
+
+#First run the unpaired script
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
 echo "the current path now is: $SLURM_SUBMIT_DIR"
 
 module load anaconda
 ./bowtie_run_script.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
+
+
+
+# Then run the unpaired script
+cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+echo "the current path now is: $SLURM_SUBMIT_DIR"
+
+module load anaconda
+./paired_bowtie_run_script.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
 
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!

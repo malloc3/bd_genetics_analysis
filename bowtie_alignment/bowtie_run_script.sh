@@ -16,7 +16,7 @@ fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/unpaired/"
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"
 
-build_index=false #I typically aligned the paired genomes after the index has already been built so this can be set to false
+build_index=true #I typically aligned the paired genomes after the index has already been built so this can be set to false
 
 
 if [ -f $fastq_files_csv_path ]; then
