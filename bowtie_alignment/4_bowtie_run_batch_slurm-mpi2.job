@@ -1,0 +1,39 @@
+#!/bin/bash -l
+#SBATCH -J'Bowtie_run_number_XX'            # this names the job
+#SBATCH --ntasks=36                      # this sets the number of cores we may use
+#SBATCH --nodes=1                       # this setst the number of nodes we will use
+#SBATCH -o outlog_4                       # this will create an output log
+#SBATCH -e errLog_4                       # this will create an error log
+#SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
+#SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
+#SBATCH --mail-type ALL                 # This will send updates at every step
+
+
+
+#We need to set our file path to be where all of our documents are.
+# Typically we will submit our slurm.job file from the right directory.  However
+# it is probably good to move to the right folder just in case!
+#run_files_top_directory="./home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment"  # This variable can be changed to hold the directory where stuff is!
+
+
+#First run the unpaired script
+cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+echo "the current path now is: $SLURM_SUBMIT_DIR"
+
+module load anaconda
+./4_bowtie_run_script.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
+
+
+
+# Then run the unpaired script
+cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+echo "the current path now is: $SLURM_SUBMIT_DIR"
+
+module load anaconda
+./4_paired_bowtie_run_script.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
+
+/bin/hostname  # This reports what specific node this code is running on!
+time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
+
+echo "Job finished normally"
+scancel $SLURM_JOB_ID
