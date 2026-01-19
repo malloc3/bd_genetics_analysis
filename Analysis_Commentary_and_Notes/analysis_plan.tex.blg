@@ -1,0 +1,5 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'analysis_plan.tex.blg'
+[100] biber-darwin:340> INFO - === Thu Jan 15, 2026, 17:02:46
+[327] Utils.pm:410> ERROR - Cannot find 'analysis_plan.tex.bcf'!
+[327] Biber.pm:136> INFO - ERRORS: 1

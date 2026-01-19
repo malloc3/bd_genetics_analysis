@@ -1,0 +1,245 @@
+% !LW recipe = pdflatex-biber-pdflatex-pdflatex
+
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amscd}
+\usepackage{amsthm}
+\usepackage{amscd}
+\usepackage[backend=biber]{biblatex}
+\usepackage{hyperref}
+\addbibresource{full_reference_library.bib}
+
+
+
+\title{Bd Genetics Analysis Plan}
+\author{Cannon Mallory}
+\date{January 15, 2026}
+
+\begin{document}
+    \maketitle
+    \newpage
+    \tableofcontents
+    \newpage
+    \section{Helpful Papers}
+        Here are some papers that I found very helpful in the processes of coming up with this plan.  I will attempt to cite which papers did what where but that may not be completely accurate during the main body of the text.   Feel safe in knowing that these specific papers are the primary sources for all the information that I have compiled though!
+
+        \citation{kimBeginnersGuideAssembling2022}
+
+    \begin{itemize}
+        \item A beginner’s guide to assembling a draft genome and analyzing structural variants with long-read sequencing technologies. \cite{kimBeginnersGuideAssembling2022}
+
+        \item Complex history of amphibian killing fungus reveals new insights into pathogen genotype and virulence. \cite{rosenblumComplexHistoryAmphibiankilling2013}
+
+        \item Chromosomal copy number variation in the amphibian killing fungus Batrachochytrium dendrobatidis. \cite{muletz-wolzDiverseGenotypesAmphibiankilling2019}
+
+        \item \href{https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Hybrid-Assembly-of-the-Chytrid-Genome/9926479564601891#file-0}{Hybrid Assembly of the Chytrid Genome - Insights into the Evolution and Outbreak of a Major Amphibian Pathogen}
+
+        \item Diploidy within a Haploid Genus of Entomopathogenic Fungi. \cite{nielsenDiploidyHaploidGenus2021}
+
+        \item Cryptic diversity of a widespread global pathogen reveals expanded threats to amphibian conservation. \cite{byrneCrypticDiversityWidespread2019}
+        
+        \item Genomic Correlates of Virulence Attenuation in the Deadly Amphibian Chytrid Fungus, Batrachochytrium dendrobatidis \cite{refsniderGenomicCorrelatesVirulence2015}
+        
+
+    \end{itemize}
+
+
+
+
+
+
+%================================================================================================
+    \newpage
+    \section{Introduction and preamble}
+    There are a couple different approaches to using sequence data for my applications.  For this work I have a few related but ultimately independent goals:
+    \begin{enumerate}
+        \item Create phylogenies with older NGS sequence data
+           \begin{itemize}
+            \item Mitochondrial
+            \item Genomic DNA
+           \end{itemize}
+        \item Create phylogenies with new PacBio long read data
+           \begin{itemize}
+            \item Mitochondrial
+            \item Genomic DNA
+           \end{itemize}
+        \item Create CCNV Estimates of existing NGS sequence data
+        \item Create CCNV Estimates of new PacBio long read data
+    \end{enumerate}
+
+    \section{Available Sequence Data}
+    \begin{enumerate}
+        \item \textbf{Published NGS Sequence Data:}  There are approximately 40 published Bd NGS sequeces from around the world.   These data were all short read (150PE to 300PE) Illumina sequences.
+        
+        \item \textbf{Published PacBio HiFi sequence:} THere is a single pacbio hifi sequence published. I will generally reference this sequence by the name \textbf{near\_complete} THis sequences has good mitochondrial data!
+
+        \item \textbf{Imani Sequence:} Imani sequenced about 27 (double check number) bd isolates from across the California Sierra Nevada.  THese isolates were sequenced on an Illumina Seuqnencer PE300.  I think they were NovaSeq but not 100\% sure, I do know that they were sequenced on one of the newer Illumina machines!   As far as I am aware these data have not been published in any way.
+    
+        \item \textbf{New Sequence:}  I hope to sequence some number of new sequences!   Number TBD but if I am lucky these will be done on a PacBio hifi sequencer! 
+    \end{enumerate}
+
+
+
+
+%================================================================================================
+    \newpage
+    \section{NGS Analysis}
+    \subsection{General NGS Analysis Notes}
+    Creatind a de-novo assembly from NGS sequence data is generally not super successful.  It is most certainly possible however the results are generally less than desireable.  When used for whole genome assembly NGS data can miss large structural variations in the genomes and might miss novel genes.    It also struggles with highly repetitive regions.  NGS data will, however, accurately capture SNPS at a reasonably high fidelity.    The benefit of NGS data is predominently the price.
+
+    The Good news, however, is we already have a published PacBio reference genome!   If we already have a good reference genome then aligning illumina sequence data especially paired end seuqnces can be EXTREMELY successful and is more likely to capture SV's although novel genenes will likely still be missed.
+
+    \subsection{General steps}
+    \subsubsection{\textbf{START:} Pre-processed Sequencing Reads}
+    
+    De-multiplexed reads where individual bp calls have been made. This should include both the FWD and REV sequences of paired end reads if applicable.  These reads may be long (pacbio) or short (illumina, sanger).  Often this pre-processing will be performed by the sequencing platform/service providor.  If this has not been performed then follow the service providords direction on cleaning and pre-processing your reads, this process is VERY specific to the sequencing platform.
+
+    
+    \subsubsection{\textbf{Quality Filter:}}
+    
+    Some reads may be poor.   If not already filtered by the service provider toss out all low quality sequences.  Recommend dropping all samples that do not have at least 60\% of bases with pred scores > 20 (a 20 phred score indicates that the base call is 99\% accurate).
+        
+    NOTE:  NEED TO INVESTIGATE IF MY SAMPLES ALREADY HAVE THIS CLEANING!  UNSURE HOW TO BE SURE  If my samples need to be cleaned then I will link the code here
+    
+    \subsubsection{\textbf{Trim Low-quality ends:}}
+    
+    Often the confidence in base pair calls is quite low towards the of each read.  Dropping the low quality BP is generally a good idea to make sure you don't have incorrect SNP calls.   THis can be done with \textit{Trimmomatic, Cutadapt, BBduk, FASTP, Seqtk, NGSQC, SAMStat, FastQC htSeqTools} others?   
+        
+        NOTE: Need to confirm if my samples already have this cleaning or not.   It may have been performed.  If not then I will run this again.   Appropriate code will be linked here!
+
+    \subsubsection{\textbf{Genome Size Estimation, Read Quality Estimate:}}
+        
+        NOTE: The method here is not the same as long read methods!!   Short reads have slightly different statistics!
+
+        Helpful metrics should include:  Histogram of read lengths, read depth, and others.  Statistics for individual and cumulative samples should be listed.  THis can help us understand if a specific sequenced isolate had problematic sequencing which could explain any erronous or wierd results!
+    
+    \subsubsection{\textbf{Sequence Alignment:}}
+    
+    Align sequence to reference genome.  Sequence alignment is arguable the most impotant step of any whole genome analysis especially if phylogenies are to be created.  Mistakes in alignment can cause quite significant changes in end results.  The callange with sequence alignment is the inherent trade-off between mapping speed and the qulaity of that alignment.  There is a fair argument that if you have access to a good computing cluster then sacrificing compute time for quality is recommended, do note, however, that just because a tool is slow it will not neccessarily have a higher quality. Additional consideration must be given to the characteristics of spp/genome you are trying to align.  Low-complexity squences, repetitive regions, collapsed copies of sequences, contaminations, or gaps in the genome all present challenges to alignment and each tool deals with these issues in slightly different ways.   Lastly the \textbf{REFERENCE GENOME} can have ENOURMOUS impacts on the end alignment quality.  A low quality referenve genome with gaps, or imporperly characterized repetitive regions will wreck havoc to any alignment tool with some tools fairing better to some types of issues than others \cite{schilbertComparisonReadMapping2020}.  Thankfull I have the high quality \textbf{near\_complete} PacBio sequnce.
+        
+    Before we discuss the common tools uesed we must first mention the four primary indexing methods these tools use for multiple align.
+    \begin{enumerate}
+        \item \textbf{Burrow-Wheelers Transformation:} Developed in 1983 by David Wheeler and Michael Burrows the Burrow-Wheelers Transformation will reorganize a string of text grouping of similar characters together enabling faster charater comparison.   Originally used for preprocessing of strings before compression it has become very helpful for alignment algorithms. If you want to explore how to perform the BWT look at \href{https://www.youtube.com/watch?v=Lc-ACiJIrnM}{Advanced Data Structures: Burrows-Wheeler Transform}. In practice the BWT is performed on the reference genome, simultaniously an indexing step is porformed to create a map of each chacater in the BWT to the original position in the genome.  This step can take some time but is only performed once.   Once this BWT and index has been created we can take each individual short read NGS sequence and querey the BWR for the first closest match (this is covered quite extensively by DB querie scientists). The real magic is in how the algorithm handles inexact matching and gaps and is where most of the different BWT based algorithms differ (I think).  I frankly cannot comment on how this process is done. Ultimately, however, the BWT based methods use very little memory after the indexing step has been completed and are extremely computationally efficient albiet with some potential loss in accuracy due to how inexact matching must be handled.
+
+        \item \textbf{Reference Genome Hash table Indexing:} NOTE: I am not expert on this and I have not researched the details of this process significantly.  THis is my current understanding but you should use other resources if you want to understand the details of these processes. 
+            
+        Similar to BWT hash table indexing is a database indexing method designed for faster database quiries.   I am unsure when this was first developed but has tables have been around for a VERY long time.   Funcitionally instead of representing a genome as a whole string the genome can be "indexed" into a hash table where each value in the hash table is a list of length k (also know as a k-mer).  These k-mers are of some preselected length k (the specific length is actually super important).  Typically there is some "offset" array of k-mers that repersent different starting positions of a potential k-mer which points to a specific position within some position array where the full sequence is listed.  THe k-mers within the offset array can overlap significantly and contain the same information multiple times in different ways which helps with the oligemer comparison later.  Once this has map has been created the piece of "target" DNA that is to be aligned is then broken down into overlapping "target" k-mers and queried against the previously created hash index.  WHen matches are found the "seed location" aka the locations where the short target k-mers are recorded.  Up until this point, as I understand, many hash index based systems operate very similarly.  There is some deviation with long read sequences since theoretically the long read is known to go together but the basic fundamentals are approximately the same.
+
+        Once the seeds have been determined a pleathora of possible algorithms are used to examin all the possible seeds for all providded "target" k-mers and find the overall "best" alignment.  Best is arguably subjective and much care should be used when deciding which algorithm you use for a spcific species, some are better at expecting large structural variants others are better at handling small SNPS, some are better for short read (and thus short k-mer) sequences and others are better for long read (long k-mer) alignment.
+
+        A note on k-mer length.   k-mer length is CRITICAL. Theoretically we need each k-mer to be whoally unique within the genome.  If k is too small then there will undoutably be repeated k-mers within the hash.  The Highly repetitive regions in many genomes cause a significant issue here and can easily require $k > 1000$ to have confidence in sequence alignments unless repetitive regions are dropped.   Large k-mers however will be less sensitive which is not ideal.  There are also two hard limitations to choice in k-mer length. 1.k cannont be longer than the sequence fragment size.  E.g. if you sequences on illumina PE150 then $k <= 150$ we cannot create data from nothing.  This specific limitiation is a driving factor for longer read sequencing methods like PacBio and Nanopore.  2. Large k values present a SIGNIFICANT compute challenge, the RAM required to store the hash index increases linearly with k and genome size.  For a human genome of 3 billion base pairs and a $k = 100bp$ the hash table would easily need 75GB of RAM ($RAM = GenomeSize * k/4$) and thats assuming minimal overhead RAM costs for the hash.  Of course there are ways to obtain this amount of RAM and the hash algorithum can be tuned to reduce RAM overhead but it is still a notable problem.  Choice of k-mer length is not trivial and can change results and compute time dramatically.  Choose k-mer carefully.
+
+        \item\textbf{Hashing Reads:} Theoretically similar to hashing the genome.  Unsure of the nuances here
+        \item\textbf{Sorting and Mergin:} Unsure the implications of this method.  Appears to be significantly less common than the first two.  Includes Slider and Syzygy apparently \cite{muFastAccurateRead2012}
+    \end{enumerate}
+
+    \textbf{TLDR: Fundamental methods of alignment:} BWT is a fast effecient relatively accurate method and is especially suited to short read sequencing.  Hash table indexing is memory intensive and slow but usually provides the highest accuracy and can detect large genomic rearragements and other similar genomic phenomena more easily than many BWT methods.  HOWEVER, because each of these methods depend on many pre and post processing steps outcomes of any one tool VERY dependent on the specific tool.   Do not select a tool simply because it is a BWT or a Hash table index, select a tool because it performs with your system and sequencing platform. \cite{liDiminishingReturnIncreased2014}\cite{wuBitpackingTechniquesIndexing2016}\cite{misraAnatomyHashbasedLong2011}
+
+    \textbf{Lastly: Just because a tool works REALLY REALLY well for the human genome doesn't mean it will work for your sample type.  From a genomic phenomena POV the human genome is pretty darn simple and many tools designed for human genome sequencing will fail to capture the true nuance of your system}
+
+
+    \textbf{Note:} There are multiple metrics for how well some sequence aligned to the reference genome.
+    \begin{enumerate}
+        \item \textbf{Mapping Percentage:} The precentage of reads that were mapped to the genome.  Higher is generally better.  Above 90\% is probably good.  Importantly just because a read was mapped to the genome doesn't mean it was mapped to the right spot.  This presents a significant challange.
+        \item \textbf{Other Metrics:}  THere are countless other metrics one may be interested in, however, genetic sequencing presents an unowable problem. Rarely do we know what the "right" answer is so although we can asses each tools sensitivity and accuracy with respect to some ground tuth we have no truth to ground.   Many groups have created simulated genomes to test these tools and have provided quite intersting and helpful comparisons for how these tools are likley performing.  Importantly it has been noted that the performance of each tool changes based on the specific organism (or at least kingdom) that is being sequenced.  In my opinion there is anough nuanced variation in these studies that if you need the utmost confidence in your results then you must either find such a study that has been performed on your system of interst or perform such a study yourself! THis is likely important if you know your organism presents some rather unique methods of inheretance or mutation.  If this is not the case then just choose any of them and they will probably give you a decent answer.   Better yet use a few tools and if they all agree then that answer is probably as close to right as you will get.   Do also think about your final application and what specifically you are trying to learn, that can guide you if you want a more accurate or more sensitive tool.
+        \item \textbf{I am partial:}  Currently I am moderatly inclined to use Novoalign, BWA-MEM, and STAMPY paired with the GATK variant caller.   They seem to have a good balance of sensitivity and accuracy in most tests I have read.
+        \item Unfortunately, It appears in most cases sensitivity and accuracy are inversely related.
+    \end{enumerate}
+        
+    Here are a few of the existing alignment tools and some commentary on their best uses:
+    \begin{enumerate}
+            
+        \item\textbf{Burrow-Wheeler Transformation}
+        \begin{itemize}
+            \item  \textbf{CLC-mapper:} CLC-mapper is developed by Qiagen.  As such it is a proprietary softward suit that is primarily used through a graphical user interface.   This significantly limits it's use on compute clusters and as such, in my opinion, is not suitable for large scale genomic analysis (admittadly I have never used this tool).  Regardless according to \cite{schilbertComparisonReadMapping2020} it does not provide the same quality results as novoalign or BWA-MEM when used to align plant genomes (human genomes are more simple and perhaps CLC-mapper is better for these more rudementary genomes) (yes I know I am throwing shade lmao - go work with a non-"model" genome and then come talk to me.  Human genetics are easy).
+
+            \item \textbf{SOAP2:} Uses Burrows-Wheeler Transformation indexing algorithm. \cite{schilbertComparisonReadMapping2020} \cite{wuBenchmarkingVariantIdentification2019}
+                
+            \item \textbf{Bowtie2:} Based in the burrow-wheelers transformation Bowtie2 is an excellent longer read illumina style sequences around 150-500bp (Bowtie2 is not particularly suited for modern long read sequencing e.g. pacbio or nanopore).  Bowtie2 uses a remarkably little memory and is not particularly core intensive making it an ideal platform if you do not have access to a compute cluster.   It is generally more sensitive than many BWT counterparts such as BWA (Burrow-wheelers alignment) and SOAP2.  I have found that more than 36 cores will not particularly decrease run times.   Be sure to set proper setting for Paired End sequences and non-paired end sequences!  You can find run code and some associated README in this git project! \cite{langmeadFastGappedreadAlignment2012a} \cite{schilbertComparisonReadMapping2020}
+                
+            \item \textbf{BWA-MEM:} An update on the older BWA tool. This tool regularly comes up as one of the best BWT based alignment softwares.  Combined wtih GATK BWA-MEM should be fast and give really good results for short read sequencing methods.  
+            \item \textbf{BWA-SW:} Finds local alifnmnts of the reads rather than global alignments.
+                
+            \item \textbf{GEM3:} \cite{schilbertComparisonReadMapping2020}
+        \end{itemize}
+
+        \item\textbf{Reference Genome Hash Table Indexing:}
+        \begin{itemize}
+            \item  \textbf{novoAlign:} Optimized for NGS data.  Unsure if it works for long read sequencing I doubt it.  Harolded as one of the most accurate alignment tools NovoAlign is based on hash table indexing.  Full details of how this system works is a bit hard to find.   It appears to be proprietary to some notable degree.  SHould be free to institutions \cite{schilbertComparisonReadMapping2020}
+            
+            \item \textbf{GSNAP:} Uses hash table indexing. \cite{wuBenchmarkingVariantIdentification2019}
+            \item \textbf{SNAP:} Uses large continuous seeds
+            \item \textbf{BFAST:}   Uses large spaced seeds to improve sensitivity
+            \item \textbf{GASSST:} Uses a large array of filters to improve alignment speeds
+            \item \textbf{SHRiMP2:} Uses large spaced seeds to improve sensitivity
+            \item \textbf{SeqAlto:} Uses large continuous seeds.  Is only suitable to sequencing methods where reads are greater than 100bp.   Published here Fast and Accurate read alignment for resequencing \cite{muFastAccurateRead2012}
+
+        \end{itemize}
+
+
+        \item\textbf{Read Hash Table Indexing:} I don't quite understand how this differes/is better/worse from the Genome Hash Table indexing.   Not super common though.  Supposedly helpful when the reference genome is small (e.g. a transcriptome) \cite{muFastAccurateRead2012}
+        \begin{itemize}
+            \item \textbf{MAQ:}
+            \item \textbf{SeqMap:}
+        \end{itemize}
+        \item\textbf{Sorting and Merging:}
+        \begin{itemize}
+            \item \textbf{Slider:}  Requires a large fast RAM
+            \item \textbf{Syzygy:} Requires a large fast RAM
+
+        \end{itemize}
+
+
+        \item\textbf{Other/Hybrid:}
+        \begin{itemize}
+            \item \textbf{Stampy:}  A fast yet sensitive alignment algorythm that uses a hybrid mapping algotythum (hybrid between a hash and the burrows-wheeler method) to be more sensitive than the burrow-wheeler transformation counterparts (bowtie, bowtie2 ELAND, BWA) but faster than the high sensitivity hash based systems (Novalign, Mosaic).  Stampy is particularly well suited to short read Illumina sequencing. Link to Stampy Git https://github.com/uwb-linux/stampy \cite{lunterStampyStatisticalAlgorithm2011} 
+        \end{itemize}
+
+        \item\textbf{Unknwon:}
+        \begin{itemize}
+            \item \textbf{Geneious Prime:} Proprietary tool (\$200 yearly). The Geneious alignment tool is easy to use and in my experience fairly accurate.  FIND PAPER COMPARING ACCURACE TO OTHER TOOLS. The although GUI interface is convinient it severly limits the use of compute clusters (unless there is some geneious command line tool that I am un-aware of...) FIND THE ALGORITHM TYPE IT USES.   In my experience it is substantially slower than Bowtie2 but appears to provide more accurate results and handls SVs slightly better.   GEneious prime software is quite nice when trying to work with genetics datasets and undestand what you are looking at so I do recommend the software in general.  However if you are trying to align more than just a few sequences then I would likely avoid this tool.
+        \end{itemize}
+            
+        \item \textbf{Old or depricated tools:}
+        \begin{itemize}
+            \item \textbf{Bowtie:} The older brother of Bowtie2, bowtie is really only good for very short reads (<50bp).  Though a historically fantastic algorithum newer algorithums have both a higher sensitivity and increased speed.
+            \item \textbf{BWA:} The old version of BWA.  Careful of the exact name of BWA and BWA-MEM, many software tools were benchmarked against "BWA" and it is not always specific if they benchmarked agains the most modern version "BWA-MEM".  Frankly, neither BWA nor BWA-MEM is the best tool for my application so the issue is largely moot!
+        \end{itemize}
+
+    \end{enumerate}
+        
+    Some advertized "alignment" tools should not be used in this short read sequence alignment steps:
+    \begin{enumerate}
+        \item \textbf{Mauve:} A powerful too for multiple alignments.  Mauve is designed to detect whole genome rearrangments and is bessed used for comparative genomics.  Aka taking two assembled (likely de-novo assembled) genomes and compairing them!  Helpful for answering questions about synteny, or identification of large SVs.  This can be an excellent tool for multiple alignment prior to building a phylogeny. It cannot handle short read sequences.  Also note that Mauve has a function (if rudimentary) GUI which makes it slightly less convinient to run on a cluster.   I belive Mauve alignment is possible using only command lind tools and associated run scripts however I have not yet attempted this (Jan 2026).
+        \item \textbf{LastZ:} A good tool for long sequences LastZ is more similar to Mauve than the tools we ned fo this step.  LastZ is an excellent choice for multiple alignment prior to building a phylogony!
+    \end{enumerate}
+
+    
+    \textbf{NOTE:} Although I tried to make sure I cited approriate journals/publications in this list.  The following publications were all extremely helpful for identifying and understanding the different tools. \cite{kimBeginnersGuideAssembling2022}, \cite{rosenblumComplexHistoryAmphibiankilling2013}, \cite{muletz-wolzDiverseGenotypesAmphibiankilling2019}, \cite{nielsenDiploidyHaploidGenus2021}, \cite{byrneCrypticDiversityWidespread2019}, \cite{refsniderGenomicCorrelatesVirulence2015}, \cite{lunterStampyStatisticalAlgorithm2011}, \cite{langmeadFastGappedreadAlignment2012a}, \cite{kimBeginnersGuideAssembling2022}, \cite{wuBenchmarkingVariantIdentification2019}, \cite{liDiminishingReturnIncreased2014},\cite{wuBitpackingTechniquesIndexing2016}\cite{misraAnatomyHashbasedLong2011}, \cite{muFastAccurateRead2012}
+
+
+
+
+    \newpage
+    \section{PacBio Analysis}
+    \subsection{Generaly pacbio analysis notes}: Creating a de-novo assembly from long read PcaBio sequencing is a really great idea!   We have the data and while performing the de-novo assembly we are more likely to identify SV's and new genes.   Since we already have a hifi pacbio sequence I recommend doing a hybrid type assembly where we do a de-novo assembly and then scaffold this genome to a good reference genome.  At which point we can make our structural variant calls and gene annotations (see a Begginers Guid \cite{kimBeginnersGuideAssembling2022}).
+
+
+
+
+
+
+
+
+
+
+
+    \newpage
+    \printbibliography
+
+  
+\end{document}
