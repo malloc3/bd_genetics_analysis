@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  19 JAN 2026 14:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  19 JAN 2026 15:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -514,32 +514,32 @@ Overfull \hbox (12.0508pt too wide) in paragraph at lines 126--127
  []
 
 [6] [7] [8] [9] [10] [11]
-Overfull \hbox (5.5815pt too wide) in paragraph at lines 222--223
+Overfull \hbox (5.5815pt too wide) in paragraph at lines 224--225
 []\OT1/cmr/bx/n/10 NOTE: \OT1/cmr/m/n/10 Al-though I tried to make sure I cited ap-pro-r-i-ate jour-nals/publications
  []
 
 [12] [13]
-Overfull \hbox (2.99562pt too wide) in paragraph at lines 243--243
+Overfull \hbox (2.99562pt too wide) in paragraph at lines 245--245
 []\OT1/cmr/m/n/10 Allison Q. Byrne et al. ``Cryp-tic Di-ver-sity of a Widespread Global Pathogen
  []
 
 
-Overfull \hbox (9.739pt too wide) in paragraph at lines 243--243
+Overfull \hbox (9.739pt too wide) in paragraph at lines 245--245
 \OT1/cmr/m/n/10 26661667. \OT1/cmr/m/sc/10 doi\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 10 . 1016 / j . xpro . 2022 . 101506$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / linkinghub .
  []
 
 
-Overfull \hbox (12.74834pt too wide) in paragraph at lines 243--243
+Overfull \hbox (12.74834pt too wide) in paragraph at lines 245--245
 \OT1/cmtt/m/n/10 elsevier . com / retrieve / pii / S2666166722003860$[] \OT1/cmr/m/n/10 (vis-ited on 01/16/2026). 
  []
 
 
-Overfull \hbox (3.44978pt too wide) in paragraph at lines 243--243
+Overfull \hbox (3.44978pt too wide) in paragraph at lines 245--245
 \OT1/cmr/m/n/10 per-a-ture''. In: \OT1/cmr/m/it/10 Jour-nal of Evo-lu-tion-ary Bi-ol-ogy \OT1/cmr/m/n/10 32.3 (Mar. 1, 2019), pp. 287{
  []
 
 [14]
-Overfull \hbox (7.10399pt too wide) in paragraph at lines 243--243
+Overfull \hbox (7.10399pt too wide) in paragraph at lines 245--245
 []$\OT1/cmtt/m/n/10 27095998$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / pmc . ncbi . nlm . nih . gov / articles / PMC4835851/$[]
  []
 
@@ -563,10 +563,10 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,2490b,1480s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (15 pages, 191398 bytes).
+Output written on analysis_plan.pdf (15 pages, 192905 bytes).
 PDF statistics:
- 342 PDF objects out of 1000 (max. 8388607)
- 300 compressed objects within 3 object streams
+ 344 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
  70 named destinations out of 1000 (max. 500000)
  105 words of extra memory for PDF output out of 10000 (max. 10000000)
 
