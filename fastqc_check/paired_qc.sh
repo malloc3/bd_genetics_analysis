@@ -9,11 +9,6 @@ memory_per_file=$1
 number_of_threads=$2
 run_results_folder=$3
 
-echo "Lets see our variables that were passed in"
-echo "The memory is: ""$memory_per_file"
-echo "The nubmer of threads is: ""$number_of_threads"
-echo "The results folder is: ""$run_results_folder"
-
 # update this location for where your files are located
 fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/paired/"
 
@@ -86,15 +81,10 @@ echo "Results shoudl be located here: ""$run_results_folder" >> "$log_doc_full_p
 echo "Memory allocated to run each file: ""$memory_per_file" >> "$log_doc_full_path"
 echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_doc_full_path"
 
-
-# 3. write any needed info to that file of note
-# 4. run the fileqc command on all the files (probably can run one by one tbh)
-
-
-
-# Looks through the fastq files list and runs the fastqc on each of thsoe files
-# Then saves it to the run_results folder
+# 3. run the fileqc command on all the files (probably can run one by one tbh)
 echo "Lets run Fast qc on the files"
-./FastQC/fastqc ${fastq_files[@]} --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
+# Runs each qc. Memory is the size of memory variable.   Will run multiple samples at the same time = the number_of_threads.
+# Saves output files in the run_results_folder specified
+./FastQC/fastqc ${fastq_files[@]} --outdir="./""$run_results_folder" --memory=$memory_per_file -t=$number_of_threads
 
 echo "end run"
