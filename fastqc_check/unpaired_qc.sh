@@ -67,7 +67,7 @@ fi
 
 
 # Get todays date.   
-todays_date=$(date '+%Y-%m-%d')
+todays_date=$(date '+%Y-%m-%d %H:%M:%S')
 
 #Make a directoryt o save settings files and setting information
 run_results="fast_qc_results""$todays_date"
@@ -80,8 +80,8 @@ touch "$log_doc_full_path"
 echo "FastQC Log" >> "$log_doc_full_path"
 echo "date: ""$todays_date" >> "$log_doc_full_path"
 echo "Author: Cannon Mallory" >> "$log_doc_full_path"
-echo "Ran by SLURM Script on UCSB Pod"
-echo "Results shoudl be located here: ""$run_results"
+echo "Ran by SLURM Script on UCSB Pod" >> "$log_doc_full_path"
+echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
 
 
 # 3. write any needed info to that file of note
