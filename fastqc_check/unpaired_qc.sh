@@ -10,12 +10,12 @@ number_of_threads=$2
 run_results_folder=$3
 
 echo "Lets see our variables that were passed in"
-echo "$memory_per_file"
-echo "$number_of_threads"
-echo "$run_results_folder"
+echo "The memory is: ""$memory_per_file"
+echo "The nubmer of threads is: ""$number_of_threads"
+echo "The results folder is: ""$run_results_folder"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
+fastq_file_location=qq"$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"   #Should update this to only look locally
@@ -77,7 +77,7 @@ fi
 # 2. Make a file for output information and settins to be recorded
 log_doc_name="unpaired_fast_qc_settings.txt"
 log_doc_full_path="./""$run_results_folder""/""$log_doc_name"
-touch "$log_doc_full_path"les
+touch "$log_doc_full_path"
 echo "FastQC Log" >> "$log_doc_full_path"
 echo "date: ""$todays_date" >> "$log_doc_full_path"
 echo "Author: Cannon Mallory" >> "$log_doc_full_path"
