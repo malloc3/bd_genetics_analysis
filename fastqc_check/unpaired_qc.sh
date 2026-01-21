@@ -58,7 +58,7 @@ if $all_files_exist; then
 else
     echo "The following files do not exist:"
     for i in "${!non_existing_files[@]}"; do
-	    echo "	${non_existing_files[$i]}"
+	    echo "|--""${non_existing_files[$i]}""--|"
     done
     echo "The following files are not readable:"
     for i in "${!non_readable_fast_q_files[@]}"; do
