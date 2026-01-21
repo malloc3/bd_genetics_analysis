@@ -27,12 +27,6 @@ fi
 
 echo "============================"
 echo "Looking for fastq files..."
-echo "These are the names of the files:"
-for i in "${!fastq_files_names[@]}"; do
-    full_path="$fastq_file_location${fastq_files_names[$i]}"
-    echo "$full_path"
-done
-echo "============================"
 # Steps to check if all new fastq files exist
 fastq_files=()
 
@@ -59,8 +53,6 @@ done
 
 if $all_files_exist; then
     echo "All fastq files exist and are readable!"
-    echo "The list of all of these files is:"
-    echo " $fastq_files"
     echo "============================"
 else
     echo "The following files do not exist:"
@@ -106,8 +98,8 @@ echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_d
 # Looks through the fastq files list and runs the fastqc on each of thsoe files
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
-echo "$number_of_threads"
-./FastQC/fastqc $fastq_files --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
+echo "${fastq_files[@]}"
+#./FastQC/fastqc $fastq_files --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
 
 
 #for file in "${fastq_files[@]}"; do
