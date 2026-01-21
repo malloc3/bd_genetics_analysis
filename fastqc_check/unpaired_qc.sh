@@ -9,6 +9,7 @@ memory_per_file=$1
 number_of_threads=$2
 main_results_folder=$3
 run_results_folder="./""$main_results_folder""/unpaired"
+mkdir "$run_results_folder"
 
 # update this location for where your files are located
 fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
