@@ -5,8 +5,10 @@
 #This script is to run the fastqc run script to check the quality scores of each sequence.
 
 # FastQC run settings
-memory_per_file=512
-number_of_threads=6
+memory_per_file=$1
+number_of_threads=$2
+run_results_folder=$3
+
 
 
 
@@ -72,15 +74,15 @@ fi
 
 # 2. Make a file for output information and settins to be recorded
 log_doc_name="unpaired_fast_qc_settings.txt"
-log_doc_full_path="$RUN_RESULTS""/""$log_doc_name"
-touch "$log_doc_full_path"
+log_doc_full_path="./""$run_results_folder""/""$log_doc_name"
+touch "$log_doc_full_path"les
 echo "FastQC Log" >> "$log_doc_full_path"
 echo "date: ""$todays_date" >> "$log_doc_full_path"
 echo "Author: Cannon Mallory" >> "$log_doc_full_path"
 echo "Ran by SLURM Script on UCSB Pod" >> "$log_doc_full_path"
-echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
-echo "Memory allocated to run each file: ""$MEMORY_PER_FILE" >> "$log_doc_full_path"
-echo "Number of threads per chunk of files ran: ""$NUMBER_THREADS" >> "$log_doc_full_path"
+echo "Results shoudl be located here: ""$run_results_folder" >> "$log_doc_full_path"
+echo "Memory allocated to run each file: ""$memory_per_file" >> "$log_doc_full_path"
+echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_doc_full_path"
 
 
 # 3. write any needed info to that file of note
@@ -91,7 +93,9 @@ echo "Number of threads per chunk of files ran: ""$NUMBER_THREADS" >> "$log_doc_
 # Looks through the fastq files list and runs the fastqc on each of thsoe files
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
-#./FastQC/fastqc ${fastq_files[@]} --outdir="./""$run_results" --memory=$memory_per_file -t=$NUMBER_THREADS
+#./FastQC/fastqc ${fastq_files[@]} --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
+
+
 #for file in "${fastq_files[@]}"; do
 #    ./FastQC/fastqc "$file" --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
 #done
