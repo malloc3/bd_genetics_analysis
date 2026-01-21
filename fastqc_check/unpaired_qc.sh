@@ -12,7 +12,7 @@ run_results_folder="./""$main_results_folder""/unpaired"
 mkdir "$run_results_folder"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"   #Should update this to only look locally
@@ -38,7 +38,7 @@ non_readable_fast_q_files=()
 # IT figures out the full path to all the files of interest.  If it finds those files it adds the full
 # path to the fastq_files list for use later
 for i in "${!fastq_files_names[@]}"; do
-    full_path="$fastq_file_location${fastq_files_names[$i]}"
+    full_path="$fastq_file_location""/""${fastq_files_names[$i]}"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
             fastq_files+=("$full_path")
