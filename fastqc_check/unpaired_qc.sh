@@ -79,7 +79,7 @@ todays_date=$(date '+%Y-%m-%d_%H:%M:%S')
 
 #Make a directoryt o save settings files and setting information
 run_results="fast_qc_results""$todays_date"
-mkdir "./""$run_results"
+#mkdir "./""$run_results"
 
 # 2. Make a file for output information and settins to be recorded
 log_doc_name="fast_qc_settings.txt"
