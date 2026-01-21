@@ -9,7 +9,7 @@ memory_per_file=$1
 number_of_threads=$2
 run_results_folder=$3
 
-
+echo "Lets see our variables that were passed in"
 echo "$memory_per_file"
 echo "$number_of_threads"
 echo "$run_results_folder"
