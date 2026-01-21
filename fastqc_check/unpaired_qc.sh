@@ -38,8 +38,12 @@ non_readable_fast_q_files=()
 # IT figures out the full path to all the files of interest.  If it finds those files it adds the full
 # path to the fastq_files list for use later
 for i in "${!fastq_files_names[@]}"; do
-    file_name=${fastq_files_names[$i]}
+    #So apparently when cycling the the csv two extra character "^M" are added to teh end of each string.   Must remove these
+    file_name_with_extra_character=${fastq_files_names[$i]}
+    file_name="${file_name_with_extra_character::-2}"
     echo "|--""$file_name""--|"
+    # We hsould now have the right file name
+    
     full_path="$fastq_file_location""/""$file_name"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
