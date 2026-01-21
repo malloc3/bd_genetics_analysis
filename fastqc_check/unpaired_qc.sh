@@ -14,14 +14,14 @@ number_of_threads=3
 fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv="$SLURM_SUBMIT_DIR""/../bowtie_alignment/unpaired_fastq_names.csv"   #Should update this to only look locally
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/unpaired_fastq_names.csv"   #Should update this to only look locally
 
 
 #Uf the csv exists then then makes a list of all the names
-if [ -f $fastq_files_csv ]; then
-    mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv)
+if [ -f $fastq_files_csv_path ]; then
+    mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
 else
-    echo "File path $fastq_files_csv does not exist"; exit 1
+    echo "File path $fastq_files_csv_path does not exist"; exit 1
 fi
 
 
