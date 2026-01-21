@@ -29,6 +29,7 @@ echo "============================"
 echo "Looking for fastq files..."
 echo "These are the names of the files:"
 echo "$fastq_files_names"
+echo "============================"
 # Steps to check if all new fastq files exist
 fastq_files=()
 
