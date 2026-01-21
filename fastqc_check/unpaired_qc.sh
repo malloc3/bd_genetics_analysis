@@ -10,7 +10,9 @@ number_of_threads=$2
 run_results_folder=$3
 
 
-
+echo "$memory_per_file"
+echo "$number_of_threads"
+echo "$run_results_folder"
 
 # update this location for where your files are located
 fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
