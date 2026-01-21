@@ -62,7 +62,7 @@ else
     done
     echo "The following files are not readable:"
     for i in "${!non_readable_fast_q_files[@]}"; do
-	    echo "	${non_readable_fast_q_files[$i]}"
+	    echo "|--""${non_readable_fast_q_files[$i]}""--|"
     done
     echo "Run Failed"
     exit 1 
