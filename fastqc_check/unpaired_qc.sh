@@ -98,6 +98,7 @@ echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_d
 # Looks through the fastq files list and runs the fastqc on each of thsoe files
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
+echo "$fastq_files"
 #for file in "${fastq_files[@]}"; do
 for ((i=0; i<${#fastq_files[@]}; i+=$number_of_threads)); do
     files=(${fastq_files[@]}:$i:$number_of_threads)
