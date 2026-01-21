@@ -94,9 +94,9 @@ echo "Results shoudl be located here: ""$run_results"
 echo "Lets run rast qc on the files"
 for file in "${fastq_files[@]}"; do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$start_time] Running FastC_of $(basename "$file")"
+    echo "[$start_time] Running FastQC of $(basename "$file")"
 
-    java "./FastQC/fastqc""$file" -o "$run_results"
+    ./FastQC/fastqc "$file" --outdir="./""$run_results"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] FastQC of $(basename "$file") complete!"
