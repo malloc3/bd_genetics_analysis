@@ -11,10 +11,10 @@ number_of_threads=3
 
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaied/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/fast_q_paired_all.csv"   #Should update this to only look locally
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"   #Should update this to only look locally
 
 
 #Uf the csv exists then then makes a list of all the names
@@ -28,7 +28,10 @@ fi
 echo "============================"
 echo "Looking for fastq files..."
 echo "These are the names of the files:"
-echo "$fastq_files_names"
+for i in "${!fastq_files_names[@]}"; do
+    full_path="$fastq_file_location${fastq_files_names[$i]}"
+    echo "$full_path"
+done
 echo "============================"
 # Steps to check if all new fastq files exist
 fastq_files=()
