@@ -18,7 +18,16 @@
 
 #First run the unpaired script
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+MEMORY_PER_FILE=512
+NUMBER_THREADS_=6
 echo "the current path now is: $SLURM_SUBMIT_DIR"
+
+todays_date=$(date '+%Y-%m-%d_%H-%M-00')
+
+#Make a directoryt o save settings files and setting information
+RUN_RESULTS="fast_qc_results""$todays_date"
+mkdir "./""$run_results"
+
 
 ./unpaired_qc.sh # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
 
