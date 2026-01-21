@@ -14,7 +14,7 @@ number_of_threads=3
 fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv="$SLURM_SUBMIT_DIR""../bowtie_alignment/unpaired_fastq_names.csv"   #Should update this to only look locally
+fastq_files_csv="$SLURM_SUBMIT_DIR""/../bowtie_alignment/unpaired_fastq_names.csv"   #Should update this to only look locally
 
 
 #Uf the csv exists then then makes a list of all the names
