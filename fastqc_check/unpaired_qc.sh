@@ -15,7 +15,7 @@ echo "The nubmer of threads is: ""$number_of_threads"
 echo "The results folder is: ""$run_results_folder"
 
 # update this location for where your files are located
-fastq_file_location=qq"$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"   #Should update this to only look locally
