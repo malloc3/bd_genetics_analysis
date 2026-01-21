@@ -40,6 +40,7 @@ non_readable_fast_q_files=()
 for i in "${!fastq_files_names[@]}"; do
     #So apparently when cycling the the csv two extra character "^M" are added to teh end of each string.   Must remove these
     file_name_with_extra_character=${fastq_files_names[$i]}
+    echo "|--""$file_name_with_extra_character""--|"
     file_name="${file_name_with_extra_character::-2}"
     echo "|--""$file_name""--|"
     # We hsould now have the right file name
