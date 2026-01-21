@@ -28,8 +28,10 @@ todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 run_results_folder="fast_qc_results""$todays_date"
 mkdir "./""$run_results_folder"
 
+./paired_qc.sh "$memory_per_file" "$number_of_threads" "$run_results_folder" # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
 
 ./unpaired_qc.sh "$memory_per_file" "$number_of_threads" "$run_results_folder" # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
+
 
 
 /bin/hostname  # This reports what specific node this code is running on!
