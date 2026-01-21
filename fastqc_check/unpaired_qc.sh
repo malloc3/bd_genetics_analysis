@@ -4,6 +4,10 @@
 
 #This script is to run the fastqc run script to check the quality scores of each sequence.
 
+# FastQC run settings
+memory_per_file=512
+number_of_threads=3
+
 
 
 # update this location for where your files are located
@@ -67,7 +71,7 @@ fi
 
 
 # Get todays date.   
-todays_date=$(date '+%Y-%m-%d %H:%M:%S')
+todays_date=$(date '+%Y-%m-%d_%H:%M:%S')
 
 #Make a directoryt o save settings files and setting information
 run_results="fast_qc_results""$todays_date"
@@ -82,6 +86,8 @@ echo "date: ""$todays_date" >> "$log_doc_full_path"
 echo "Author: Cannon Mallory" >> "$log_doc_full_path"
 echo "Ran by SLURM Script on UCSB Pod" >> "$log_doc_full_path"
 echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
+echo "Memory allocated to run each file: ""$memory_per_file" >> "$log_doc_full_path"
+echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_doc_full_path"
 
 
 # 3. write any needed info to that file of note
@@ -92,11 +98,14 @@ echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
 # Looks through the fastq files list and runs the fastqc on each of thsoe files
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
-for file in "${fastq_files[@]}"; do
+#for file in "${fastq_files[@]}"; do
+for ((i=0, i<${fastq_files[@]}, i+=number_of_threads); do)
+    files=("${fastq_files[@]}:i:5")
+    echo "$files"
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$start_time] Running FastQC of $(basename "$file")"
+    echo "[$start_time] Running FastQC of these files" "$files"
 
-    ./FastQC/fastqc "$file" --outdir="./""$run_results"
+    ./FastQC/fastqc "$files" --outdir="./""$run_results" --memory=memory_per_file -t=number_of_threads
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] FastQC of $(basename "$file") complete!"
