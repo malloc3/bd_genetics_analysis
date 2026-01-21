@@ -23,7 +23,8 @@ fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_fastq_names-2.csv"   #Should up
 
 #Uf the csv exists then then makes a list of all the names
 if [ -f $fastq_files_csv_path ]; then
-    mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
+    #mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
+    mapfile -t fastq_files_names < "$fastq_files_csv_path"
 else
     echo "File path $fastq_files_csv_path does not exist"; exit 1
 fi
@@ -42,7 +43,8 @@ non_readable_fast_q_files=()
 # path to the fastq_files list for use later
 for i in "${!fastq_files_names[@]}"; do
     file_name=${fastq_files_names[$i]}
-    echo "$file_name"
+    echo "|--""$file_name""--|"
+
     full_path="$fastq_file_location""/""$file_name"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
