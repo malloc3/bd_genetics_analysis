@@ -109,10 +109,14 @@ echo "Lets run rast qc on the files"
 
 #for file in "${fastq_files[@]}"; do
 for ((i=0; i<${#fastq_files[@]}; i+=$number_of_threads)); do
-    files=(${fastq_files[@]}:$i:$number_of_threads)
-    echo "$files"
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$start_time] Running FastQC of these files" "$files"
+    files=(${fastq_files[@]}:$i:$number_of_threads)
+    
+    echo "$i"
+    echo "[$start_time] Running FastQC of these files"
+    for i in "${!files[@]}"; do
+        echo "${files[$i]}"
+    done
 
    #./FastQC/fastqc "$files" --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
 
