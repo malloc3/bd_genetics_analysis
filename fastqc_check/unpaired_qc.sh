@@ -96,7 +96,7 @@ for file in "${fastq_files[@]}"; do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$start_time] Running FastC_of $(basename "$file")"
 
-    java ./fastqc "$file" -o "$run_results"
+    java "./FastQC/fastqc""$file" -o "$run_results"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] FastQC of $(basename "$file") complete!"
