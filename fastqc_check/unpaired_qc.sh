@@ -38,7 +38,9 @@ non_readable_fast_q_files=()
 # IT figures out the full path to all the files of interest.  If it finds those files it adds the full
 # path to the fastq_files list for use later
 for i in "${!fastq_files_names[@]}"; do
-    full_path="$fastq_file_location""/""${fastq_files_names[$i]}"
+    file_name=${fastq_files_names[$i]}
+    echo "|--""$file_name""--|"
+    full_path="$fastq_file_location""/""$file_name"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
             fastq_files+=("$full_path")
