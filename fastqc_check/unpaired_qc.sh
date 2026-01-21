@@ -27,6 +27,8 @@ fi
 
 echo "============================"
 echo "Looking for fastq files..."
+echo "These are the names of the files:"
+echo "$fastq_files_names"
 # Steps to check if all new fastq files exist
 fastq_files=()
 
@@ -54,7 +56,7 @@ done
 if $all_files_exist; then
     echo "All fastq files exist and are readable!"
     echo "The list of all of these files is:"
-    echo "$fastq_files"
+    echo " $fastq_files"
     echo "============================"
 else
     echo "The following files do not exist:"
