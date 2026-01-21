@@ -53,6 +53,8 @@ done
 
 if $all_files_exist; then
     echo "All fastq files exist and are readable!"
+    echo "The list of all of these files is:"
+    echo "$fastq_files"
     echo "============================"
 else
     echo "The following files do not exist:"
@@ -80,14 +82,14 @@ mkdir "./""$run_results"
 # 2. Make a file for output information and settins to be recorded
 log_doc_name="fast_qc_settings.txt"
 log_doc_full_path="$run_results""/""$log_doc_name"
-touch "$log_doc_full_path"
-echo "FastQC Log" >> "$log_doc_full_path"
-echo "date: ""$todays_date" >> "$log_doc_full_path"
-echo "Author: Cannon Mallory" >> "$log_doc_full_path"
-echo "Ran by SLURM Script on UCSB Pod" >> "$log_doc_full_path"
-echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
-echo "Memory allocated to run each file: ""$memory_per_file" >> "$log_doc_full_path"
-echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_doc_full_path"
+#touch "$log_doc_full_path"
+#echo "FastQC Log" >> "$log_doc_full_path"
+#echo "date: ""$todays_date" >> "$log_doc_full_path"
+#echo "Author: Cannon Mallory" >> "$log_doc_full_path"
+#echo "Ran by SLURM Script on UCSB Pod" >> "$log_doc_full_path"
+#echo "Results shoudl be located here: ""$run_results" >> "$log_doc_full_path"
+#echo "Memory allocated to run each file: ""$memory_per_file" >> "$log_doc_full_path"
+#echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_doc_full_path"
 
 
 # 3. write any needed info to that file of note
@@ -98,7 +100,7 @@ echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_d
 # Looks through the fastq files list and runs the fastqc on each of thsoe files
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
-echo "$fastq_files"
+
 #for file in "${fastq_files[@]}"; do
 for ((i=0; i<${#fastq_files[@]}; i+=$number_of_threads)); do
     files=(${fastq_files[@]}:$i:$number_of_threads)
@@ -106,7 +108,7 @@ for ((i=0; i<${#fastq_files[@]}; i+=$number_of_threads)); do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$start_time] Running FastQC of these files" "$files"
 
-    ./FastQC/fastqc "$files" --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
+   #./FastQC/fastqc "$files" --outdir="./""$run_results" --memory=$memory_per_file -t=$number_of_threads
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time]"
