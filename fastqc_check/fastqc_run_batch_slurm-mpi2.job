@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J'FastQC_Run'            # this names the job
-#SBATCH --ntasks=12                      # this sets the number of cores we may use
+#SBATCH --ntasks=8                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
