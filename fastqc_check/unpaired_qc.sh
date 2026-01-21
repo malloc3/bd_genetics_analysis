@@ -99,7 +99,7 @@ echo "Number of threads per chunk of files ran: ""$number_of_threads" >> "$log_d
 # Then saves it to the run_results folder
 echo "Lets run rast qc on the files"
 #for file in "${fastq_files[@]}"; do
-for ((i=0, i<${fastq_files[@]}, i+=number_of_threads); do)
+for ((i=0, i<${fastq_files[@]}, i+=number_of_threads)); do
     files=("${fastq_files[@]}:i:5")
     echo "$files"
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
