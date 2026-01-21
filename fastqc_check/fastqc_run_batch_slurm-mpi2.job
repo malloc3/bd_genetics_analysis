@@ -37,7 +37,6 @@ echo "Running unpaired Fast QC"
 ./unpaired_qc.sh "$memory_per_file" "$number_of_threads" "$run_results_folder" # This runs the .sh run file that handles my scripts.  THis ins't totally needed cause at the end of the day the slurm job is functionally the same.  However I think it will help organize my scripts and keep the slurm jobs a bit more simple
 
 
-
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
 
