@@ -129,16 +129,16 @@ for ((i=0; i<num_files; i+=2)); do
     full_file_path_1="$fastq_file_location""/""$file_name_1"
     full_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    output_file_prefex="todays_date""$shortened_name""_cleaned_"
+    output_file_prefex="$todays_date""$shortened_name""_cleaned_"
     output_folder="$results_folder/$shortened_name"
     output_prefex_full="$output_folder""/""$output_file_prefex"
-    mkdir "$output_folder"
+    mkdir -p "$output_folder"
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
-    echo "Final items should be saved with output_prex: $output_prefex and in folder $output_folder"
+    echo "Final items should be saved with output_prefex: $output_prefex_full and in folder $output_folder"
 
     # Can add additional options
-    ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v $vector_file -1 $full_file_path_1 -2 $full_file_path_2    -o "$output_prefex" 
+    ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full" 
 done
 
 
