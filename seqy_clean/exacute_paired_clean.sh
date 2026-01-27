@@ -106,9 +106,9 @@ done
 
 if $non_matching_pair; then
     echo "The following files do not have proper matching paires"
-    for ((i=0, i<$(#non_matching_pair_file_names[@]); i+= 2)); do
+    for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
         echo "${fastq_files_names[$i]}"     #Grab the first file
-        echo "${fastq_files_names[$i+1]}"   #Grab the second file  (assumes that the files are in order and next to each other)
+        echo "${fastq_files_names[$((i+1))]}"   #Grab the second file  (assumes that the files are in order and next to each other)
         echo "--------------------------"
     done
     echo "Run failed due to non_matching_pairs" >&2
@@ -119,9 +119,9 @@ fi
 
 
 echo "Lets run our clean!"
-for ((i=0, i<$(#fastq_files_names[@]); i+= 2)); do
+for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
-    file_name_2=${fastq_files_names[$i+1]}   #Grab the second file  (assumes that the files are in order and next to each other)
+    file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
     
     # Create the full file path names
     full_file_path_1="$fastq_file_location""/""$file_name_1"
