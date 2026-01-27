@@ -134,6 +134,7 @@ for ((i=0; i<num_files; i+=2)); do
     mkdir "$output_folder"
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
+    echo "Final items should be saved with output_prex: $output_prefex and in folder $output_folder"
     ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v $vector_file -1 $full_file_path_1 -2 $full_file_path_2    -o output_prefex #add options etc
 
     #Moves all the folders to the results folder so we don't have to get out main folder all crowded up.
