@@ -93,7 +93,7 @@ for ((i=0, i<$(#fastq_files_names[@]); i+= 2)); do
         non_matching_pair_file_names+=["$file_name_1"]
         non_matching_pair_file_names+=["$file_name_2"]
         non_matching_pair=true
-    done
+    fi
 done
 
 if $non_matching_pair; then
