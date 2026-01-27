@@ -91,7 +91,7 @@ non_matching_pair=false
 # Now lets check if all the fast q files are properly paired.
 # To do this we will run through the script and grab files by groups of two and make sure their file names 
 # match when we drop the last 6 characters maybe?   That should drop the file 1 and file 2 extentions
-for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
+for ((i=0; i<num_files; i+= 2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
     file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
 
@@ -106,7 +106,7 @@ done
 
 if $non_matching_pair; then
     echo "The following files do not have proper matching paires"
-    for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
+    for ((i=0; i<num_files; i+=2)); do
         echo "${fastq_files_names[$i]}"     #Grab the first file
         echo "${fastq_files_names[$((i+1))]}"   #Grab the second file  (assumes that the files are in order and next to each other)
         echo "--------------------------"
@@ -119,7 +119,7 @@ fi
 
 
 echo "Lets run our clean!"
-for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
+for ((i=0; i<num_files; i+=2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
     file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
     
