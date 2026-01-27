@@ -139,6 +139,14 @@ for ((i=0; i<num_files; i+=2)); do
 
     # Can add additional options
     ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full" 
+
+
+    echo "Done with $shortened_name"
+    echo ""
+    echo ""
+    echo "=================================================================================================="
+    echo "=================================================================================================="
+    echo "=================================================================================================="
 done
 
 

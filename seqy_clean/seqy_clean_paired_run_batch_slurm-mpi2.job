@@ -27,7 +27,7 @@ mkdir "./""$run_results_folder"
 
 
 echo "Running Paired Fast QC"
-./exacute_paired_clean.sh todays_date run_results_folder
+./exacute_paired_clean.sh "$todays_date" "$run_results_folder"
 
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
