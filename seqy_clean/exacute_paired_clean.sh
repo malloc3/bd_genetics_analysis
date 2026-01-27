@@ -8,6 +8,7 @@
 #/home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment/fast_q_files/paired/CJB4_5720-IR-1_GCGTAGTA-CTAGTCGA_S1_R_0011.fastq
 
 todays_date=$1
+results_folder=$2
 
 
 # update this location for where your files are located
@@ -118,7 +119,7 @@ for ((i=0, i<$(#fastq_files_names[@]); i+= 2)); do
     full_file_path_1="$fastq_file_location""/""$file_name_1"
     full_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    output_prefex="todays_date""$(file_name_1::-7)""_cleaned_"
+    output_prefex="$results_folder""/""todays_date""$(file_name_1::-7)""_cleaned_"
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
     ./seqyclean/bin/seqyclean -qual -dup -verbose -detrep -at 0.75 -v $vector_file -1 $full_file_path_1 -2 $full_file_path_2    -o output_prefex #add options etc
