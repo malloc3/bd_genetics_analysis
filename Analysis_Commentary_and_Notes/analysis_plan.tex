@@ -44,6 +44,10 @@
         
         \item Genomic Correlates of Virulence Attenuation in the Deadly Amphibian Chytrid Fungus, Batrachochytrium dendrobatidis \cite{refsniderGenomicCorrelatesVirulence2015}
         
+        \item Chapter 8 - Decoding the blueprint: an overview of genome sequencing, assembly, and annotation \cite{DecodingBlueprintOverview2025}
+        
+        \item Genomic Perspectives on the Pathogenic Chytrid Fungus and Persisting Amphibian Hosts \cite{byrneGenomicPerspectivesPathogenic2020}
+        
 
     \end{itemize}
 
@@ -99,17 +103,85 @@
     De-multiplexed reads where individual bp calls have been made. This should include both the FWD and REV sequences of paired end reads if applicable.  These reads may be long (pacbio) or short (illumina, sanger).  Often this pre-processing will be performed by the sequencing platform/service providor.  If this has not been performed then follow the service providords direction on cleaning and pre-processing your reads, this process is VERY specific to the sequencing platform.
 
     
-    \subsubsection{\textbf{Quality Filter:}}
+    \subsubsection{\textbf{QC:}}
     
-    Some reads may be poor.   If not already filtered by the service provider toss out all low quality sequences.  Recommend dropping all samples that do not have at least 60\% of bases with pred scores > 20 (a 20 phred score indicates that the base call is 99\% accurate).
-        
-    NOTE:  NEED TO INVESTIGATE IF MY SAMPLES ALREADY HAVE THIS CLEANING!  UNSURE HOW TO BE SURE  If my samples need to be cleaned then I will link the code here
+    Run all sequencing reads through some sequence quality metric tool.   FastQC is common and easy to use.  There are others which I shall not investigate significantly here.   I used FastQC.
+
+    \subsection{\textbf{Quality Filter (if needed)}}
+
+    Hopefully there are not any reads that are significantly problematic.   If there are specific reads that are bad this is a good time to toss them out.   There are specific tools for this however many of the trimming tools discussed the next section can do this.   Often the sequencing service will do this during de-multiplexing.    All my samples had really high Phred scores so no sequences need to be removed purly based on phred score.   THey do need to be trimmed though....
+
+    Note:  If there is significant GC contetnt bias then you may need to drop or at least filter/compensate your sequences.   Incorrect GC content (e.g. a bimodal distrobution) indicates that you have over sequenced a specific, often repetitive region of DNA.   It may be wise to filter out all the reads with abnormally high GC content and see if they are all very similar in sequence and perhaps consider blasting them to see if your sample was contaminated or if they align with a specific region.    Depending on the cause of the bimodality you can filter or remove some of these samples to create a theoretically more representitive sample set.   Ofcourse this is a nuanced art since there are many genomes and some may truely have a biomodal GC content distrobution, this is very unlikely but you must employ your knowledge about YOUR organism to make an accurate determination.  Ultimately you will likely be wrong no matter what you do.... such is life.
     
     \subsubsection{\textbf{Trim Low-quality ends:}}
     
-    Often the confidence in base pair calls is quite low towards the of each read.  Dropping the low quality BP is generally a good idea to make sure you don't have incorrect SNP calls.   THis can be done with \textit{Trimmomatic, Cutadapt, BBduk, FASTP, Seqtk, NGSQC, SAMStat, FastQC htSeqTools, seqyclean} others?   
-        
-        NOTE: Need to confirm if my samples already have this cleaning or not.   It may have been performed.  If not then I will run this again.   Appropriate code will be linked here!
+    Often the confidence in base pair calls is quite low towards the of each read.  Dropping the low quality BP is generally a good idea to make sure you don't have incorrect SNP calls.   THis can be done with \textit{Trimmomatic, Cutadapt, BBduk, FASTP, Seqtk, NGSQC, SAMStat, FastQC htSeqTools, seqyclean} others?
+
+    It may not always be clear if your sequences have been trimmed.   Sometimes the service provider will trim your sequences (illumina tool does this quite well).   Typically if ALL of yoru reads are exactly the same length (e.g. 151 bp for 150PE reads) then the sequences likely have NOT been trimmed.   Trimming typically will not remove equal number of bp from every read and thus should create a left skewed normal distrubution with an average that is 10ish bp shorter than the target read length (e.g. 140bp for 150PE).   This 10ish bp decrease is mostly due to 5' bias trimming and not the adapter content bias trimming.
+
+    The trimming tool should perform 2 key tasts:
+    \begin{itemize}
+        \item Trip 3' Adapters.   The sequencing tool will often "run-through" the end of the target dna and will sequence the adapter itself.   This will cause all sorts of issues down the line.   These 3' adapters should be trimmed, this is usually done by explicitly looking for the adapter sequence and then trimming EVERYTHING on the 3' side of that sequence.   All sequence data after the adapter must be assumed as invalid and is tossed out.    Hopefully only a moderate subset of the sequences need to have the 3' trimmed as this trimming can notably decrease your sequence k-mer length which isn't ideal.   Less than may 20\% needing to be trimmed is pretty great.  You typically don't need to trim any ADAPTERS from the 5' end since the polymerase is running from the 5' end and starts slightly after the adapters.   If you do have significant (any more than 1-5\%) of reads with 5' adapter sequences then you should seriously question the sequencing technology and investigate.   I have never seen this myself and frankly don't know what I would do.
+        \item 5' Trimming.  Just because you don't (or at least shouldn't) have 5' adapter sequences doesn't mean that you donot need to trim hte 5' end. If you look at all the samples that are sequenced in a single "run" then the 5' GC content you WILL see a matching pattern of about 15bp for every sequence regardless of the true sequence identity.  This is caused by many reasons but often because of the fragmentation step.  In theory the enzyme that chops up your dna does this at random.... however we know there are always biases so and may cut in a less than random fashon.    There are many other reasons inherent to the sequening methods that also drives some of this 5' bias.   Regardless it is likely best to remove the first 10-15bp of all to remove this bias.  Many trimming tools will handle this just fine.
+    \end{itemize}
+
+    There are multiple tools that can do your adapter trimming.  Unlike alignment tools they honestly all perform relatively similarly, and which specific tool is often moot especially if you have access to a significant amount of computation power.  Here is a short list of trimmming tools and their benefits/drawbacks:
+    \begin{itemize}
+        \item Seqyclean \cite{zhbannikovSeqyCleanPipelineHighthroughput2017b}:  An idea tool with lots of features and open source.  This tool includes:
+            \begin{itemize}
+                \item Removal of PCR-duplicates.  During library amplification the same strand will be amplified multiple times which does not add any information.  SeqyClean identifies two reads as "pcr-duplicates" if the first 35bps match.  It's slightly more nuanced than that but thats the mostly how it do.  PCR duplicates don't add information even to any CCNV analysis since in theory no two fragments should share an idnentical first 35pb.   That would mean that two different copies of the same chromosomes fragmented in the exact same way... Unlikely to happen more than once or twice and once or twice isn't enough to change the CCNV analysis!!  Removing the PCR-duplicates helps reduce dataset size AND will reduce bias in later analysis steps.
+                \item In RNA seq data it will remove poly-A/T regions.   But won't do anything in DNA sequences
+                \item Contaminant Detection and Trimming:   If you provide a list of possible contaminents then Seqyclean will perform k-mer matching and remove any contamination reads (e.g. reads that match the sequence of the provide contaminents).   Contamination detection is not required for my work thus this will be skippped
+                \item Atapter Id and Trimming (PE overlapping):  Uses SSAHA \cite{ningSSAHAFastSearch2001} algorythm adapter identification then will trim.  Importantly in this step it combines paired end reads as well.   In theory a paired end read should match perfectly in the middle with adapters sitting off on each reads 3' end.     THis can create a high confident consensus read and sometimes will increase the length of the individual read.  This step is essentially the same in AdapterRemoval and Trimmomatic!
+                \item Quality Trimming:  Removes bp from the ends of a read taht are significantly lower than the rest of the read and that are lower than 20phred score.   Has a rolling 50 and 10 bp window with a similar algorythum as Lucy.   
+            \end{itemize}
+        \item Trimmomatic: \cite{bolgerTrimmomaticFlexibleTrimmer2014} An industry standard tool that is fast and effecient.   
+            \begin{itemize}
+                \item Adapter Trimming:   Requires a user provided list of adapter sequences to "remove"   Can include any number of sequeces here (pcr producs, adapters, contamininates).   Performs this trimming in one of two modes:
+                    \begin{enumerate}
+                        \item Simple Mode:  Super fast, each read is scanned from the 5' to 3' end any sequence matching a the user specified sequence.   If there is an alignment everythign on the 3' end is trimmed.  The user can specify the number of accepted mismatches.  This will find the targeted region anywhere in the read quickly HOWEVER it will NOT detect partial adapter sequences as is common in "read through" type errors.
+                        \item Palindrome mode:  Will find the partial adapter sequence matches at the end of a sequence (common in read through adapter errors).  It does this predominently through aligning paired ends and removing the 3' overhand with some aditional user provided partial sequence mapping checks.  See their publication for details \cite{bolgerTrimmomaticFlexibleTrimmer2014}.   This is highly beneficial and can create much longer reads than otherwise possible!   Works best IF you have paired end reads (as all modern sequencing should).
+                    \end{enumerate}
+                    \item Quality Filter:  Two main quality filtering methods.
+                    \begin{enumerate}
+                        \item Sliding Window Filtering: Standard approach.  Scans from 3' to 5' and when the average quality of a sliding window of bases drops below a minimum threshold those bases are dropped.    This way a single weak base won't cause an early truncation of the sequence while still removing the poor sequencing results towards the end of a sequence.  This runs really quickly which is rad!
+                        \item Maximum Information Filtering: This method tries to balance keeping long reads while dropping bad bases.  Really short reads are worthless however long reads with really poor phred scores are also mostly worthless.   In theory there is some tipping point where a longer sequence with imperfect base calls is better than a shorter sequence with only high confidence calls.   This mode tries to find this balance to "Maximize Information" within the read.
+                    \end{enumerate}
+            \end{itemize}
+        \item Cutadapt: \cite{martinAlgorithmsToolsAnalysis2014} A commonly used tool that is VERY effective with Illumina data.  Requires detailed understanding of command line tools.  Allows simple direct adapter searches and removals.  Doesn't do much automatically but allows for specific tuning of each trim which can be beneficial.  This has been updated and improved through at least AUG 2025! Cutadapt will perform:
+            \begin{enumerate}
+                \item Adapter Alignment and Removal.  I am confused by the way it aligns and identifies the adapters.  However it does successfully do this on the 3' end!
+                \item Quality trimming.  Drop low quality bp scores from eithe just the 3' end or from BOTH the 3' and 5' ends.   Tries to balance keeping some bad scores that are surrounded by good scores.   
+                \item Will remove ployA in RNA sequences
+            \end{enumerate}
+        \item BBduk: \cite{BBDukGuide} Debeloped by the Joint Genome Institute at LBNL in combination with DOE BBduk (Decontamination using Kmers) is a specific tool within the BBTools grouping.   BBTools includes other mapping, masking , and merging tools that all work well together.   This tool appears to be a state of the art cleaning tool with an impressive array of possibilities.  It is hard to find information on the algorythm though.... Must consider.   The more I read about BBDuk (and the rest of BBTools) the more suspicious I become.   They refuse to publish a paper or produce a solid comparison on anything but simulated data.  Lots of forum posts about how great it is, and it is most certainly fast and easy to use.... but I care most about accuracy and I wan't it to be good but I haven't found a paper showing how good it is yet.
+            \begin{enumerate}
+                \item Quality-Trim Both ends
+                \item Adapter Trim - Unsure if adapters must be specified or if a library of adapters are provided
+                \item Force Trim Left and Force Trim Right:  Can force trim the ends of your sequence for any reason.  A common reason to trim the 5' end would be the GCAT is often not even at the beginning.  Be careful though!  Just cause the balance looks wrong doesn't mean that it should be trimmed.   Mapping with a histogram should show if the first base pairs are frequently wrong or not.   If they are not frequently wrong then don't remove those base pairs even if the GCAT frequency is off!   Peep this thread post 12 https://www.seqanswers.com/forum/bioinformatics/bioinformatics-aa/37399-introducing-bbduk-adapter-quality-trimming-and-filtering?t=42776
+            \end{enumerate}
+        \item FASTP
+        \item Seqtk
+        \item SAMStat - might be a qc tool not trimming
+        \item htSeqTools 
+        \item AlienTrimmer
+        \item AdapterRemoval
+        \item Skewer
+        \item Sickle
+        \item Ea-Utils
+        \item Picard
+        \item PEAR 
+        \item IeeeHom
+        \item Lucy:  Cant run paired FastQ 
+        \item Btrim:  Cant run paired FastQ
+        \item nesoni clip:   A handle tool for trimming a specific number of bases of your sequence.   This could be used to trim the first 10-15 bp of my sequence
+        \item SO MANY MORE.   At the end of the day there are so many tools and many perform very similarly.   Best to just QC the results and make sure you have trimmed all the things that need to be and then just move on with life haha!
+
+
+    \end{itemize}
+
+
+
 
     \subsubsection{\textbf{Genome Size Estimation, Read Quality Estimate:}}
         
@@ -202,6 +274,7 @@
         \item\textbf{Unknwon:}
         \begin{itemize}
             \item \textbf{Geneious Prime:} Proprietary tool (\$200 yearly). The Geneious alignment tool is easy to use and in my experience fairly accurate.  FIND PAPER COMPARING ACCURACE TO OTHER TOOLS. The although GUI interface is convinient it severly limits the use of compute clusters (unless there is some geneious command line tool that I am un-aware of...) FIND THE ALGORITHM TYPE IT USES.   In my experience it is substantially slower than Bowtie2 but appears to provide more accurate results and handls SVs slightly better.   GEneious prime software is quite nice when trying to work with genetics datasets and undestand what you are looking at so I do recommend the software in general.  However if you are trying to align more than just a few sequences then I would likely avoid this tool.
+            \item \textbf{BBmap:}  Need to investigate but advertized as ideal for highly mutated and changing genomes.
         \end{itemize}
             
         \item \textbf{Old or depricated tools:}
@@ -252,6 +325,9 @@
                 \item Imani's sequences
                     \begin{enumerate}
                         \item Per Base sequence content:  Most Failed.  The first 15ish BP of most seqhences have a poor pattern of relative GC content.  This pattern almost perfectly aligns with each sequencing run (5720 and 5912).  All the 5720 look the same and all the 5912 look the EXACTLY the same except for 5912-JEL272 which looks somewhat like the other 5912 samples but not exact, this may be driven by its POOR GC graph which is notably bimodal.... Discussed later  ULtimately I believe that the first 15ish BP should be trimmed b/c there is so much concensus between all the fragments that either it is a fragmentation bias or a bias of the specific sequencer.  I suspect it is a sequences (perhaps adapter) based bias since the per bas sequence content is paired between each run.
+                        
+                        Be careful though!  Just cause the balance looks wrong doesn't mean that it should be trimmed.   Mapping with a histogram should show if the first base pairs are frequently wrong or not.   If they are not frequently wrong then don't remove those base pairs even if the GCAT frequency is off!   Peep this thread post 12 https://www.seqanswers.com/forum/bioinformatics/bioinformatics-aa/37399-introducing-bbduk-adapter-quality-trimming-and-filtering?t=42776
+
                         \item Adapter Content:   The adapter content for all samples is rather high for the nextera transposase sequence.  Perhaps 20\% at position bp position 140.   This is likely because of there hasb't been any adapter trimming.   That must be trimmed!   Which is my next step.   This trimming thing begins sometimes as soon as 50-60bp.   This isn't ideal but not that big of a deal if this is relatively rare in the sample.  This is caused by sequence "read-through" and really isnt so bad so long as the 3' end is trimmed.    Unltimately it is caused byu inconsistent fragmentation which is kinda common in nextera kits.  PolyG and polyA are other common artifacts in illumina sequencing and can/should be trimmed.  If it's only a small fraction of the reads it shouldn't cause any issue at all.
                         \item Deduplication Level.   All samples have a non "ideal" deduplication level.  I am not concerned because of bds weird CCNV genome I expect there to not be even coverage across the genome.
                         \item 5912-JEL272:  Bimodal per sequence GC content.  Should be normally distrubuted around like 40\% or so.
