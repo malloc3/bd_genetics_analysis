@@ -25,7 +25,15 @@ if [ -f $fastq_files_csv_path ]; then
     #mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
     mapfile -t fastq_files_names < "$fastq_files_csv_path"
 else
-    echo "File path $fastq_files_csv_path does not exist"; exit 1
+    echo "File path $fastq_files_csv_path does not exist" >&2
+    exit 1
+fi
+
+num_files=${#fastq_files_names[@]}
+
+if (( num_files % 2 != 0 )); then
+    echo "ERROR: Odd number of FASTQ files ($num_files). Files must be in pairs." >&2
+    exit 1
 fi
 
 
@@ -72,7 +80,7 @@ else
     for i in "${!non_readable_fast_q_files[@]}"; do
 	    echo "	${non_readable_fast_q_files[$i]}"
     done
-    echo "Run Failed"
+    echo "Run Failed because some files are not readable" >&2 
     exit 1 
 fi
 # Completed steps to check on new fastq files
@@ -83,15 +91,15 @@ non_matching_pair=false
 # Now lets check if all the fast q files are properly paired.
 # To do this we will run through the script and grab files by groups of two and make sure their file names 
 # match when we drop the last 6 characters maybe?   That should drop the file 1 and file 2 extentions
-for ((i=0, i<$(#fastq_files_names[@]); i+= 2)); do
+for ((i=0; i<$(#fastq_files_names[@]); i+= 2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
-    file_name_2=${fastq_files_names[$i+1]}   #Grab the second file  (assumes that the files are in order and next to each other)
+    file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
 
-    shortened_1=$(file_name_1::-7)
-    shortened_2=$(file_name_2::-7)
-    if [["$shortened_1"!=["$shortened_1"]]]; then
-        non_matching_pair_file_names+=["$file_name_1"]
-        non_matching_pair_file_names+=["$file_name_2"]
+    shortened_1=${file_name_1::-7}
+    shortened_2=${file_name_2::-7}
+    if [[ "$shortened_1" != "$shortened_2" ]]; then
+        non_matching_pair_file_names+=("$file_name_1")
+        non_matching_pair_file_names+=("$file_name_2")
         non_matching_pair=true
     fi
 done
@@ -103,7 +111,7 @@ if $non_matching_pair; then
         echo "${fastq_files_names[$i+1]}"   #Grab the second file  (assumes that the files are in order and next to each other)
         echo "--------------------------"
     done
-    echo "Run failed due to non_matching_pairs"
+    echo "Run failed due to non_matching_pairs" >&2
     exit 1
 else
     echo "All files have proper matching pairs!"
