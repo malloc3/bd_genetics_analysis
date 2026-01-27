@@ -123,11 +123,13 @@ for ((i=0; i<num_files; i+=2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
     file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
     
+    shortened_name=${file_name_1::-7}
+
     # Create the full file path names
     full_file_path_1="$fastq_file_location""/""$file_name_1"
     full_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    output_prefex="$results_folder""/""todays_date""$(file_name_1::-7)""_cleaned_"
+    output_prefex="$results_folder""/""todays_date""$shortened_name""_cleaned_"
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
     ./seqyclean/bin/seqyclean -qual -dup -verbose -detrep -at 0.75 -v $vector_file -1 $full_file_path_1 -2 $full_file_path_2    -o output_prefex #add options etc
