@@ -157,7 +157,7 @@ for ((i=0; i<num_files; i+=2)); do
     ILLUMINACLIP:Trimmomatic/adapters/NexteraPE-PE.fa:2:30:10 \
     LEADING:3 \
     TRAILING:3 \
-    MAXINFO \
+    MAXINFO:150:5 \
     MINLEN:36
 
     # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)
