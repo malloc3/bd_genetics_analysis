@@ -23,7 +23,7 @@ echo "the current path now is: $SLURM_SUBMIT_DIR"
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-run_results_folder="1_trimmomatic""$todays_date"
+run_results_folder="trimmomatic_1""$todays_date"
 mkdir "./""$run_results_folder"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
