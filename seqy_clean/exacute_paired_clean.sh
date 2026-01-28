@@ -9,7 +9,7 @@
 
 todays_date=$1
 results_folder=$2
-fast_q_files_csv_path=$3
+fastq_files_csv_path=$3
 
 
 # update this location for where your files are located
