@@ -145,11 +145,11 @@ for ((i=0; i<num_files; i+=2)); do
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
 
-    echo "Final items should be saved with output_prefex: $output_prefex_full and in folder $output_folder"
+    echo "Final items should be saved in folder $output_folder"
 
     # Can add additional options
     java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads "$number_threads" \
-    -trimlog "$trim_log_file" -summary "$summary_file" -compressionlevel 9 -version \
+    -trimlog "$trim_log_file" -summary "$summary_file" -compressionLevel 9 -version \
     "$full_input_file_path_1" "$full_input_file_path_2"\
     "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
     "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
