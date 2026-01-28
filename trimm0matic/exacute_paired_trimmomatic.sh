@@ -121,10 +121,10 @@ for ((i=0; i<num_files; i+=2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
     file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
     
-    generic_name=${file_name_1::-6}
+    generic_name=${file_name_1::-7}
 
     shortened_name_1=${file_name_1::-6}
-    shortened_name_2=${file_name_1::-6}
+    shortened_name_2=${file_name_2::-6}
 
     # Create the full file path names of our fasta files to be cleaned
     full_input_file_path_1="$fastq_file_location""/""$file_name_1"
