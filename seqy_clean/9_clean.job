@@ -1,15 +1,14 @@
 #!/bin/bash -l
-#SBATCH -J'Trimmo_job5'            # this names the job
+#SBATCH -J'Seqy_clean_paired9'            # this names the job
 #SBATCH --ntasks=36                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog5                       # this will create an output log
-#SBATCH -e errlog5                       # this will create an error log
+#SBATCH -o outlog9                       # this will create an output log
+#SBATCH -e errlog9                       # this will create an error log
 #SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
 
-number_threads=36  # match this to the given n tasks
 
 #We need to set our file path to be where all of our documents are.
 # Typically we will submit our slurm.job file from the right directory.  However
@@ -23,14 +22,15 @@ echo "the current path now is: $SLURM_SUBMIT_DIR"
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-run_results_folder="trimmomatic_5""$todays_date"
+run_results_folder="seqy_clean_9""$todays_date"
 mkdir "./""$run_results_folder"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_names5.txt"   #Should update this to only lookq locally
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_names9.txt"   #Should update this to only lookq locally
 
-echo "Running Paired Trimmomatic"
-./exacute_paired_trimmomatic.sh "$todays_date" "$run_results_folder" "$fastq_files_csv_path" "$number_threads"
+
+echo "Running Paired SeqyClean"
+./exacute_paired_clean.sh "$todays_date" "$run_results_folder" "$fastq_files_csv_path"
 
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!

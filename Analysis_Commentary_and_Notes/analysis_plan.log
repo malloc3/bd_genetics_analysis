@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  27 JAN 2026 17:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  28 JAN 2026 10:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -543,37 +543,157 @@ Overfull \hbox (57.47862pt too wide) in paragraph at lines 329--330
 \OT1/cmr/m/n/10 aa/37399-introducing-bbduk-adapter-quality-trimming-and-filtering?t=42776 
  []
 
-[17] [18]
-Overfull \hbox (25.5492pt too wide) in paragraph at lines 355--355
+[17]
+Overfull \hbox (110.49628pt too wide) in paragraph at lines 351--351
+ []                \OT1/cmtt/m/n/10 # Github link: https://github.com/malloc3/bd_genetics_analysis.git[] 
+ []
+
+
+Overfull \hbox (236.49518pt too wide) in paragraph at lines 351--351
+ []                \OT1/cmtt/m/n/10 # commit 2bd99208b569fa5eb02994aa11b892a83cf0aa78 (HEAD -> main, origin/main, origin/HEAD)[] 
+ []
+
+
+Overfull \hbox (47.49683pt too wide) in paragraph at lines 351--351
+ []                \OT1/cmtt/m/n/10 #   Author: Cannon Mallory <mallorycannon15@gmail.com>[] 
+ []
+
+[18]
+Overfull \hbox (199.7455pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \[] 
+ []
+
+
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \[] 
+ []
+
+
+Overfull \hbox (36.99692pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 "$full_input_file_path_1" "$full_input_file_path_2"\[] 
+ []
+
+
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \[] 
+ []
+
+
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \[] 
+ []
+
+
+Overfull \hbox (73.7466pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 ILLUMINACLIP:Trimmomatic/adapters/NexteraPE-PE.fa:2:30:10 \[] 
+ []
+
+
+Overfull \hbox (252.24504pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)[] 
+ []
+
+
+Overfull \hbox (183.99564pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #ILLUMINACLIP:  NexteraPE-PE.fa: :<seed mismatches>:<palindrome clip threshold>:[] 
+ []
+
+
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :[] 
+ []
+
+
+Overfull \hbox (372.99399pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually![] 
+ []
+
+
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP[] 
+ []
+
+
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed[] 
+ []
+
+
+Overfull \hbox (530.49261pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.[] 
+ []
+
+
+Overfull \hbox (383.4939pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.[] 
+ []
+
+
+Overfull \hbox (393.9938pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].[] 
+ []
+
+
+Overfull \hbox (1176.23698pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.[] 
+ []
+
+
+Overfull \hbox (299.49463pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases.[] 
+ []
+
+
+Overfull \hbox (42.24687pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 #                Its clever and should do good for us[] 
+ []
+
+
+Overfull \hbox (126.24614pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 # Remove leading low quality or N bases (below quality 3) (LEADING:3)[] 
+ []
+
+
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 # Remove trailing low quality or N bases (below quality 3) (TRAILING:3)[] 
+ []
+
+
+Overfull \hbox (435.99344pt too wide) in paragraph at lines 386--386
+ []                \OT1/cmtt/m/n/10 # Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)[] 
+ []
+
+[19]
+Overfull \hbox (25.5492pt too wide) in paragraph at lines 401--401
 \OT1/cmr/m/n/10 (Aug. 1, 2014), pp. 2114{2120. \OT1/cmr/m/sc/10 issn\OT1/cmr/m/n/10 : 1367-4803. \OT1/cmr/m/sc/10 doi\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 10 . 1093 / bioinformatics /
  []
 
 
-Overfull \hbox (2.99562pt too wide) in paragraph at lines 355--355
+Overfull \hbox (2.99562pt too wide) in paragraph at lines 401--401
 []\OT1/cmr/m/n/10 Allison Q. Byrne et al. ``Cryp-tic Di-ver-sity of a Widespread Global Pathogen
  []
 
 
-Overfull \hbox (9.739pt too wide) in paragraph at lines 355--355
+Overfull \hbox (9.739pt too wide) in paragraph at lines 401--401
 \OT1/cmr/m/n/10 26661667. \OT1/cmr/m/sc/10 doi\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 10 . 1016 / j . xpro . 2022 . 101506$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / linkinghub .
  []
 
 
-Overfull \hbox (12.74834pt too wide) in paragraph at lines 355--355
+Overfull \hbox (12.74834pt too wide) in paragraph at lines 401--401
 \OT1/cmtt/m/n/10 elsevier . com / retrieve / pii / S2666166722003860$[] \OT1/cmr/m/n/10 (vis-ited on 01/16/2026). 
  []
 
-[19]
-Overfull \hbox (3.44978pt too wide) in paragraph at lines 355--355
+[20]
+Overfull \hbox (3.44978pt too wide) in paragraph at lines 401--401
 \OT1/cmr/m/n/10 per-a-ture''. In: \OT1/cmr/m/it/10 Jour-nal of Evo-lu-tion-ary Bi-ol-ogy \OT1/cmr/m/n/10 32.3 (Mar. 1, 2019), pp. 287{
  []
 
-[20]
-Overfull \hbox (7.10399pt too wide) in paragraph at lines 355--355
+[21]
+Overfull \hbox (7.10399pt too wide) in paragraph at lines 401--401
 []$\OT1/cmtt/m/n/10 27095998$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / pmc . ncbi . nlm . nih . gov / articles / PMC4835851/$[]
  []
 
-[21] (./analysis_plan.aux)
+[22] (./analysis_plan.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -585,18 +705,18 @@ Package logreq Info: Writing requests to 'analysis_plan.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16220 strings out of 474116
- 285574 string characters out of 5743682
- 1941187 words of memory out of 5000000
- 38330 multiletter control sequences out of 15000+600000
+ 16223 strings out of 474116
+ 285641 string characters out of 5743682
+ 1945187 words of memory out of 5000000
+ 38332 multiletter control sequences out of 15000+600000
  567082 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,2490b,1489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (21 pages, 217659 bytes).
+Output written on analysis_plan.pdf (22 pages, 224641 bytes).
 PDF statistics:
- 459 PDF objects out of 1000 (max. 8388607)
- 409 compressed objects within 5 object streams
- 106 named destinations out of 1000 (max. 500000)
+ 463 PDF objects out of 1000 (max. 8388607)
+ 412 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
  145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

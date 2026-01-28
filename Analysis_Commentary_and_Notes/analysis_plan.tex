@@ -339,8 +339,54 @@
                     \begin{enumerate}
                         \item Hello world
                     \end{enumerate}
-    
             \end{itemize}
+            \item \textbf(2026-01-27 Trimmomatic:)  I ran Trimmomatic version 0.40 (most recent of Jan 2026) on all of Imanis samples.  I used my bd genetics analyses scripts specifically the run files within the Trimm0matic folder of this git branch.
+            \begin{verbatim}
+                # Github link: https://github.com/malloc3/bd_genetics_analysis.git
+                # commit 2bd99208b569fa5eb02994aa11b892a83cf0aa78 (HEAD -> main, origin/main, origin/HEAD)
+                #   Author: Cannon Mallory <mallorycannon15@gmail.com>
+                #   Date:   Tue Jan 27 19:33:04 2026 -0800
+                #
+                #    editing the error and outlog names
+            \end{verbatim}
+
+            The Specific settings used for the trimmomatic command were
+            \begin{verbatim}
+                java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \
+                -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \
+                "$full_input_file_path_1" "$full_input_file_path_2"\
+                "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
+                "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
+                HEADCROP:15\
+                ILLUMINACLIP:Trimmomatic/adapters/NexteraPE-PE.fa:2:30:10 \
+                LEADING:3 \
+                TRAILING:3 \
+                MAXINFO:150:5 \
+                MINLEN:36
+
+                # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)
+                #ILLUMINACLIP:  NexteraPE-PE.fa: :<seed mismatches>:<palindrome clip threshold>:
+                #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :   
+                #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually!  
+                #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP
+                #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed
+                #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.
+                #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.
+                #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].
+                #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.
+                #
+                #           
+                #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases. 
+                #                Its clever and should do good for us
+                # Remove leading low quality or N bases (below quality 3) (LEADING:3)
+                # Remove trailing low quality or N bases (below quality 3) (TRAILING:3) 
+                # Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
+                # 
+                # Drop reads below 36 bases long (MINLEN:36)
+            \end{verbatim}
+
+            All samples retained over 95\% of all reads wtih most retaining 98\% to 99\% of all reads post trim.
+
         \end{itemize}
 
 

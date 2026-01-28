@@ -18,7 +18,7 @@ number_of_threads=12  #Set this to the number of tasts "ntasks" from sbatch
 
 
 #First run the unpaired script
-cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+cd $SLURM_SUBMIT_DIR # THis will set the current dir to location that the job was submitted from.    
 
 
 echo "the current path now is: $SLURM_SUBMIT_DIR"

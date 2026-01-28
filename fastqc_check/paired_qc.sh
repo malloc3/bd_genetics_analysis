@@ -15,7 +15,7 @@ run_results_folder="./""$main_results_folder""/paired"
 mkdir "$run_results_folder"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/paired"
+fastq_file_location="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/2026-01-27"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_names.txt"   #Should update this to only lookq locally
