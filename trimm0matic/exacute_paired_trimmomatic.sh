@@ -148,13 +148,13 @@ for ((i=0; i<num_files; i+=2)); do
     echo "Final items should be saved in folder $output_folder"
 
     # Can add additional options
-    java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads "$number_threads" \
+    java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \
     -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \
     "$full_input_file_path_1" "$full_input_file_path_2"\
     "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
     "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
     HEADCROP:15\
-    ILLUMINACLIP:"./Trimmomatic/adapters/NexteraPE-PE.fa":2:30:10 \
+    ILLUMINACLIP:Trimmomatic/adapters/NexteraPE-PE.fa:2:30:10 \
     LEADING:3 \
     TRAILING:3 \
     MAXINFO \
