@@ -1,8 +1,8 @@
->nextera_transposase_adapters_2 A new nucleotide sequence entered manually
+>nextera_transposase_2
 GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG
->nextera_transposase_adapters_1 A new nucleotide sequence entered manually
+>nextera_transposase_1
 TCGTCGGCAGCGTCAGATGTGTATAAGAGACAG
->nextera_rev_mate_pair_adapter A new nucleotide sequence entered manually
+>nextera_rev
 AGATGTGTATAAGAGACAG
->nextera_adapter_trimming A new nucleotide sequence entered manually
+>nextera_adapter
 CTGTCTCTTATACACATCT
