@@ -190,7 +190,7 @@ for ((i=0; i<num_files; i+=2)); do
     #                Its clever and should do good for us
     # Remove leading low quality or N bases (below quality 3) (LEADING:3)
     # Remove trailing low quality or N bases (below quality 3) (TRAILING:3) 
-    # Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)
+    # Scan the read with a 4-base wide sliding window, cutting when tethe average quality per base drops below 15 (SLIDINGWINDOW:4:15)
     # 
     # Drop reads below 36 bases long (MINLEN:36)
 
