@@ -121,39 +121,45 @@ for ((i=0; i<num_files; i+=2)); do
     file_name_1=${fastq_files_names[$i]}     #Grab the first file
     file_name_2=${fastq_files_names[$((i+1))]}   #Grab the second file  (assumes that the files are in order and next to each other)
     
-    shortened_name=${file_name_1::-7}
+    generic_name=${file_name_1::-6}
+
+    shortened_name_1=${file_name_1::-6}
+    shortened_name_2=${file_name_1::-6}
 
     # Create the full file path names of our fasta files to be cleaned
     full_input_file_path_1="$fastq_file_location""/""$file_name_1"
     full_input_file_path_2="$fastq_file_location""/""$file_name_2"
 
 
-    # Create file paths of all output files!
-    full_output_file_path_1_paired="$todays_date""$full_input_file_path_1""_output_paired.fasta"
-    full_output_file_path_1_unpaired="$todays_date""$full_input_file_path_1""_output_unpaired.fasta"
-
-    full_output_file_path_2_paired="$todays_date""$full_input_file_path_2""_output_paired.fasta"
-    full_output_file_path_2_unpaired="$todays_date""$full_input_file_path_2""_output_unpaired.fasta"
-    
-    #Create those output files!
-    touch full_output_file_path_1_paired
-    trouch full_output_file_path_1_unpaired
-    touch full_output_file_path_2_paired
-    touch full_output_file_path_2_unpaired
-
     #output_prefex_full="$output_folder""/""$output_file_prefex"
     
-    output_folder="$results_folder/$shortened_name"
+    output_folder="$results_folder/$generic_name"
     mkdir -p "$output_folder"
 
+    # Name the trim_log and summary files
     trim_log_file="$output_folder""/""trimlog.txt"
     summary_file="$output_folder""/""summary.txt"
+    # Create the trim and summary files
+    touch "$trim_log_file"
+    touch "$summary_file"
+
+        # Create file paths of all output files!
+    full_output_file_path_1_paired="$output_folder""/""$todays_date""$shortened_name_1""_output_paired.fasta"
+    full_output_file_path_1_unpaired="$output_folder""/""$todays_date""$shortened_name_1""_output_unpaired.fasta"
+    full_output_file_path_2_paired="$output_folder""/""$todays_date""$shortened_name_2""_output_paired.fasta"
+    full_output_file_path_2_unpaired="$output_folder""/""$todays_date""$shortened_name_2""_output_unpaired.fasta"
+    
+    #Create those output files!
+    touch "$full_output_file_path_1_paired"
+    touch "$full_output_file_path_1_unpaired"
+    touch "$full_output_file_path_2_paired"
+    touch "$full_output_file_path_2_unpaired"
 
 
 
     echo "Running: ""$file_name_1"" and ""$file_name_2"
 
-    echo "Final items should be saved in folder $output_folder"
+    echo "All outputs should be saved in folder $output_folder"
 
     # Can add additional options
     java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \
