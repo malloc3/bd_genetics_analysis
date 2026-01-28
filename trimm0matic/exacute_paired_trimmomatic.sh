@@ -123,16 +123,24 @@ for ((i=0; i<num_files; i+=2)); do
     
     shortened_name=${file_name_1::-7}
 
-    # Create the full file path names
+    # Create the full file path names of our fasta files to be cleaned
     full_input_file_path_1="$fastq_file_location""/""$file_name_1"
     full_input_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    full_output_file_path_1_paired="$todays_date""$full_input_file_path_1""_output_paired"
-    full_output_file_path_1_unpaired="$todays_date""$full_input_file_path_1""_output_unpaired"
 
-    full_output_file_path_2_paired="$todays_date""$full_input_file_path_2""_output_paired"
-    full_output_file_path_2_unpaired="$todays_date""$full_input_file_path_2""_output_unpaired"
+    # Create file paths of all output files!
+    full_output_file_path_1_paired="$todays_date""$full_input_file_path_1""_output_paired.fasta"
+    full_output_file_path_1_unpaired="$todays_date""$full_input_file_path_1""_output_unpaired.fasta"
+
+    full_output_file_path_2_paired="$todays_date""$full_input_file_path_2""_output_paired.fasta"
+    full_output_file_path_2_unpaired="$todays_date""$full_input_file_path_2""_output_unpaired.fasta"
     
+    #Create those output files!
+    touch full_output_file_path_1_paired
+    trouch full_output_file_path_1_unpaired
+    touch full_output_file_path_2_paired
+    touch full_output_file_path_2_unpaired
+
     #output_prefex_full="$output_folder""/""$output_file_prefex"
     
     output_folder="$results_folder/$shortened_name"
