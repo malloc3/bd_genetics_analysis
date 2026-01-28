@@ -154,14 +154,24 @@ for ((i=0; i<num_files; i+=2)); do
     "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
     "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
     HEADCROP:15\
-    ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 \
+    ILLUMINACLIP:"./Trimmomatic/adapters/NexteraPE-PE.fa":2:30:10 \
     LEADING:3 \
     TRAILING:3 \
     MAXINFO \
     MINLEN:36
 
     # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)
-    #ILLUMINACLIP:TruSeq3-PE.fa:2:30:10   Will remoe illumina adapters
+    #ILLUMINACLIP:  NexteraPE-PE.fa: :<seed mismatches>:<palindrome clip threshold>:
+    #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :   
+    #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually!  
+    #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP
+    #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed
+    #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.
+    #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.
+    #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].
+    #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.
+    #
+    #           
     #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases. 
     #                Its clever and should do good for us
     # Remove leading low quality or N bases (below quality 3) (LEADING:3)
