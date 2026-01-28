@@ -11,7 +11,7 @@
 memory_per_file=$1
 number_of_threads=$2
 main_results_folder=$3
-run_results_folder="./""$main_results_folder""/paired"
+run_results_folder="./""$main_results_folder""/trimmo_cleaned_imani_samples_paired"
 mkdir "$run_results_folder"
 
 # update this location for where your files are located
@@ -42,7 +42,7 @@ non_readable_fast_q_files=()
 # IT figures out the full path to all the files of interest.  If it finds those files it adds the full
 # path to the fastq_files list for use later
 for i in "${!fastq_files_names[@]}"; do
-    file_name=${fastq_files_names[$i]}
+    file_name=${fastq_files_names[$i]}  #in some cases this includes part of a full path
     echo "|--""$file_name""--|"
 
     full_path="$fastq_file_location""/""$file_name"
