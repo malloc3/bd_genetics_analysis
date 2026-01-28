@@ -196,7 +196,7 @@ for ((i=0; i<num_files; i+=2)); do
 
 
 
-    echo "Done with $shortened_name"
+    echo "Done with $file_name_1 and $file_name_2"
     echo ""
     echo ""
     echo "=================================================================================================="
