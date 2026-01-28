@@ -4,7 +4,6 @@
 
 #This script is to run the fastqc run script to check the quality scores of each sequence.
 
-
 #/home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment/fast_q_files/paired/CJB4_5720-IR-1_GCGTAGTA-CTAGTCGA_S1_R_0011.fastq
 
 todays_date=$1
