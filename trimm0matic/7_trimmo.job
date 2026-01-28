@@ -2,8 +2,8 @@
 #SBATCH -J'Trimmo_job7'            # this names the job
 #SBATCH --ntasks=36                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog1                       # this will create an output log
-#SBATCH -e errlog1                       # this will create an error log
+#SBATCH -o outlog7                       # this will create an output log
+#SBATCH -e errlog7                       # this will create an error log
 #SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
