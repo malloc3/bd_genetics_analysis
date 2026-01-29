@@ -385,7 +385,53 @@
                 # Drop reads below 36 bases long (MINLEN:36)
             \end{verbatim}
 
-            All samples retained over 95\% of all reads wtih most retaining 98\% to 99\% of all reads post trim.
+
+            \item \textbf{SeqyClean:} Ran seqy clean on all samples.   Need to perform post clean qc.  I think I probably messed up the 5927 samples because (at least according to timmomatic results) it used both the Nextera adapters and some Illumina universal adapters Will likely need to do another trim to that group.
+
+            \item \textbf{FastQC of Imains trimmomatic trimmed samples} 01/28/26
+            \begin{itemize}
+                \item All samples retained over 95\% of all reads wtih most retaining 98\% to 99\% of all reads post trim.
+                \item The first 15bp were trimmed which made the per bp gc content rations look way better.   Still undecided if this was completely necessary.  But it does make the qc better.  We shall see if it assembles better though.
+                \item All samples have really clean histograms.   All samples have skewed lengths due to trimming so thats normal.
+                \item Many samples have a flag on deduplication.  I am not worried because the Bd genome isnt even b/c CCNV
+                \item All samples from 5720 pass all QC check with flying colors.
+                \item Samples from 5927 have too much Illumina Universal Adapter Sequence.   I should re run the trimmomatic with these adapters included for trimming.   I htink I will just run it agan from the original files I think.
+            \end{itemize}
+
+            \item \textbf{Trimmomatic redo of 5927 samples} 01/29/26:  Same as before however this time I will use the TruSeq3-PE.fa adapters and not the nextera.   I should have done that in the beginning.   Based on the first Fastqc you can see in the adapter content that the 5927 had different adapters  then the 5720 samples.  New settings are.
+            \begin{verbatim}
+                java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \
+                -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \
+                "$full_input_file_path_1" "$full_input_file_path_2"\
+                "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
+                "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
+                HEADCROP:15\
+                ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE.fa\
+                LEADING:3 \
+                TRAILING:3 \
+                MAXINFO:150:5 \
+                MINLEN:36
+            
+                # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)
+                #ILLUMINACLIP:  TruSeq3-PE.fa: :<seed mismatches>:<palindrome clip threshold>:
+                #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :   
+                #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually!  
+                #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP
+                #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed
+                #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.
+                #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.
+                #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].
+                #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.
+                #
+                #           
+                #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases. 
+                #                Its clever and should do good for us
+                # Remove leading low quality or N bases (below quality 3) (LEADING:3)
+                # Remove trailing low quality or N bases (below quality 3) (TRAILING:3) 
+                # Scan the read with a 4-base wide sliding window, cutting when tethe average quality per base drops below 15 (SLIDINGWINDOW:4:15)
+                # 
+                # Drop reads below 36 bases long (MINLEN:36)
+            \end{verbatim}
 
         \end{itemize}
 
