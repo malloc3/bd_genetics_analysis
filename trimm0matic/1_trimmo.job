@@ -9,7 +9,7 @@
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
 
-number_threads=36  # match this to the given n tasks
+number_threads=12  # match this to the given n tasks
 
 #We need to set our file path to be where all of our documents are.
 # Typically we will submit our slurm.job file from the right directory.  However
