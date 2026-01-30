@@ -432,6 +432,22 @@
                 # 
                 # Drop reads below 36 bases long (MINLEN:36)
             \end{verbatim}
+        \item \textbf{FastQC of 5927 redo trimmo:} 01/30/26  Alas teh previous trimmo still didn't ahave the right adapters.  Reruning with a different adapter library.  REally wish I had the original information on which adapter sImani used.
+        
+        \item \textbf{Trimmo of 5927 V3:}  01/30/26  Same trimmo but with teh TruSeq3-PE-2.fa adapter library to trim.
+        \begin{verbatim}
+            java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \
+            -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \
+            "$full_input_file_path_1" "$full_input_file_path_2"\
+            "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
+            "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
+            HEADCROP:15\
+            ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE-2.fa\
+            LEADING:3 \
+            TRAILING:3 \
+            MAXINFO:150:5 \
+            MINLEN:36
+        \end{verbatim}
 
         \end{itemize}
 
