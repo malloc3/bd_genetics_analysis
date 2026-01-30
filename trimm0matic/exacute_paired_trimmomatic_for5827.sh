@@ -168,7 +168,7 @@ for ((i=0; i<num_files; i+=2)); do
     "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \
     "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \
     HEADCROP:15\
-    ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE-2.fa\
+    ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE.fa\
     LEADING:3 \
     TRAILING:3 \
     MAXINFO:150:5 \
