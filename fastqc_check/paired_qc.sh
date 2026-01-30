@@ -11,14 +11,14 @@
 memory_per_file=$1
 number_of_threads=$2
 main_results_folder=$3
-run_results_folder="./""$main_results_folder""/trimmo_cleaned_imani_samples_paired"
+run_results_folder="./""$main_results_folder""/trimmo_cleaned_imani_samples_5927"
 mkdir "$run_results_folder"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/2026-01-27"
+fastq_file_location="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names.txt"   #Should update this to only lookq locally
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_trimmo_5927.txt"   #Should update this to only lookq locally
 
 
 #Uf the csv exists then then makes a list of all the names
