@@ -30,7 +30,7 @@ mkdir "./""$run_results_folder"
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_names_5927_only.txt"   #Should update this to only lookq locally
 
 echo "Running Paired Trimmomatic"
-./exacute_paired_trimmomatic.sh "$todays_date" "$run_results_folder" "$fastq_files_csv_path" "$number_threads"
+./exacute_paired_trimmomatic_for5827.sh "$todays_date" "$run_results_folder" "$fastq_files_csv_path" "$number_threads"
 
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
