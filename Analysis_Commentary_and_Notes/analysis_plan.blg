@@ -1,15 +1,15 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
-[1] Config.pm:310> INFO - Logfile is 'analysis_plan.blg'
-[279] biber-darwin:340> INFO - === Fri Jan 30, 2026, 14:14:11
-[327] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
-[568] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
-[607] Biber.pm:4419> INFO - Processing section 0
-[627] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
-[781] bibtex.pm:1713> INFO - LaTeX decoding ...
-[2756] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
-[3370] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[3370] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[3370] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[3370] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[3414] bbl.pm:660> INFO - Writing 'analysis_plan.bbl' with encoding 'UTF-8'
-[3459] bbl.pm:763> INFO - Output to analysis_plan.bbl
+[0] Config.pm:310> INFO - Logfile is 'analysis_plan.blg'
+[128] biber-darwin:340> INFO - === Fri Jan 30, 2026, 14:14:46
+[155] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
+[311] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
+[335] Biber.pm:4419> INFO - Processing section 0
+[352] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
+[468] bibtex.pm:1713> INFO - LaTeX decoding ...
+[2140] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
+[2662] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[2662] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[2662] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[2662] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[2708] bbl.pm:660> INFO - Writing 'analysis_plan.bbl' with encoding 'UTF-8'
+[2756] bbl.pm:763> INFO - Output to analysis_plan.bbl
