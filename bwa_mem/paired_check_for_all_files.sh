@@ -106,14 +106,17 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fi
 done
 
-unpaired_length=${unpaired_files[@]}
-paired_length=${paired_files[@]}
-all_files_length=${fastq_files[@]}
 
+unpaired_length=${#unpaired_files[@]}
+paired_length=${#paired_files[@]}
+all_files_length=${#fastq_files[@]}
+
+
+echo "the lengths"
 echo "$unpaired_length"
 echo "$paired_length"
 echo "$all_files_length"
-
+echo "end the lengths"
 
 if ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"
