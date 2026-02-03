@@ -127,23 +127,21 @@ unpaired_length=${#unpaired_files[@]}
 paired_length=${#paired_files[@]}
 all_files_length=${#fastq_files[@]}
 
-echo "$unpaired_length"
-echo "$paired_length"
-echo "$all_files_length"
 
-
-if [$paired_length == $all_files_length]; then
+if [ "$paired_length" -eq "$all_files_length" ]; then
     echo "all the files are paired properly!"
 else
     echo "It appears some fasta files are not paired properly"
     echo "please check your fasta .txt file and make sure they are ordered properly"
+    echo "the following files are not paired:"
     for i in "${!unpaired_files[@]}"; do
         echo "|-----""${unpaired_files[i]}""-----|"
     done
+    echo "--------------------------------"
     exit 1
 fi
 
-if ! [$unpaired_length == 0]; then
+if ! [ "$unpaired_length" -eq 0 ]; then
     echo "the unpaired samples length isn't zero which doesn't make sense."
     echo "The previous check should have prevented this"
     echo "$unpaired_length"
