@@ -72,8 +72,11 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
 
+    shortened_1="${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"
+    shortened_2="${second_file_base_name::-$number_of_characters_to_drop_for_paired}"
+
     # double check that the file names match!
-    if [ "${fist_file_base_name::-"$number_of_characters_to_drop_for_paired"}" == "${second_file_base_name::-"$number_of_characters_to_drop_for_paired"}" ]; then
+    if [ "$shortened_1" == "$shortened_2" ]; then
         echo "$fist_file_base_name matches $second_file_base_name"  
     else
         echo "$fist_file_base_name does not matche $second_file_base_name"  
@@ -83,7 +86,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fi
 
     #make output file
-    sam_save_file="$run_results_folder""/""${fist_file_base_name::-5}"".sam"
+    sam_save_file="$run_results_folder""/""${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"".sam"
 
     touch "$sam_save_file"
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
