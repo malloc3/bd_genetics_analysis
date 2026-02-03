@@ -112,9 +112,11 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
 
     # double check that the file names match!
     if [ "$shortened_1" == "$shortened_2" ]; then
+        echo "shortened_1 is equal to shortened2"
         paired_files+=("$first_file")
         paired_files+=("$second_file")
     else
+        echo "shortened_1 is NOT equal to shortened2"
         unpaired_files+=("$first_file")
         unpaired_files+=("$second_file")
     fi
@@ -124,6 +126,10 @@ done
 unpaired_length=${#unpaired_files[@]}
 paired_length=${#paired_files[@]}
 all_files_length=${#fastq_files[@]}
+
+echo "$unpaired_length"
+echo "$paired_length"
+echo "$all_files_length"
 
 
 if [$paired_length == $all_files_length]; then
