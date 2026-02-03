@@ -27,6 +27,13 @@ fi
 echo "---------"
 echo "begin paired align in order script"
 
+echo "--"
+echo "$fastq_files_text_path"
+echo "--"
+echo "$fastq_file_location"
+echo "--"
+echo "$fastq_files_names"
+
 # Steps to check if all new fastq files exist
 fastq_files=()  # Creates a list of the FULL file paths to each and every sample
 
