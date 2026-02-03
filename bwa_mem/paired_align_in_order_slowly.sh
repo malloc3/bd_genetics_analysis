@@ -33,6 +33,7 @@ echo "--"
 echo "$fastq_file_location"
 echo "--"
 echo "$fastq_files_names"
+echo "--"
 
 # Steps to check if all new fastq files exist
 fastq_files=()  # Creates a list of the FULL file paths to each and every sample
@@ -42,6 +43,8 @@ non_existing_files=()
 non_readable_fast_q_files=()
 
 for i in "${!fastq_files_names[@]}"; do
+    echo "$fastq_file_location"
+    echo "${fastq_files_names[$i]}"
     full_path="$fastq_file_location${fastq_files_names[$i]}"
     echo "$full path"
     if [ -f "$full_path" ]; then
