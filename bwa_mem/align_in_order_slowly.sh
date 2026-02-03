@@ -17,7 +17,7 @@ for i in "${!fastq_files_names[@]}"; do
 
     # DO STAMPY
     # Run with BWA and multithreading
-    conda run -n $stampy_conda_environment ./stampy.py 
+    
 
 
 done
