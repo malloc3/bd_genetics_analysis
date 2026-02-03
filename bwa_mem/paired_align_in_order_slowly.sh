@@ -46,7 +46,7 @@ for i in "${!fastq_files_names[@]}"; do
     echo "$fastq_file_location"
     echo "${fastq_files_names[$i]}"
     full_path="$fastq_file_location${fastq_files_names[$i]}"
-    echo "$full path"
+    echo "$full_path"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
             fastq_files+=("$full_path")
