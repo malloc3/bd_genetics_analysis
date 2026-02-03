@@ -118,7 +118,7 @@ echo "$paired_length"
 echo "$all_files_length"
 echo "end the lengths"
 
-if ["$paired_length" -eq "$all_files_length"]; then
+if ! ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"
     echo "please check your fasta .txt file and make sure they are ordered properly"
     for i in "${!unpaired_files[@]}"; do
