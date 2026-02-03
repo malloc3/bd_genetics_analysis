@@ -9,7 +9,7 @@ passed_check_file_confirmation=$4 # The name of a text file that we will use to 
 #This is the number of characters to drop from the tail end of the file names
 # to check if they are actualy the proerply paired files.   THis number will change depending 
 # on YOUR files.   It is probably good to keep them consistently named.
-number_of_characters_to_drop_for_paired=$4 
+number_of_characters_to_drop_for_paired=$5
 
 echo "============================"
 echo "Looking for reference genome..."
