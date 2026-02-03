@@ -110,6 +110,11 @@ unpaired_length=${unpaired_files[@]}
 paired_length=${paired_files[@]}
 all_files_length=${fastq_files[@]}
 
+echo "$unpaired_length"
+echo "$paired_length"
+echo "$all_files_length"
+
+
 if ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"
     echo "please check your fasta .txt file and make sure they are ordered properly"
