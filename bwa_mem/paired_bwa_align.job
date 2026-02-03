@@ -1,14 +1,14 @@
 #!/bin/bash -l
 #SBATCH -J'BWA_Mem_Align'            # this names the job
-#SBATCH --ntasks=56                      # this sets the number of cores we may use
-#SBATCH --nodes=2                       # this setst the number of nodes we will use
+#SBATCH --ntasks=12                      # this sets the number of cores we may use
+#SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
 #SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
-number_of_threads=56  #set equal to the number of threads given the program
+number_of_threads=12  #set equal to the number of threads given the program
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta" # Full path to the reference genome
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
