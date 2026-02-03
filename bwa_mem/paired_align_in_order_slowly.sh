@@ -9,6 +9,10 @@ fastq_file_location=$2
 fastq_files_text_path=$3
 run_results_folder=$4
 number_of_threads=$5
+
+#This is the number of characters to drop from the tail end of the file names
+# to check if they are actualy the proerply paired files.   THis number will change depending 
+# on YOUR files.   It is probably good to keep them consistently named.
 number_of_characters_to_drop_for_paired=$6
 
 

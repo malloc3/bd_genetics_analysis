@@ -4,7 +4,11 @@
 reference_genome=$1
 fastq_file_location=$2 #fasta file parent directory
 fastq_files_text_path=$3  # a .txt file with all the names/sub directories of the fasta files you want
-passed_check_file_confirmation=$4 
+passed_check_file_confirmation=$4 # The name of a text file that we will use to pass information back to parent script
+
+#This is the number of characters to drop from the tail end of the file names
+# to check if they are actualy the proerply paired files.   THis number will change depending 
+# on YOUR files.   It is probably good to keep them consistently named.
 number_of_characters_to_drop_for_paired=$4 
 
 echo "============================"
