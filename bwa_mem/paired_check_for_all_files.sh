@@ -96,8 +96,8 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
     
-    shortened_1="${fist_file_base_name::-"$number_of_characters_to_drop_for_paired"}"
-    shortened_2="${second_file_base_name::-"$number_of_characters_to_drop_for_paired"}"
+    shortened_1="${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"
+    shortened_2="${second_file_base_name::-$number_of_characters_to_drop_for_paired}"
 
     echo "--------------------------"
     echo "$first_file"
