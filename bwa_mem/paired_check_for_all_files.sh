@@ -93,6 +93,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     
     echo "--------------------------"
     echo "$first_file"
+    echo "--"
     echo "$second_file"
     echo "--------------------------"
     
@@ -122,7 +123,7 @@ if ! ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"
     echo "please check your fasta .txt file and make sure they are ordered properly"
     for i in "${!unpaired_files[@]}"; do
-        echo "|-----""${!unpaired_files[@]}""-----|"
+        echo "|-----""${unpaired_files[i]}""-----|"
     done
     exit 1
 else
