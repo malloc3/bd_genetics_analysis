@@ -5,8 +5,8 @@
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
 #SBATCH -t 1:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
-#SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
-#SBATCH --mail-type ALL                 # This will send updates at every step
+
+
 
 number_of_threads=1  #set equal to the number of threads given the program
 
