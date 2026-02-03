@@ -77,8 +77,7 @@ else
     exit 1 
 fi
 
-
-all_files_paired=true
+paired_files=()
 unpaired_files=()
 
 # Now lets check if the files are properly paired!
@@ -91,19 +90,27 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
 
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
-
+    
+    echo "--------------------------"
     echo "$first_file"
     echo "$second_file"
-
+    echo "--------------------------"
+    
     # double check that the file names match!
-    if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+    if [ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+        paired_files+=("$first_file")
+        paired_files+=("$second_file")
+    else
         unpaired_files+=("$first_file")
         unpaired_files+=("$second_file")
-        all_files_paired=false
     fi
 done
 
-if ! "$all_files_paired"; then
+unpaired_length=${unpaired_files[@]}
+paired_length=${paired_files[@]}
+all_files_length=${fastq_files[@]}
+
+if ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"
     echo "please check your fasta .txt file and make sure they are ordered properly"
     for i in "${!unpaired_files[@]}"; do
@@ -112,6 +119,13 @@ if ! "$all_files_paired"; then
     exit 1
 else
     echo "all the files are paired properly!"
+fi
+
+if ! ["$unpaired_length" -eq "0"]; then
+    echo "the unpaired samples length isn't zero which doesn't make sense."
+    echo "The previous check should have prevented this"
+    echo "$unpaired_length"
+    exit 1
 fi
 
 #Okay this is funky.  But I need to pass the check results back to the parent 

@@ -68,10 +68,13 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     second_file_base_name=$(basename "$second_file" .fastq)
 
     # double check that the file names match!
-    if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
-        echo "$fist_file_base_name doesn't appear to pair with $second_file_base_name"
+    if [ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+        echo "$fist_file_base_name matches $second_file_base_name"  
+    else
+        echo "$fist_file_base_name does not matche $second_file_base_name"  
         echo "We need paired file names to ensure paired end alignment works properly"
-        exit 1   
+        echo "we should not have gotten here because the paired_check_for_all_fiels.sh script should have confirmed this"
+        exit 1 
     fi
 
     #make output file
