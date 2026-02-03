@@ -57,7 +57,7 @@ else
 fi
 
 echo "Okay lets align stuff now!  Submit multiple jobs!"
-stampy_in_order_slowly.sh "$reference_index_path" "$fastq_parent_folder" $fastq_files_names "$run_results_folder" $conda_environ "$number_of_threads"
+./paired_align_in_order_slowly.sh "$reference_index_path" "$fastq_parent_folder" $fastq_files_names "$run_results_folder" $conda_environ "$number_of_threads"
 
 
 
