@@ -60,9 +60,11 @@ todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 run_results_folder="res_bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
+exit 1
+
 #must first build the index from the reference genome
 if $build_index; then
-    conda run -n "$conda_environ" ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 index -p "$reference_index_prefix" "$reference_genome_path"
+    ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 index -p "$reference_index_prefix" "$reference_genome_path"
     reference_index_path=reference_index_prefix
 else
     reference_index_path="$default_index_file_path"

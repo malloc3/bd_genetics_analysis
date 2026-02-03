@@ -8,7 +8,7 @@ reference_index_path=$1
 fastq_parent_folder=$2
 fastq_files_names=$3
 run_results_folder=$4
-stampy_conda_environment=$5
+conda_environ=$5
 number_of_threads=$6
 
 

@@ -81,6 +81,9 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
 
+    echo "$first_file"
+    echo "$second_file"
+
     # double check that the file names match!
     if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
         unpaired_files+=("$first_file")
