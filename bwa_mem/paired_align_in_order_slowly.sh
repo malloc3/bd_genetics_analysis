@@ -27,13 +27,6 @@ fi
 echo "---------"
 echo "begin paired align in order script"
 
-echo "--"
-echo "$fastq_files_text_path"
-echo "--"
-echo "$fastq_file_location"
-echo "--"
-echo "$fastq_files_names"
-echo "--"
 
 # Steps to check if all new fastq files exist
 fastq_files=()  # Creates a list of the FULL file paths to each and every sample
@@ -43,10 +36,7 @@ non_existing_files=()
 non_readable_fast_q_files=()
 
 for i in "${!fastq_files_names[@]}"; do
-    echo "$fastq_file_location"
-    echo "${fastq_files_names[$i]}"
     full_path="$fastq_file_location${fastq_files_names[$i]}"
-    echo "$full_path"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
             fastq_files+=("$full_path")
@@ -81,6 +71,10 @@ fi
 
 for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
+
+    # Get the two fasta files
+    first_file="${fastq_files[i]}"
+    second_file="${fastq_files[i+1]}"
 
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
