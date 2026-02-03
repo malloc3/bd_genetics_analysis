@@ -4,7 +4,8 @@
 reference_genome=$1
 fastq_file_location=$2 #fasta file parent directory
 fastq_files_text_path=$3  # a .txt file with all the names/sub directories of the fasta files you want
-passed_check_file_confirmation=$4
+passed_check_file_confirmation=$4 
+number_of_characters_to_drop_for_paired=$4 
 
 echo "============================"
 echo "Looking for reference genome..."
@@ -98,7 +99,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     echo "--------------------------"
     
     # double check that the file names match!
-    if [ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+    if [ "${fist_file_base_name::-"$number_of_characters_to_drop_for_paired"}" == "${second_file_base_name::-"$number_of_characters_to_drop_for_paired"}" ]; then
         paired_files+=("$first_file")
         paired_files+=("$second_file")
     else
@@ -112,12 +113,6 @@ unpaired_length=${#unpaired_files[@]}
 paired_length=${#paired_files[@]}
 all_files_length=${#fastq_files[@]}
 
-
-echo "the lengths"
-echo "$unpaired_length"
-echo "$paired_length"
-echo "$all_files_length"
-echo "end the lengths"
 
 if ! ["$paired_length" -eq "$all_files_length"]; then
     echo "It appears some fasta files are not paired properly"

@@ -9,6 +9,7 @@ fastq_file_location=$2
 fastq_files_text_path=$3
 run_results_folder=$4
 number_of_threads=$5
+number_of_characters_to_drop_for_paired=$6
 
 
 
@@ -68,7 +69,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     second_file_base_name=$(basename "$second_file" .fastq)
 
     # double check that the file names match!
-    if [ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+    if [ "${fist_file_base_name::-"$number_of_characters_to_drop_for_paired"}" == "${second_file_base_name::-"$number_of_characters_to_drop_for_paired"}" ]; then
         echo "$fist_file_base_name matches $second_file_base_name"  
     else
         echo "$fist_file_base_name does not matche $second_file_base_name"  
