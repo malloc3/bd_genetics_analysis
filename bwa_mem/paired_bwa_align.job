@@ -11,7 +11,7 @@
 number_of_threads=1  #set equal to the number of threads given the program
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
-fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
+fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_text_path="$SLURM_SUBMIT_DIR""/reduced_trimmo_names_for_debug.txt"   #Should update this to only lookq locally
 reference_index_prefix="$SLURM_SUBMIT_DIR""/reference_indexes/near_complete"  #The file path to the index files
