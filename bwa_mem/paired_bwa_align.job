@@ -22,7 +22,7 @@ reference_index_prefix="$SLURM_SUBMIT_DIR""/reference_indexes/near_complete/CMM_
 number_of_characters_to_drop_for_paired=21
 
 
-default_index_file_path="NO_DEFAULT_DEFINED"
+default_index_file_path="$reference_index_prefix"
 
 
 
