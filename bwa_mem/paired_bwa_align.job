@@ -65,7 +65,6 @@ todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 run_results_folder="res_bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
-exit 1
 
 #must first build the index from the reference genome
 if $build_index; then
