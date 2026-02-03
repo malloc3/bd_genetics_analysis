@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  2 FEB 2026 10:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  2 FEB 2026 19:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -799,32 +799,32 @@ Overfull \hbox (5.4972pt too wide) in paragraph at lines 450--450
  []
 
 [21]
-Overfull \hbox (25.5492pt too wide) in paragraph at lines 465--465
+Overfull \hbox (25.5492pt too wide) in paragraph at lines 472--472
 \OT1/cmr/m/n/10 (Aug. 1, 2014), pp. 2114{2120. \OT1/cmr/m/sc/10 issn\OT1/cmr/m/n/10 : 1367-4803. \OT1/cmr/m/sc/10 doi\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 10 . 1093 / bioinformatics /
  []
 
 
-Overfull \hbox (2.99562pt too wide) in paragraph at lines 465--465
+Overfull \hbox (2.99562pt too wide) in paragraph at lines 472--472
 []\OT1/cmr/m/n/10 Allison Q. Byrne et al. ``Cryp-tic Di-ver-sity of a Widespread Global Pathogen
  []
 
 
-Overfull \hbox (9.739pt too wide) in paragraph at lines 465--465
+Overfull \hbox (9.739pt too wide) in paragraph at lines 472--472
 \OT1/cmr/m/n/10 26661667. \OT1/cmr/m/sc/10 doi\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 10 . 1016 / j . xpro . 2022 . 101506$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / linkinghub .
  []
 
 
-Overfull \hbox (12.74834pt too wide) in paragraph at lines 465--465
+Overfull \hbox (12.74834pt too wide) in paragraph at lines 472--472
 \OT1/cmtt/m/n/10 elsevier . com / retrieve / pii / S2666166722003860$[] \OT1/cmr/m/n/10 (vis-ited on 01/16/2026). 
  []
 
 [22]
-Overfull \hbox (3.44978pt too wide) in paragraph at lines 465--465
+Overfull \hbox (3.44978pt too wide) in paragraph at lines 472--472
 \OT1/cmr/m/n/10 per-a-ture''. In: \OT1/cmr/m/it/10 Jour-nal of Evo-lu-tion-ary Bi-ol-ogy \OT1/cmr/m/n/10 32.3 (Mar. 1, 2019), pp. 287{
  []
 
 [23]
-Overfull \hbox (7.10399pt too wide) in paragraph at lines 465--465
+Overfull \hbox (7.10399pt too wide) in paragraph at lines 472--472
 []$\OT1/cmtt/m/n/10 27095998$[]\OT1/cmr/m/n/10 . \OT1/cmr/m/sc/10 url\OT1/cmr/m/n/10 : []$\OT1/cmtt/m/n/10 https : / / pmc . ncbi . nlm . nih . gov / articles / PMC4835851/$[]
  []
 
@@ -840,18 +840,18 @@ Package logreq Info: Writing requests to 'analysis_plan.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16225 strings out of 474116
- 285655 string characters out of 5743682
+ 16227 strings out of 474116
+ 285669 string characters out of 5743682
  1946187 words of memory out of 5000000
  38332 multiletter control sequences out of 15000+600000
  567082 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,2490b,1489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (24 pages, 228990 bytes).
+Output written on analysis_plan.pdf (24 pages, 229421 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 420 compressed objects within 5 object streams
- 109 named destinations out of 1000 (max. 500000)
+ 475 PDF objects out of 1000 (max. 8388607)
+ 422 compressed objects within 5 object streams
+ 111 named destinations out of 1000 (max. 500000)
  145 words of extra memory for PDF output out of 10000 (max. 10000000)
 

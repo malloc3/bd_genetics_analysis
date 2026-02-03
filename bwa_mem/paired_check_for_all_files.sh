@@ -3,15 +3,7 @@
 
 reference_genome=$1
 fastq_file_location=$2 #fasta file parent directory
-fastq_files_csv_path=$3  # a .txt file with all the names/sub directories of the fasta files you want
-
-
-
-if [ -f $fastq_files_csv_path ]; then
-    mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
-else
-    echo "File path $fastq_files_csv_path does not exist"; exit 1
-fi
+fastq_files_names=$3  # a .txt file with all the names/sub directories of the fasta files you want
 
 echo "============================"
 echo "Looking for reference genome..."
@@ -72,3 +64,40 @@ else
     echo "Run Failed"
     exit 1 
 fi
+
+
+all_files_paired=true
+unpaired_files=()
+
+# Now lets check if the files are properly paired!
+for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
+    start_time=$(date '+%Y-%m-%d %H:%M:%S')
+
+    # Get the two fasta files
+    first_file="$fastq_parent_folder""/""${fastq_files[i]}"
+    second_file="$fastq_parent_folder""/""${fastq_files[i+1]}"
+
+    fist_file_base_name="$(basename "$first_file" .fastq)"
+    second_file_base_name=$(basename "$second_file" .fastq)
+
+    # double check that the file names match!
+    if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
+        unpaired_files+=("$first_file")
+        unpaired_files+=("$second_file")
+        all_files_paired=false
+    fi
+done
+
+if ! "$all_files_paired"; then
+    echo "It appears some fasta files are not paired properly"
+    echo "please check your fasta .txt file and make sure they are ordered properly"
+    for i in "${!unpaired_files[@]}"; do
+        echo "|-----""${!unpaired_files[@]}""-----|"
+    done
+    exit 1
+else
+    echo "all the files are paired properly!"
+fi
+
+
+
