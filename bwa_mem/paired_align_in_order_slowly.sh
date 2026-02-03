@@ -100,8 +100,6 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"
 
-        echo "---- Temporary exit  b/c of debugging delete these lines when you are ready to run for real!"
-        exit 1
         ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 mem -o "$sam_save_file" -t "$number_of_threads" -v 3 "$reference_index_path" "$first_file" "$second_file"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
