@@ -3,7 +3,7 @@
 
 reference_genome=$1
 fastq_file_location=$2 #fasta file parent directory
-fastq_files_names=$3  # a .txt file with all the names/sub directories of the fasta files you want
+fastq_files_text_path=$3  # a .txt file with all the names/sub directories of the fasta files you want
 passed_check_file_confirmation=$4
 
 echo "============================"
@@ -28,6 +28,17 @@ fi
 echo "============================"
 
 echo "Looking for fastq files..."
+
+
+# maps the text files that we will be using into a single array for use later
+if [ -f $fastq_files_text_path ]; then
+    mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_text_path)
+else
+    echo "File path $fastq_files_text_path does not exist"; exit 1
+fi
+
+
+
 # Steps to check if all new fastq files exist
 fastq_files=()  # Creates a list of the FULL file paths to each and every sample
 
@@ -75,8 +86,8 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
 
     # Get the two fasta files
-    first_file="$fastq_parent_folder""/""${fastq_files[i]}"
-    second_file="$fastq_parent_folder""/""${fastq_files[i+1]}"
+    first_file="${fastq_files[i]}"
+    second_file="${fastq_files[i+1]}"
 
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
