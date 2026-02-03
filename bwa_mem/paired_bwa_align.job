@@ -51,7 +51,6 @@ if [ -f "$passed_check_file_confirmation" ]; then
 else
     echo "The pass check file $passed_check_file_confirmation does not exist so we did not pass our checks!"
     echo "run failed"
-    rm "$passed_check_file_confirmation"
     exit 1
 fi
 
