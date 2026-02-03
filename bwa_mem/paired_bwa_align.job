@@ -40,7 +40,7 @@ fi
 
 # Checks that all of our files exist!
 echo "Running file check script"
-./check_for_all_files.sh "$reference_genome_path" "$fastq_parent_folder" "$fastq_files_names"
+./paired_check_for_all_files.sh "$reference_genome_path" "$fastq_parent_folder" "$fastq_files_names"
 
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
