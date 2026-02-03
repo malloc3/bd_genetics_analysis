@@ -24,6 +24,8 @@ else
     echo "File path $fastq_files_text_path does not exist"; exit 1
 fi
 
+echo "---------"
+echo "begin paired align in order script"
 
 # Steps to check if all new fastq files exist
 fastq_files=()  # Creates a list of the FULL file paths to each and every sample
@@ -34,6 +36,7 @@ non_readable_fast_q_files=()
 
 for i in "${!fastq_files_names[@]}"; do
     full_path="$fastq_file_location${fastq_files_names[$i]}"
+    echo "$full path"
     if [ -f "$full_path" ]; then
         if [ -r $full_path ]; then
             fastq_files+=("$full_path")
