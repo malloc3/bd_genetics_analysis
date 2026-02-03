@@ -45,7 +45,7 @@ echo "Running file check script"
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-run_results_folder="stampy_alignment_""$todays_date"
+run_results_folder="bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
 #must first build the index from the reference genome
