@@ -4,6 +4,7 @@
 reference_genome=$1
 fastq_file_location=$2 #fasta file parent directory
 fastq_files_names=$3  # a .txt file with all the names/sub directories of the fasta files you want
+passed_check_file_confirmation=$4
 
 echo "============================"
 echo "Looking for reference genome..."
@@ -98,6 +99,12 @@ if ! "$all_files_paired"; then
 else
     echo "all the files are paired properly!"
 fi
+
+#Okay this is funky.  But I need to pass the check results back to the parent 
+# bash script.  So I will create a text file with a specific name.
+# if it passed the file will exist.  If it didn't pass then the file wont 
+# exist
+touch "$passed_check_file_confirmation"
 
 
 

@@ -10,7 +10,7 @@
 
 number_of_threads=1  #set equal to the number of threads given the program
 
-reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta" # Full path to the reference genome
+reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fastaCMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_text_path="$SLURM_SUBMIT_DIR""/reduced_trimmo_names_for_debug.txt"   #Should update this to only lookq locally
@@ -22,8 +22,11 @@ default_index_file_path="NO_DEFAULT_DEFINED"
 
 
 build_index="true"
-
 conda_environ="bwa_environ"
+
+# The paired_check_for_all_files script will create this file if it passes all the checks
+# if it exits early then this file won't be created thus I will make the whole script pause!
+passed_check_file_confirmation="pass_check_is_true.txt" 
 
 
 
@@ -40,12 +43,22 @@ fi
 
 # Checks that all of our files exist!
 echo "Running file check script"
-./paired_check_for_all_files.sh "$reference_genome_path" "$fastq_parent_folder" "$fastq_files_names"
+./paired_check_for_all_files.sh "$reference_genome_path" "$fastq_parent_folder" "$fastq_files_names" "$passed_check_file_confirmation"
+
+if [ -f "$passed_check_file_confirmation" ]; then
+    echo "The pass check file $passed_check_file_confirmation exists so we passed our check function!"
+    rm "$passed_check_file_confirmation"
+else
+    echo "The pass check file $passed_check_file_confirmation does not exist so we did not pass our checks!"
+    echo "run failed"
+    rm "$passed_check_file_confirmation"
+    exit 1
+fi
 
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-run_results_folder="bwa_mem_align""$todays_date"
+run_results_folder="res_bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
 #must first build the index from the reference genome
