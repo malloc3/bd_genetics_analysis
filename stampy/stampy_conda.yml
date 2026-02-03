@@ -6,7 +6,6 @@ dependencies:
   - anaconda=2019.10=py27_0
   - anaconda-client=1.7.2=py27_0
   - anaconda-project=0.8.3=py_0
-  - appnope=0.1.0=py27hb466136_0
   - appscript=1.1.0=py27h1de35cc_0
   - asn1crypto=1.0.1=py27_0
   - astroid=1.6.5=py27_0
