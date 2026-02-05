@@ -5,18 +5,19 @@
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
 #Add the complete path to the reference genome you want to use!
-reference_genome="$SLURM_SUBMIT_DIR""/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+reference_genome="$SLURM_SUBMIT_DIR""/fast_q_files/Reference_genomes/CMM_BatrDend_JEL423_V3/ncbi_dataset/data/GCA_048537975.1/GCA_048537975.1_CMM_BatrDend_JEL423_V3_genomic.fna"
 
 #this is the name of the index files that will be created for this reference genome
-reference_genome_name="CMM_BatrDend_JEL423_V3"
+reference_genome_name="GCA_048537975.1_CMM_BatrDend_JEL423_V3_genomic"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/unpaired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names_all.txt"
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/unpaired_fastq_names.csv"
 
 build_index=true #I typically aligned the paired genomes after the index has already been built so this can be set to false
+
 
 if [ -f $fastq_files_csv_path ]; then
     mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
@@ -105,34 +106,19 @@ if $build_index; then
     echo "=========================================="
 fi
 
+#echo "Lets align things!"
 
-for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
+for file in "${fastq_files[@]}"; do
     start_time=$(date '+%Y-%m-%d %H:%M:%S')
-
-    first_file="${fastq_files[i]}"
-    second_file="${fastq_files[i+1]}"
-
-    fist_file_base_name="$(basename "$first_file" .fastq)"
-    second_file_base_name=$(basename "$second_file" .fastq)
-
-    if ![ "${fist_file_base_name::-21}" == "${second_file_base_name::-21}" ]; then
-        echo "$fist_file_base_name doesn't appear to pair with $second_file_base_name"
-        echo "We need paired file names to ensure paired end alignment works properly"
-        exit 1   
-    fi
-
-    sam_save_file="$sam_output_folder""/""${fist_file_base_name::-21}"".sam"
-
-    
+    sam_save_file="$sam_output_folder""/$(basename "$file" .fastq).sam"
     touch "$sam_save_file"
-    echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
-    echo "Results will be saved in $sam_save_file"
-    
-    #Run bowtie alignment
-    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -1 "$first_file" -2 "$second_file" -p 36 -S "$sam_save_file" --very-sensitive
+    echo "[$start_time] Aligning $file to $reference_genome_name"
+    echo "  results will be saved in $sam_save_file"
+
+    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -U "$file" -p 36 -S "$sam_save_file" --very-sensitive #Run bowtie alignment
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$end_time] Alignment of $fist_file_base_name complete!"
+    echo "[$end_time] Alignment of $(basename "$file") complete!"
     echo "=========================================="
 done
 

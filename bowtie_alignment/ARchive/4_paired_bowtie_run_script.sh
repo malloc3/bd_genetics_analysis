@@ -5,18 +5,18 @@
 #This script is used to align the unpaired fastq files that I downloaded from NCBI.
 
 #Add the complete path to the reference genome you want to use!
-reference_genome="$SLURM_SUBMIT_DIR""/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta"
+reference_genome="$SLURM_SUBMIT_DIR""/fast_q_files/Reference_genomes/UCR_BdCLFT044_1.0/ncbi_dataset/data/GCA_036289345.1/GCA_036289345.1_UCR_BdCLFT067_1.0_genomic.fna"
 
 #this is the name of the index files that will be created for this reference genome
-reference_genome_name="CMM_BatrDend_JEL423_V3"
+reference_genome_name="GCA_036289345.1_UCR_BdCLFT067_1.0_genomic.fna"
 
 # update this location for where your files are located
-fastq_file_location="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"
+fastq_file_location="$SLURM_SUBMIT_DIR""/fast_q_files/paired/"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names_all.txt"
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_fastq_names_run.csv"
 
-build_index=true #I typically aligned the paired genomes after the index has already been built so this can be set to false
+build_index=false #I typically aligned the paired genomes after the index has already been built so this can be set to false
 
 if [ -f $fastq_files_csv_path ]; then
     mapfile -t fastq_files_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $fastq_files_csv_path)
@@ -115,13 +115,13 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fist_file_base_name="$(basename "$first_file" .fastq)"
     second_file_base_name=$(basename "$second_file" .fastq)
 
-    if ![ "${fist_file_base_name::-21}" == "${second_file_base_name::-21}" ]; then
+    if ![ "${fist_file_base_name::-5}" == "${second_file_base_name::-5}" ]; then
         echo "$fist_file_base_name doesn't appear to pair with $second_file_base_name"
         echo "We need paired file names to ensure paired end alignment works properly"
         exit 1   
     fi
 
-    sam_save_file="$sam_output_folder""/""${fist_file_base_name::-21}"".sam"
+    sam_save_file="$sam_output_folder""/""${fist_file_base_name::-5}"".sam"
 
     
     touch "$sam_save_file"
