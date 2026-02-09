@@ -15,15 +15,11 @@ reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Refe
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_text_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names_all.txt"   #Should update this to only lookq locally
-reference_index_prefix="$SLURM_SUBMIT_DIR""/reference_indexes/near_complete/CMM_BatrDend_JEL423_V3_index"  #The file path to the index files
 
 #This is the number of characters to drop from the tail end of the file names
 # to check if they are actualy the proerply paired files.   THis number will change depending 
 # on YOUR files.   It is probably good to keep them consistently named.
 number_of_characters_to_drop_for_paired=21
-
-
-default_index_file_path="$reference_index_prefix"
 
 
 
@@ -67,18 +63,9 @@ run_results_folder="res_bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
 
-#must first build the index from the reference genome
-if $build_index; then
-    echo "building index"
-    ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 index -p "$reference_index_prefix" "$reference_genome_path"
-    reference_index_path=reference_index_prefix
-    echo "index build completed"
-else
-    reference_index_path="$default_index_file_path"
-fi
 
 echo "Okay lets align stuff now!"
-./paired_align_in_order_slowly.sh "$reference_index_path" "$fastq_parent_folder" "$fastq_files_text_path" "$run_results_folder" "$number_of_threads" "$number_of_characters_to_drop_for_paired"
+./paired_align_in_order_slowly.sh "$fastq_parent_folder" "$fastq_files_text_path" "$run_results_folder" "$number_of_threads" "$number_of_characters_to_drop_for_paired"
 
 
 /bin/hostname  # This reports what specific node this code is running on!
