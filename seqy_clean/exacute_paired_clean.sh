@@ -126,7 +126,7 @@ for ((i=0; i<num_files; i+=2)); do
     full_file_path_1="$fastq_file_location""/""$file_name_1"
     full_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    output_file_prefex="$todays_date""$shortened_name""_cleaned_"
+    output_file_prefex="$todays_date-""$shortened_name""-seqy_cleaned-"
     output_folder="$results_folder/$shortened_name"
     output_prefex_full="$output_folder""/""$output_file_prefex"
     mkdir -p "$output_folder"
