@@ -14,7 +14,7 @@
 # Typically we will submit our slurm.job file from the right directory.  However
 # it is probably good to move to the right folder just in case!
 #run_files_top_directory="./home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment"  # This variable can be changed to hold the directory where stuff is!
-output_folder_name="feb_6_clean"
+output_folder_name="feb_6_clean/"
 
 #First run the unpaired script
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
@@ -23,7 +23,7 @@ echo "the current path now is: $SLURM_SUBMIT_DIR"
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
 run_results_folder="seqy_clean_1""$todays_date"
-mkdir "./""$output_folder_name""$run_results_folder"
+mkdir "./""$output_folder_name/""$run_results_folder"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
 fastq_files_csv_path="$SLURM_SUBMIT_DIR""/paired_names3.txt"   #Should update this to only lookq locally
