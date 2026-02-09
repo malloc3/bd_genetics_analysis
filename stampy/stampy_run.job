@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J'Stampy_align'            # this names the job
-#SBATCH --ntasks=24                      # this sets the number of cores we may use
+#SBATCH --ntasks=36                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
@@ -9,7 +9,7 @@
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
 
-number_of_threads=24  #set equal to the number of threads given the program
+number_of_threads=36  #set equal to the number of threads given the program
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
