@@ -61,11 +61,14 @@ run_results_folder="stampy_align_""$todays_date"
 mkdir "./""$run_results_folder"
 
 
+
 # First we must BUILD a genome from the reference genome
+echo "Building genome from reference"
 conda run -n $conda_environ ./stampy/stampy.py --species=batrachochytrium_dentrobatidis --assembly=near_complete_assembly -G near_complete "$reference_genome_path"
 
 
 # Then we build a hash from the reference genome
+echo "Building has from reference"
 conda run -n $conda_environ ./stampy/stampy.py -g near_complete -H near_complete
 
 

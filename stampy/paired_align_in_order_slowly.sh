@@ -100,7 +100,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"
 
-        conda run -n $conda_environ ./stampy/stampy.py -g near_complete -h near_complete -M "$first_file" "$second_file" -t number_of_threads --sensitive -o "$sam_save_file"
+        conda run -n $conda_environ ./stampy/stampy.py -g near_complete -h near_complete -t number_of_threads --sensitive -o "$sam_save_file" -M "$first_file" "$second_file" 
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] q of $fist_file_base_name complete!"
