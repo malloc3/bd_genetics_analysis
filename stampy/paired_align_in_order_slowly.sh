@@ -13,6 +13,7 @@ number_of_threads=$4
 # to check if they are actualy the proerply paired files.   THis number will change depending 
 # on YOUR files.   It is probably good to keep them consistently named.
 number_of_characters_to_drop_for_paired=$5
+conda_environ=$6
 
 
 
@@ -99,7 +100,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"
 
-        #STAMPY RUN
+        conda run -n $conda_environ ./stampy/stampy.py -g near_complete -h near_complete -M "$first_file" "$second_file" -t number_of_threads --sensitive -o "$sam_save_file"
 
     end_time=$(date '+%Y-%m-%d %H:%M:%S')
     echo "[$end_time] q of $fist_file_base_name complete!"

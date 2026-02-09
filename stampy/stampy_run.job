@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH -J'BWA_Mem_Align'            # this names the job
-#SBATCH --ntasks=56                      # this sets the number of cores we may use
-#SBATCH --nodes=2                       # this setst the number of nodes we will use
+#SBATCH --ntasks=36                      # this sets the number of cores we may use
+#SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
 #SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
@@ -9,7 +9,7 @@
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
 
-number_of_threads=56  #set equal to the number of threads given the program
+number_of_threads=36  #set equal to the number of threads given the program
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
@@ -22,9 +22,7 @@ fastq_files_text_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names_all.txt"  
 number_of_characters_to_drop_for_paired=21
 
 
-
-build_index="false"
-conda_environ="bwa_environ"
+conda_environ="stampy_environ4"
 
 # The paired_check_for_all_files script will create this file if it passes all the checks
 # if it exits early then this file won't be created thus I will make the whole script pause!
@@ -59,13 +57,20 @@ fi
 
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-run_results_folder="res_bwa_mem_align""$todays_date"
+run_results_folder="stampy_align_""$todays_date"
 mkdir "./""$run_results_folder"
 
 
+# First we must BUILD a genome from the reference genome
+conda run -n $conda_environ ./stampy/stampy.py --species=batrachochytrium_dentrobatidis --assembly=near_complete_assembly -G near_complete "$reference_genome_path"
+
+
+# Then we build a hash from the reference genome
+conda run -n $conda_environ ./stampy/stampy.py -g near_complete -H near_complete
+
 
 echo "Okay lets align stuff now!"
-./paired_align_in_order_slowly.sh "$fastq_parent_folder" "$fastq_files_text_path" "$run_results_folder" "$number_of_threads" "$number_of_characters_to_drop_for_paired"
+./paired_align_in_order_slowly.sh "$fastq_parent_folder" "$fastq_files_text_path" "$run_results_folder" "$number_of_threads" "$number_of_characters_to_drop_for_paired" "$conda_environ"
 
 
 /bin/hostname  # This reports what specific node this code is running on!
