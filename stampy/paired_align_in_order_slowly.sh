@@ -96,7 +96,6 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     #make output file
     sam_save_file="$run_results_folder""/""${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"".sam"
 
-    touch "$sam_save_file"
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"
 
