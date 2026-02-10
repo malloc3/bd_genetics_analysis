@@ -27,7 +27,7 @@ run_results_folder="./""$output_folder_name/""seqy_clean_1-""$todays_date"
 mkdir "$run_results_folder"
 
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_csv_path="$SLURM_SUBMIT_DIR""/reduced_paired_names_1.txt"   #Should update this to only lookq locally
+fastq_files_csv_path="$SLURM_SUBMIT_DIR""/reduced_paired_names_2.txt"   #Should update this to only lookq locally
 
 echo "Running Paired SeqyClean"
 ./exacute_paired_clean.sh "$todays_date" "$run_results_folder" "$fastq_files_csv_path"
