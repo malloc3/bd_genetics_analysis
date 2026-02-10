@@ -4,7 +4,7 @@
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
 #SBATCH -e errlog                       # this will create an error log
-#SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
+#SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
@@ -14,7 +14,7 @@ number_of_threads=36  #set equal to the number of threads given the program
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 fastq_parent_folder="$SLURM_SUBMIT_DIR""/../trimm0matic/past_runs/"  # The fastaqfiles .txt can do the minuta but this hsould get the code close
 # update this to point to the csv file that contains the names of fastq files you want to analyze
-fastq_files_text_path="$SLURM_SUBMIT_DIR""/trimmo_fasta_cleaned_names_all.txt"   #Should update this to only lookq locally
+fastq_files_text_path="$SLURM_SUBMIT_DIR""/trimmo_reduced_1.txt"   #Should update this to only lookq locally
 
 #This is the number of characters to drop from the tail end of the file names
 # to check if they are actualy the proerply paired files.   THis number will change depending 
@@ -63,13 +63,13 @@ mkdir "./""$run_results_folder"
 
 
 # First we must BUILD a genome from the reference genome
-echo "Building genome from reference"
-conda run -n $conda_environ ./stampy/stampy.py --species=batrachochytrium_dentrobatidis --assembly=near_complete_assembly -G near_complete "$reference_genome_path"
+#echo "Building genome from reference"
+#conda run -n $conda_environ ./stampy/stampy.py --species=batrachochytrium_dentrobatidis --assembly=near_complete_assembly -G near_complete "$reference_genome_path"
 
 
 # Then we build a hash from the reference genome
-echo "Building has from reference"
-conda run -n $conda_environ ./stampy/stampy.py -g near_complete -H near_complete
+#echo "Building has from reference"
+#conda run -n $conda_environ ./stampy/stampy.py -g near_complete -H near_complete
 
 
 echo "Okay lets align stuff now!"
