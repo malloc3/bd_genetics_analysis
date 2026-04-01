@@ -70,7 +70,6 @@ mkdir "./""$run_results_folder"
 #must first build the index from the reference genome
 if $build_index; then
     echo "building index"
-    mkdir "$reference_index_prefix"
     ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 index -p "$reference_index_prefix" "$reference_genome_path"
     reference_index_path=reference_index_prefix
     echo "index build completed"
