@@ -27,7 +27,7 @@ default_index_file_path="$reference_index_prefix"
 
 
 
-build_index=true 
+build_index=false 
 conda_environ="bwa_environ"
 
 # The paired_check_for_all_files script will create this file if it passes all the checks
@@ -66,12 +66,12 @@ todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 run_results_folder="res_bwa_mem_align""$todays_date"
 mkdir "./""$run_results_folder"
 
-
+r
 #must first build the index from the reference genome
 if $build_index; then
     echo "building index"
     ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 index -p "$reference_index_prefix" "$reference_genome_path"
-    reference_index_path=reference_index_prefix
+    reference_index_path="$reference_index_prefix"
     echo "index build completed"
 else
     reference_index_path="$default_index_file_path"
