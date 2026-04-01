@@ -505,6 +505,21 @@
             ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full" 
         \end{verbatim}
 
+
+        \item \textbf{UPDATE:} (03/01/26) It has been a little bit since we looked at what is going on.   So lets update and describe what we have going on right now!  I have cleaned all of Imani's samples with both SeqyClean and Trimmomatic.   
+        \begin{itemize}
+            \item All of Imani's Samples hae been claned with both Trimmo and Seqy clean
+            \item Trimmo samples have been checked with FastQC
+            \item Trimmo Samples have been aligned with BWA-Alignment, Stampy, and Bowtie
+            \item SeqyClean samples still need fastqc and alignments.
+            \item Will re run BWA and Bowtie alignments of Trimmo Files as well.
+        \end{itemize}
+
+        \item \textbf{bwa_mem:} 03/01/26 - Re running bwa-mem on Imani Trimmo Samples.   THis is beccause I can't find the original samples and want to make sure I have good alignments.   Doing it in a single run even though it is slower.   Will make the files a little easier to track in the end i think.
+        
+        \item \textbf{bowtie:} 03/01/26 - Re_running the bowtie alignment of Imani Trimmo Samples.   This is because I can't find the original samples and want to make sure I have good alignments.  Doing it in a single run even through it is slower.   Will make the files a little easier to track and in the end I think this will help.
+         
+
         \end{itemize}
 
 

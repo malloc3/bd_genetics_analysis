@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  1 APR 2026 12:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  1 APR 2026 13:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1067,9 +1067,95 @@ Overfull \hbox (488.49298pt too wide) in paragraph at lines 506--506
  []            \OT1/cmtt/m/n/10 ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full"[] 
  []
 
+./analysis_plan.tex:518: Missing $ inserted.
+<inserted text> 
+                $
+l.518         \item \textbf{bwa_mem:}
+                                      03/01/26 - Re running bwa-mem on Imani...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:518: Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.518         \item \textbf{bwa_mem:}
+                                      03/01/26 - Re running bwa-mem on Imani...
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+./analysis_plan.tex:519: Missing $ inserted.
+<inserted text> 
+                $
+l.519 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:519: Missing } inserted.
+<inserted text> 
+                }
+l.519 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (816.65553pt too wide) in paragraph at lines 518--519
+[]\OT1/cmr/bx/n/10 bwa$[]\OML/cmm/m/it/10 em \OT1/cmr/m/n/10 : 03\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 01\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 26 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 Rerunningbwa \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 memonImaniTrimmoSamples:THisisbeccauseIcan[]tfindtheoriginalsamplesandwanttomakesureIhavegoodalignments:Doingitinasingleruneventhoughitisslower:Willmakethefilesalittleeasiertotrackintheendithink:[]$ 
+ []
+
+./analysis_plan.tex:520: Missing $ inserted.
+<inserted text> 
+                $
+l.520 ...    \item \textbf{bowtie:} 03/01/26 - Re_
+                                                  running the bowtie alignme...
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:521: Missing $ inserted.
+<inserted text> 
+                $
+l.521 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:521: Missing } inserted.
+<inserted text> 
+                }
+l.521 
+      
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+
+Overfull \hbox (917.29428pt too wide) in paragraph at lines 520--521
+[]\OT1/cmr/bx/n/10 bowtie: \OT1/cmr/m/n/10 03/01/26 - Re$[]\OML/cmm/m/it/10 unningthebowtiealignmentofImaniTrimmoSamples:ThisisbecauseIcan[]tfindtheoriginalsamplesandwanttomakesureIhavegoodalignments:Doingitinasingleruneventhroughitisslower:WillmakethefilesalittleeasiertotrackandintheendIthinkthiswillhelp:[]$ 
+ []
+
+./analysis_plan.tex:521: Extra }, or forgotten \endgroup.
+\@par ... \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.521 
+      
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
 [25]
 
-LaTeX Warning: Empty bibliography on input line 518.
+LaTeX Warning: Empty bibliography on input line 533.
 
 (./analysis_plan.aux)
  ***********
@@ -1099,11 +1185,11 @@ Here is how much of TeX's memory you used:
  566781 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,1584b,1348s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (25 pages, 212295 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on analysis_plan.pdf (25 pages, 233810 bytes).
 PDF statistics:
- 352 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
+ 362 PDF objects out of 1000 (max. 8388607)
+ 307 compressed objects within 4 object streams
  97 named destinations out of 1000 (max. 500000)
  177 words of extra memory for PDF output out of 10000 (max. 10000000)
 
