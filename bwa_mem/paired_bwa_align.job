@@ -27,7 +27,7 @@ default_index_file_path="$reference_index_prefix"
 
 
 
-build_index="true"
+build_index=true 
 conda_environ="bwa_environ"
 
 # The paired_check_for_all_files script will create this file if it passes all the checks
