@@ -188,6 +188,9 @@
         NOTE: The method here is not the same as long read methods!!   Short reads have slightly different statistics!
 
         Helpful metrics should include:  Histogram of read lengths, read depth, and others.  Statistics for individual and cumulative samples should be listed.  THis can help us understand if a specific sequenced isolate had problematic sequencing which could explain any erronous or wierd results!
+
+
+        \textbf{FastQC}  I have generally used fast qc to check the quality of read both before and after trimming.   Other tools work for this however I found fastqc was easy to use and had nice outputs!
     
     \subsubsection{\textbf{Sequence Alignment:}}
     
@@ -297,16 +300,32 @@
     \textbf{NOTE:} Although I tried to make sure I cited approriate journals/publications in this list.  The following publications were all extremely helpful for identifying and understanding the different tools. \cite{kimBeginnersGuideAssembling2022}, \cite{rosenblumComplexHistoryAmphibiankilling2013}, \cite{muletz-wolzDiverseGenotypesAmphibiankilling2019}, \cite{nielsenDiploidyHaploidGenus2021}, \cite{byrneCrypticDiversityWidespread2019}, \cite{refsniderGenomicCorrelatesVirulence2015}, \cite{lunterStampyStatisticalAlgorithm2011}, \cite{langmeadFastGappedreadAlignment2012a}, \cite{kimBeginnersGuideAssembling2022}, \cite{wuBenchmarkingVariantIdentification2019}, \cite{liDiminishingReturnIncreased2014},\cite{wuBitpackingTechniquesIndexing2016}\cite{misraAnatomyHashbasedLong2011}, \cite{muFastAccurateRead2012}
 
 
-
-
     \newpage
     \section{PacBio Analysis}
     \subsection{Generaly pacbio analysis notes}: Creating a de-novo assembly from long read PcaBio sequencing is a really great idea!   We have the data and while performing the de-novo assembly we are more likely to identify SV's and new genes.   Since we already have a hifi pacbio sequence I recommend doing a hybrid type assembly where we do a de-novo assembly and then scaffold this genome to a good reference genome.  At which point we can make our structural variant calls and gene annotations (see a Begginers Guid \cite{kimBeginnersGuideAssembling2022}).
 
 
+    \newpage
+    \section{Population and intra population Phylogenetics}
+    I will discuss at length the idea phylogenetics in this section.   I challenge the reader and myself, however, to question if phylogenetics is even the end goal of my work here.   My goal with these samples is to better understand the similarity of the different strains and gain some insight into the microevolutionary history of these samples.   I want to learn how related and from which pond did these strains perhaps spread.   This sounds like phlogenetics but it is perhaps not.    Ultimately all I may want is a single metric that classifies the "similarity" of these strains, which of its self is likely an impossible task.
+
+    Doing an population phylogenetic and intra population phylogenetic analysis is not as trivial as one may think.  Infact I may argue that pupulation and intra population phylogenetics may need an alternative name and might not be phylogenetics at all.   To quote an email to me from Prof. Jesus Martinez-Gomez:
+
+    \textit{"Typical population level data violate assumptions of standard phylogenetic methods (which are underlied by nucleotide substitution models). Phylogenetics assumes strict bifurcation, no introgression (depending on how you analyze data) and that 'species' have no recombination (variants are fixed at species level).  Population genomic methods can be used to generally capture microevolutionary processes inferring ancestry, in the same way as phylogenetics, is a bit tricky.  But since you are a clonal organism then I think assumption of phylogenetics might work."}
+
+    He did note, however, that in a clonal organism the fundamental assumptions of phylogenetics might still apply.
+
+    Needless to say I find myself in dire need of a deeper understanding of the dark arts of phylogenetics.   As usual, what I had assumed to be a relatively simple comparison of genetics closness inferred by the relative sinmilarity of the genomes is not simple, relative, or close to my comprehension at all.   Thus let us go on a journy together to learn the underlying fundamentals of phylogenetics:
+
+    \subsection{Phylogenetic Fundamentals:}
+
+    \subsection{Population phylogenetic fundamentals:}
+
+    \subsection{Phylogenetic tools:}
 
 
 
+    \newpage
     \section{What I have done (in rough order with dates)}
         \subsection{Genious Stuff}
         
@@ -456,7 +475,35 @@
         \end{enumerate}
 
 
-        \item \textbf{ALIGNMENT}
+        \item \textbf{ALIGNMENT of TRimm0 results}
+        Okay now that trimmo results have been QCd and all passed well we need to align.   I will align using 3 different tools.
+        \begin{enumerate}
+            \item Bowtie
+                Bowtie was really quite fast and seemd to provide good results.  One sample aligned very poorly though.   I think that was corrupted anyway.
+                Settings were default however set to "very sensitive"
+                \begin{verbatim}
+                    conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -1 "$first_file" -2 "$second_file" -p 36 -S "$sam_save_file" --very-sensitive
+                \end{verbatim}
+
+            \item BWA-MEMs
+                BWA-Mems was slower than bowtie but initial checks seemed quite acceptable.   Need to qc more though!
+                Settings were all default: 
+                \begin{verbatim}
+                    ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 mem -o "$sam_save_file" -t "$number_of_threads" -v 3 "$reference_index_path" "$first_file" "$second_file"
+                \end{verbatim}
+            \item Stampy
+                Stampy aligned VERY slowly.   About a day for all the paired alignments.   That being said, I did not enable the speed up BWA co-alignment feature which should increase speed significantly but may decrease accuracy.   I also didn't multithread it much so that also impacted speed.
+                Settings were default but set to very sensitive.
+                \begin{verbatim}
+                    conda run -n $conda_environ ./stampy/stampy.py -g near_complete -h near_complete -t $number_of_threads --sensitive -o "$sam_save_file" -M "$first_file" "$second_file" 
+                \end{verbatim}
+        \end{enumerate}
+
+        \item \textbf{SeqyClean:} (02/09/26 ish)used seqy clean to clean all the samples again.  Testing against Trimmo.   Notably slower however upon inital assesment it seems to have trimmed less?  Not sure if that is better or worse...   Need to chekc quality with fastqc still and push through pipeline.  Regardless it seems okay!
+        Most settings were default with specifics here:
+        \begin{verbatim}
+            ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full" 
+        \end{verbatim}
 
         \end{itemize}
 

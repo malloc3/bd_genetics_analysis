@@ -1,15 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'analysis_plan.blg'
-[110] biber-darwin:340> INFO - === Mon Feb  2, 2026, 19:32:55
-[132] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
-[244] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
-[260] Biber.pm:4419> INFO - Processing section 0
-[275] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
-[363] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1491] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
-[1831] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1831] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1831] Biber.pm:4239> INFO - Sorting list 'nty/global//global/global' of type 'entry' with template 'nty' and locale 'en-US'
-[1831] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
-[1868] bbl.pm:660> INFO - Writing 'analysis_plan.bbl' with encoding 'UTF-8'
-[1901] bbl.pm:763> INFO - Output to analysis_plan.bbl
+[101] biber-darwin:340> INFO - === Wed Apr  1, 2026, 12:58:41
+[121] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
+[242] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
+[259] Biber.pm:4419> INFO - Processing section 0
+[272] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
+[367] bibtex.pm:1713> INFO - LaTeX decoding ...
+[1600] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
+[1899] Utils.pm:410> ERROR - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_f4MZ/80087aa76ea48bdfe65609dbaba609fd_38576.utf8, line 6102, syntax error: found "@article", expected end of entry ("}" or ")") (skipping to next "@")
+[1899] Biber.pm:131> WARN - ISBN '979-8-3817-0798-4' in entry 'byrneGenomicPerspectivesPathogenic2020' is invalid - run biber with '--validate_datamodel' for details.
+[1899] Biber.pm:131> WARN - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_f4MZ/80087aa76ea48bdfe65609dbaba609fd_38576.utf8, line 6098, warning: possible runaway string started at line 6097
+[1899] Biber.pm:133> INFO - WARNINGS: 2
+[1899] Biber.pm:136> INFO - ERRORS: 1
