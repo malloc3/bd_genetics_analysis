@@ -85,7 +85,7 @@ mkdir "$base_save_folder"
 today_day=$(date '+%Y-%m-%d')
 
 
-echo "Okay lets run duplicate testing!"
+echo "Okay lets add out group pairs testing!"
 for i in "${!sam_file_names[@]}"; do
     sam_file_path="${sam_file_names[$i]}"
 
@@ -95,9 +95,12 @@ for i in "${!sam_file_names[@]}"; do
 
     echo "$sam_file_path"
     echo "$sam_file_name"
-    echo "=================="
+    
 
     sam_results_save_file="./""$base_save_folder""/""$output_name"                      # Sets the save location of the deduplication
+
+    echo "$sam_results_save_file"
+    echo "======================="
 
     java -jar ./picard/build/libs/picard.jar AddOrReplaceReadGroups \
         -I "$sam_file_path"\
