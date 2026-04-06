@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH -J'Bowtie_run_number_XX'            # this names the job
+#SBATCH -J'picard_built_in_test'            # this names the job
 #SBATCH --ntasks=5                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog                       # this will create an output log
