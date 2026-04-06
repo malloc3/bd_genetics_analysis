@@ -13,4 +13,4 @@
 #First run the unpaired script
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
 
-./gradlew test  # This runs all the test files for picard!   Should run the built in tests but on the server!
+./picard/gradlew test  # This runs all the test files for picard!   Should run the built in tests but on the server!
