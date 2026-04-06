@@ -13,6 +13,7 @@ rgid="1111"
 rglb="2222"
 rgpu="3333"
 rgsm="4444"
+rgpl="ILLUMINA"
 
 
 
@@ -114,7 +115,8 @@ for i in "${!sam_file_names[@]}"; do
         -RGID "$rgid" \
         -RGLB "$rglb" \
         -RGPU "$rgpu" \
-        -RGSM "$rgsm"
+        -RGSM "$rgsm" \
+        -RGPL "$rgpl"
 
 done
 
