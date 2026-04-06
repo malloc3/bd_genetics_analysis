@@ -1,9 +1,9 @@
 #!/bin/bash -l
-#SBATCH -J'picard_mark_duplicates_test'            # this names the job
+#SBATCH -J'picard_validate_sam_files'            # this names the job
 #SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_test3                       # this will create an output log
-#SBATCH -e errlog_test3                       # this will create an error log
+#SBATCH -o outlog_validate                       # this will create an output log
+#SBATCH -e errlog_validate                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
@@ -95,23 +95,6 @@ fi
 
 
 
-
-# Make the output folder
-todays_date=$(date '+%Y-%m-%d_%H-%M-00')
-#Make a directoryt o save settings files and setting information
-base_save_folder="./""$save_folder_name_prefix""mark_duplicates_""$todays_date"
-mkdir "$base_save_folder"
-
-run_results_folder="$base_save_folder""/""sequence_files"
-mkdir "$run_results_folder"
-
-metrics_folder_name="$base_save_folder""/""metrics_text_files"
-
-#Make the text metrics file
-mkdir "$metrics_folder_name"
-
-
-
 today_day=$(date '+%Y-%m-%d')
 
 
@@ -129,14 +112,9 @@ for i in "${!sam_file_names[@]}"; do
 
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
     metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
-
-    java -jar ./picard/build/libs/picard.jar MarkDuplicates \
-        -I "$sam_file_path"\
-        -M "$metrics_save_file" \
-        -O "$sam_results_save_file"\
-        --REMOVE_DUPLICATES true \
-        --REFERENCE_SEQUENCE "$reference_genome_path"
-
+    java -jar picard.jar ValidateSamFile \
+        -I "$sam_file_path" \
+        -MODE SUMMARY
 
 done
 
