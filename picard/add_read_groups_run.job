@@ -19,7 +19,7 @@ rgpl="ILLUMINA"
 
 sam_files_text_path="$SLURM_SUBMIT_DIR""/test_files.txt"   #Each .txt file should have the full path
 
-save_folder_name_prefix="add_group_test_folder"
+save_folder_name_prefix="test_folder"
 
 
 #First run the unpaired script
