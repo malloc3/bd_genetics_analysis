@@ -14,4 +14,7 @@
 cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
 java -jar ./picard/build/libs/picard.jar -h  # test if we can access the picard .jar file properly
 
+# THis appears to have passed properly on the systems that I use CM.
+
+# Note all of the outputs appear to print out into tye error log and the computer thinks it looks like a binary file however it is human readable (albiet not easy)
 
