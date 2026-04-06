@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J'picard_add_group_names_test'            # this names the job
-#SBATCH --ntasks=24                      # this sets the number of cores we may use
+#SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog_add_group                       # this will create an output log
 #SBATCH -e errlog_add_group                       # this will create an error log
@@ -19,7 +19,7 @@ cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the 
 echo "the current path now is: $SLURM_SUBMIT_DIR"
 
 
-add_the_groups.sh $sam_files_text_path $save_folder_name_prefix
+./add_the_groups.sh $sam_files_text_path $save_folder_name_prefix
 
 
 /bin/hostname  # This reports what specific node this code is running on!
