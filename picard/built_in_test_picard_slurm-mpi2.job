@@ -3,7 +3,7 @@
 #SBATCH --ntasks=5                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog_test2                       # this will create an output log
-#SBATCH -e errlog_test2                     # this will create an error log
+#SBATCH -e errorlog_test2                     # this will create an error log
 #SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
