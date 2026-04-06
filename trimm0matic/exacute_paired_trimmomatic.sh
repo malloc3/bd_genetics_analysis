@@ -144,10 +144,10 @@ for ((i=0; i<num_files; i+=2)); do
     touch "$summary_file"
 
         # Create file paths of all output files!
-    full_output_file_path_1_paired="$output_folder""/""$todays_date""$shortened_name_1""_output_paired.fasta"
-    full_output_file_path_1_unpaired="$output_folder""/""$todays_date""$shortened_name_1""_output_unpaired.fasta"
-    full_output_file_path_2_paired="$output_folder""/""$todays_date""$shortened_name_2""_output_paired.fasta"
-    full_output_file_path_2_unpaired="$output_folder""/""$todays_date""$shortened_name_2""_output_unpaired.fasta"
+    full_output_file_path_1_paired="$output_folder""/""trimmo_""$todays_date""$shortened_name_1""--""_output_paired.fasta"
+    full_output_file_path_1_unpaired="$output_folder""/""trimmo_""$todays_date""$shortened_name_1""--""_output_unpaired.fasta"
+    full_output_file_path_2_paired="$output_folder""/""trimmo_""$todays_date""$shortened_name_2""--""_output_paired.fasta"
+    full_output_file_path_2_unpaired="$output_folder""/""trimmo_""$todays_date""$shortened_name_2""--""_output_unpaired.fasta"
     
     #Create those output files!
     touch "$full_output_file_path_1_paired"

@@ -66,7 +66,7 @@ else
     exit 1 
 fi
 
-
+todays_date=$(date '+%Y-%m-%d')
 
 
 for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
@@ -94,7 +94,7 @@ for ((i=0; i < ${#fastq_files[@]}; i+=2)); do
     fi
 
     #make output file
-    sam_save_file="$run_results_folder""/""${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"".sam"
+    sam_save_file="$run_results_folder""/""stampy_""${todays_date}""--""${fist_file_base_name::-$number_of_characters_to_drop_for_paired}"".sam"
 
     echo "[$start_time] Aligning $sam_save_file to $reference_genome_name"
     echo "Results will be saved in $sam_save_file"

@@ -126,7 +126,7 @@ for ((i=0; i<num_files; i+=2)); do
     full_file_path_1="$fastq_file_location""/""$file_name_1"
     full_file_path_2="$fastq_file_location""/""$file_name_2"
 
-    output_file_prefex="$todays_date-""$shortened_name""-seqy_cleaned-"
+    output_file_prefex="seqy_clean_""$todays_date""--""$shortened_name""-seqy_cleaned-"
     output_folder="$results_folder/$shortened_name"
     output_prefex_full="$output_folder""/""$output_file_prefex"
     mkdir -p "$output_folder"
@@ -137,6 +137,7 @@ for ((i=0; i<num_files; i+=2)); do
     # Can add additional options
     ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full" 
 
+ 
 
     echo "Done with $shortened_name"
     echo ""

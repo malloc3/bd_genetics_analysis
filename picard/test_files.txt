@@ -1,0 +1,4 @@
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/stampy/stampy_align_2026-02-10_11-51-00/stampy-trimmo-2026-01-27_19-51-00IDR1500_5720-IR-18_ACTGAGCG-ACTCTAGG_S17_R_001.sam
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/stampy/stampy_align_2026-04-01_16-29-00/stampy-seqy_clean_2026-02-09_10-12-00-CJB4_5720-IR-1_GCGTAGTA-C.sam
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/bwa_mem/res_bwa_mem_align2026-04-01_14-39-00/trimmo-bwa_mems-2026-01-27_19-34-00CJB4_5720-IR-1_GCGTAGTA-CTAGTCGA_S1_R_001.sam
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/bwa_mem/seqy_res_bwa_mem_align2026-04-01_16-25-00/seq_clean_bwa_mems_2026-02-09_10-12-00-CJB4_5720-IR-1_GCGTAGTA-C.sam
