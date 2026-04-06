@@ -2,8 +2,8 @@
 #SBATCH -J'picard_add_group_names_test'            # this names the job
 #SBATCH --ntasks=5                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_test3                       # this will create an output log
-#SBATCH -e errlog_test3                       # this will create an error log
+#SBATCH -o outlog_add_group                       # this will create an output log
+#SBATCH -e errlog_add_group                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
@@ -77,7 +77,7 @@ fi
 # Make the output folder
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-base_save_folder="./""$save_folder_name_prefix""mark_duplicates_""$todays_date"
+base_save_folder="./""$save_folder_name_prefix-""add_read_groups""$todays_date"
 mkdir "$base_save_folder"
 
 run_results_folder="$base_save_folder""/""sequence_files"
