@@ -2406,7 +2406,10 @@
     <bcf:citekey order="43" intorder="1">wuBitpackingTechniquesIndexing2016</bcf:citekey>
     <bcf:citekey order="44" intorder="1">misraAnatomyHashbasedLong2011</bcf:citekey>
     <bcf:citekey order="45" intorder="1">muFastAccurateRead2012</bcf:citekey>
-    <bcf:citekey order="46" intorder="1">kimBeginnersGuideAssembling2022</bcf:citekey>
+    <bcf:citekey order="46" intorder="1">(</bcf:citekey>
+    <bcf:citekey order="47" intorder="1">manconiRemovingDuplicateReads2016</bcf:citekey>
+    <bcf:citekey order="48" intorder="1">pingHowErrorCorrection2025</bcf:citekey>
+    <bcf:citekey order="49" intorder="1">kimBeginnersGuideAssembling2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">

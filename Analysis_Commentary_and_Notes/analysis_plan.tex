@@ -183,7 +183,7 @@
 
 
 
-    \subsubsection{\textbf{Genome Size Estimation, Read Quality Estimate:}}
+    \subsection{\textbf{Genome Size Estimation, Read Quality Estimate:}}
         
         NOTE: The method here is not the same as long read methods!!   Short reads have slightly different statistics!
 
@@ -192,7 +192,7 @@
 
         \textbf{FastQC}  I have generally used fast qc to check the quality of read both before and after trimming.   Other tools work for this however I found fastqc was easy to use and had nice outputs!
     
-    \subsubsection{\textbf{Sequence Alignment:}}
+    \subection{\textbf{Sequence Alignment:}}
     
     Align sequence to reference genome.  Sequence alignment is arguable the most impotant step of any whole genome analysis especially if phylogenies are to be created.  Mistakes in alignment can cause quite significant changes in end results.  The callange with sequence alignment is the inherent trade-off between mapping speed and the qulaity of that alignment.  There is a fair argument that if you have access to a good computing cluster then sacrificing compute time for quality is recommended, do note, however, that just because a tool is slow it will not neccessarily have a higher quality. Additional consideration must be given to the characteristics of spp/genome you are trying to align.  Low-complexity squences, repetitive regions, collapsed copies of sequences, contaminations, or gaps in the genome all present challenges to alignment and each tool deals with these issues in slightly different ways.   Lastly the \textbf{REFERENCE GENOME} can have ENOURMOUS impacts on the end alignment quality.  A low quality referenve genome with gaps, or imporperly characterized repetitive regions will wreck havoc to any alignment tool with some tools fairing better to some types of issues than others \cite{schilbertComparisonReadMapping2020}.  Thankfull I have the high quality \textbf{near\_complete} PacBio sequnce.
         
@@ -271,7 +271,7 @@
 
         \item\textbf{Other/Hybrid:}
         \begin{itemize}
-            \item \textbf{Stampy:}  A fast yet sensitive alignment algorythm that uses a hybrid mapping algotythum (hybrid between a hash and the burrows-wheeler method) to be more sensitive than the burrow-wheeler transformation counterparts (bowtie, bowtie2 ELAND, BWA) but faster than the high sensitivity hash based systems (Novalign, Mosaic).  Stampy is particularly well suited to short read Illumina sequencing. Link to Stampy Git https://github.com/uwb-linux/stampy \cite{lunterStampyStatisticalAlgorithm2011} 
+            \item \textbf{Stampy:}  A fast yet sensitive alignment algorythm that uses a hybrid mapping algotythum (hybrid between a hash and the burrows-wheeler method) to be more sensitive than the burrow-wheeler transformation counterparts (bowtie, bowtie2 ELAND, BWA) but faster than the high sensitivity hash based systems (Novalign, Mosaic).  Stampy is particularly well suited to short read Illumina sequencing. Link to Stampy Git https://github.com/uwb-linux/stampy\cite{lunterStampyStatisticalAlgorithm2011} 
         \end{itemize}
 
         \item\textbf{Unknwon:}
@@ -297,7 +297,132 @@
     \textbf{Discussion on the tools I plan to try:}  Currently it is not possible to know which tool will give me the best results thus I hope to try: \textbf{BWA-MEMs, STAMPY, bowtie2, Novoalign, and maybe SeqAlto}.  With the known CCNV in Bd I have concerns of repetitive areas and large structural variants so I want something that can handle these variants well, I believe that Novoalign, STAMPY, and SeqAlto are particularly suited to these challanges.  Most of the NGS data I have from Imani are PE150 or larger so having a longer k-mers on the order of 28 or so will give me decent coverage without sacrificing specificity.  For some of the downloaded historical reads I should decrease the k-mer length notably.  In my case I don't really need to worry about memory since I have access to the cluster and the Bd genom is pretty small.   I am particularly inclined to use STAMPY because it has been used with good results in Bd in the past and according to Mu et al. 2012 \cite{muFastAccurateRead2012} Stampy delt with indels, SNPs, and MNPs very remarkably.  Novoalign has also been updated since then and has some really good reviews dispite the claim that it can run quite slow.    Lastly I want to use BWA-MEMs because it has been used a good bit in Bd genetics research and has proven itself accurate.   Bowtie2 is on the list because it is easy to impliment and fast to run.   It would be nice to know if bowtie2 was adequate since using that tool would save other the required use of a cluster.
 
     
-    \textbf{NOTE:} Although I tried to make sure I cited approriate journals/publications in this list.  The following publications were all extremely helpful for identifying and understanding the different tools. \cite{kimBeginnersGuideAssembling2022}, \cite{rosenblumComplexHistoryAmphibiankilling2013}, \cite{muletz-wolzDiverseGenotypesAmphibiankilling2019}, \cite{nielsenDiploidyHaploidGenus2021}, \cite{byrneCrypticDiversityWidespread2019}, \cite{refsniderGenomicCorrelatesVirulence2015}, \cite{lunterStampyStatisticalAlgorithm2011}, \cite{langmeadFastGappedreadAlignment2012a}, \cite{kimBeginnersGuideAssembling2022}, \cite{wuBenchmarkingVariantIdentification2019}, \cite{liDiminishingReturnIncreased2014},\cite{wuBitpackingTechniquesIndexing2016}\cite{misraAnatomyHashbasedLong2011}, \cite{muFastAccurateRead2012}
+    \textbf{NOTE:} Although I tried to make sure I cited approriate journals/publications in this list.  The following publications were all extremely helpful for identifying and understanding the different tools. \cite{kimBeginnersGuideAssembling2022}, \cite{rosenblumComplexHistoryAmphibiankilling2013}, \cite{muletz-wolzDiverseGenotypesAmphibiankilling2019}, \cite{nielsenDiploidyHaploidGenus2021}, \cite{byrneCrypticDiversityWidespread2019}, \cite{refsniderGenomicCorrelatesVirulence2015}, \cite{lunterStampyStatisticalAlgorithm2011}, \cite{langmeadFastGappedreadAlignment2012a}, \cite{kimBeginnersGuideAssembling2022}, \cite{wuBenchmarkingVariantIdentification2019}, \cite{liDiminishingReturnIncreased2014},\cite{wuBitpackingTechniquesIndexing2016}\cite{misraAnatomyHashbasedLong2011}, \cite{muFastAccurateRead2012}\cite(manconiRemovingDuplicateReads2016)
+
+
+    \newpage
+    \subsection{\textbf{Polishing Genome Assembly (PacBio or Nanopor primarily):}} Okay now that we have assembled the genome properly.   WE might want to polish the genome a bit to improve the results a little bit  THis polishing is primarily needed in long read sequencing applications where the sequencing method has higher BP error rates.   Upon reading more I do not think that traditional Illumina NGS piplines really need this genome polishing step.   These NGS piplines are more susceptible to large sclae errors not small scale errors which this polishing really shines at.    Regardless there are many tools for this.  Here I will list a few of the short read sequencing based tools:
+    \begin{enumerate}
+        \item \textbf{GCpp:} https://github.com/PacificBiosciences/gcpp.   This appears to be primarily for PacBio sequences....
+        \item \textbf{Pilon:} https://doi.org/10.1371/journal.pone.0112963  THis will both correct/clean draft assemblies and do sequence variant calling.
+        \item \textbf{Racon:} Some sources claim this is form Short REad sequencing however it appears to be more geared for PacBio Sequences if you ask me https://doi.org/10.1101/gr.214270.116
+        \item \textbf{Inspector:} https://link.springer.com/article/10.1186/s13059-021-02527-4
+        \item \textbf{CONSENT:} https://www.nature.com/articles/s41598-020-80757-5
+    \end{enumerate}
+
+    \newpage
+    \subsection{\textbf{Duplicate Marking and Indexing:}} We have multiple reads now that probably look pretty decent.   However when our library was created we it was likely PCR amplified.   THis amplification thoretically chould amplify a region MORE than other regions which may cause artificially increased read depth of those regions.   This may be an issue for CCNV analysis and for phylogentic analysis as these repetitive regions may throw our results.    FOR CCNV analysis it is averaged out across a chromosome so a single over represented region really isn't an issue.  It is more of an issue for CNV situations though.  Regardless we probably should remove and mark duplications before we proceed with additional analysis.
+    
+    There are a few tools that are used for this.  They generall land in two groups \cite{manconiRemovingDuplicateReads2016},
+    \cite{pingHowErrorCorrection2025}.  
+    Alignment-Based deduplication tools and alignment-free deduplication tools.   Some work for paired end and some work with single end.
+    In general the alignment based tools are a bit faster however they can be biased by the specific short read mapping tools used to align the sequences.   These alignment-based tools match both the position and the sequence identity to identify duplicates.  The alignment-free tools, however, only compare each alignment to all the other alignments independently!    This is great however it is computationally costly and can take forever!   Lastly these tools also have a bit of variability in the identification of "duplicates" e.g. sometimes they look for nearly-identical or purly identical sequences.   This is important to think about when deduplcating as your organism might change what you are interseted in using.
+
+    NOTE: Deduplication is not the same as repeat identification or transposable eliment identification.   Deduplication is the attempt to remove method induced duplications!  It is tricky though, because a true repeate can look similar to a duplication.
+    \begin{enumerate}
+        \item \textbf{Sam Tools rmdup:} Alignment based, single and paired end, Nearly identical.     does NOT allow for read correction and nor allows mismatches for paired end 
+        \item \textbf{MarkDuplicates Picard:} Used by Rosenblum et al. 2013.   Alignment based, single and paired end, Nearly identical,  Does NOT allow for read correction and nor allows mismatches for paired end 
+        \item \textbf{SEAL:} Alignment based, paired end, Nearly identical
+        \item \textbf{FastX-Toolkit Collapser:} alignment-FREE, single-end, identical
+        \item \textbf{FastUniq:} Alignment-free, paired-end, identical
+        \item \textbf{Fulcrum:} Alignment-free, single and paired end, nearly-identical
+        \item \textbf{CD-HIT-DUP:}Alignment-free, single and paired end, nearly-identical.    Does read correction and allows mismatches for paired end 
+        \item \textbf{GPU-DupRemoval:} Alignment-free, Single and paired end, nearly identical
+        \item \textbf{SEED:}
+        \item \textbf{pRESTO:}
+        \item \textbf{ParDRe:}
+        \item \textbf{MarDRe:}
+        \item \textbf{PCRdupliactes:}
+        \item \textbf{NGSReadsTreatment:}
+        \item \textbf{Nubeam-dedup:}
+        \item \textbf{BioSeqZip:}
+        \item \textbf{AmpliCi:}
+        \item \textbf{Minirmd:}
+        \item \textbf{Fastp:} Alignment-free, Does read correction and allows mismatches for paired end 
+    \end{enumerate}
+
+    There is another newer class of deduplication methods as well.   These depend on the UMI approach (unique molecular identification) where each PCR amplification reaction adds a unuiqe idntifier to each amplified region.  This provides unique IDs to all sub sequence components and helps reduce the duplication errors in shotgun sequenceing.   THis must, however, be performed duringt the library prep.
+    Here are som of the tool that have been created for UMI based deduplications:
+    \begin{enumerate}
+        \item Je - Is based on the Picard system 
+        \item UMI-Reducer 
+        \item AmpUMI
+        \item zUMIs
+        \item Umitools
+        \item Calib 
+        \item UMICollapse
+        \item UMIc 
+        \item DAUMI 
+        \item Gencore 
+        \item markdup(Samtools)
+    \end{enumerate}
+
+    Upon reflection on all of this.   And recognition that my system is likely highly repetitive with frequent large structureal repepates in the form of CCNV I think I want to use a deduplication system that allows no mismatching.  That being said I do want to run a few tools so I will point towards these:
+    \begin{enumerate:}
+        \item \textbf{MarkDuplicates PICArd:} Was used by Rosenblum et.al.
+        \item \textbf{CD-HIT-DUP:}  Does read correction and allows for some mismatching
+        \item \textbf{SamTools rmdup:}  Commonly used toool that appears to perform well.
+    \end{eunmerate}
+
+    Last note:   Some people argue that a pcr error-crrection step should be performed prior to deduplication.   THis theoretically would account for mistakes in the pcr amplification steps of library prep and then more accurately mark duplicates.   In my opinon this at best does little and may actually introduce additional mistakes reducing the observation of genuine unique dna sequences.   As such this step will not be performed.
+
+    \newpage
+    \subsection{\textbf{Final Assembly Assesement: (question: Is this step neccessary for a genome resequencing and build from a reference genome?   Theoretically this should be enough so long as our sequences had relatively good alignment with the reference genome.  POnder.)}}  Now that we have assembled a genome, polished it some, and then deduplicated our reads.   We should take a moment and asses our genome for quality!   There are two primary areas to peak at.   1. We should look at some generic statitistic s of the genomes such as N50, NG50, L50, LG50, NG50, LA50, LA50, and NA50 etc.     2. We should also look at our assemblies for completeness and contamination. Something of note here!    Many of these tools look for equal balance of contig depth etc as you see with traditional diploid genomes and thus may throw errors for us examining CCNV.   As such I recommend "GenomeScope2.0 which is specifically designed for polyploid genome assemblies).
+
+    Here are some generic tools for assembly assesement looking at fundamental statistics:
+    \begin{enumerate}
+        \item \textbf{assembly-stats:} https://github.com/rjchallis/assembly-stats
+        \item \textbf{QUAST:} https://academic.oup.com/bioinformatics/article/29/8/1072/228832?guestAccessKey=
+        \item \textbf{GenomeScope:} https://academic.oup.com/bioinformatics/article/33/14/2202/3089939?login=true   (Not to be confused with the 2.0 version of the same program which is ideal of rpolyploids)
+        \item \textbf{kat:} https://academic.oup.com/bioinformatics/article/33/4/574/2664339?guestAccessKey=
+        \item \textbf{Squat:} https://link.springer.com/article/10.1186/s12864-019-5445-3
+        \item \textbf{GenomeQC:} https://link.springer.com/article/10.1186/s12864-020-6568-2
+        \item \textbf{BlobToolkit:}https://academic.oup.com/g3journal/article/10/4/1361/6026202?login=true
+    \end{enumerate}
+
+    Here are some tools that look at completneness and contamination:
+    \begin{enumerate}
+        \item \textbf{CheckM:} Specific for microbial genome assemblies
+        \item \textbf{BUSCO:}
+        \item \textbf{PhylOligo;}
+        \item \textbf{LTR_retriever:}
+        \item \textbf{Merqury:}
+        \item \textbf{GenomeScope2.0:} Is speific to polyploid
+    \end{enumerate}
+
+
+    \newpage
+    \subsection{\textbf{Choices}}
+    \begin{enumerate}
+        \item \textbf{Option 1: Genome Annotation and partial genome phyloganies/variant analysis} If you want to annotate the genome and compare small regions of the genomes of multiple individuals to each other.   Or do other SNP and or vairant based analysis go to this section.   Here broadly we will do SNP identification and INDEL calling.   As well as annotation of the whole genome!
+        \item \textbf{Option 2: Whole Genome comparative analysis and phylogenetic trees or PCAs.}  If we want to do a WHOLE genome (or even partial mitochondrial genome type analysis) where we will compare whole regions and see the relatedness of these individuals we don't really need to do SNP and indel calling.  Importantly we do need ot have performed some sort of duplicat masking or removal of duplicate sequences.   THis will help make the phylogenetic analysis tool run more quickly which is nice and help be mroe explicit on how these repeats are being handled.   The different tree tools don't always do this the same way.
+    \end{enumerate}
+
+    \newpage
+    \subsubsection{\textbf{Option 1: Genome Annotation and partial genome phyloganies/variant analysis:}}
+
+    \subsubsection{\textbf{Variant (SNP and INDEL) Calling:}} THis section is rather broad since mlultiple things need to happen here.  Fundamentally we need to indentify the locations where our new sequences are DIFFERENT from the reference sequence as well as remove duplicate reads (or mark them at the very least).   THis can be done with many tools but it is essential for identifying where everythign is varied!   Comeing out of the alignment tools we simple know where all of our paired end reads land and how they are organized.   WE don't have any idea on how they similar or dissimilar they are to the reference genomes. Or at least not any beyond the the percent aligned metric that is given.    
+
+    There are a few different things we need to look for Here
+    \begin{enumerate}
+        \item \textbf{SNP:} Single Nucleotide Polymorphisms.   Aka locations where single nucleotides are different from the reference genome.
+        \item \textbf{Indels:} Insertion or deletions of DNA.   Sometimes this is only a few basepairs and sometimes this is MANY.   But we need to identify these!
+        \item \textbf{SV:} Structural variants.   Essentially just indels that are greater than about 50bp in length.   These are generally more rare and actually might not be well idenitified in our Illumina data.   OUr short read sequencing only has reads of about 150bp so a 50bp change would likely cause that read to not pair super well.
+    \end{enumerate}
+
+    There are multiple possible tools for these tasks.   A short list includes:
+    \begin{eunmerate}
+        \item\textbf{GATK:} Used by rosenblum et al.   Inudstry standard
+        \item \textbf{DeepVariant:} Google based AI tool.  Don't know much about it.
+        \item \textbf{Strelka2:} Probable best for smaller datasets.   Fast
+        \item \textbf{FreeBayes:} Baysian based model
+        \item \textbf{VarScan2:}
+        \item \textbf{NextGENe:}
+    \end{eunmerate}
+
+
+    \newpage
+    \subsubsection{\textbf{Option 2: Whole Genome comparative analysis and phylogenetic trees or PCAs.}}If we want to do a WHOLE genome (or even partial mitochondrial genome type analysis) where we will compare whole regions and see the relatedness of these individuals we don't really need to do SNP and indel calling.  Importantly we do need ot have performed some sort of duplicat masking or removal of duplicate sequences.   THis will help make the phylogenetic analysis tool run more quickly which is nice and help be mroe explicit on how these repeats are being handled.   The different tree tools don't always do this the same way.
 
 
     \newpage
@@ -522,6 +647,9 @@
         \item \textbf{Fastqc:} Ran all Imani seqy clean samples on fast qc with same settings as above (04/01/26)
         \item \textbf{bwamems:} Ran all Imani seqy clean samples on BWA with same settings as above (04/01/26)
         \item \textbf{stampy:} Ran all imani seqy clean samples on Stampy with same settings as above (04/01/26)
+        \item \textbf{NOTE:} (04/04/26) All recent bowtie runs appear to not be saving.   I think it needs to be saved in a folder called "sam output file" or something like that.  However that folder doesn't exist thus it isn't saved.   No matter for now I think I will stick with bwa mems and Stampy.
+   
+        
          
 
         \end{itemize}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  1 APR 2026 16:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  6 APR 2026 11:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -615,15 +615,24 @@ Overfull \hbox (38.77866pt too wide) in paragraph at lines 161--162
  []
 
 [9]
+./analysis_plan.tex:195: Undefined control sequence.
+l.195     \subection
+                    {\textbf{Sequence Alignment:}}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 
 LaTeX Warning: Citation 'schilbertComparisonReadMapping2020' on page 10 undefined on input line 197.
 
-[10]
+
 Overfull \hbox (12.0508pt too wide) in paragraph at lines 201--202
 []\OT1/cmr/bx/n/10 Burrow-Wheelers Trans-for-ma-tion: \OT1/cmr/m/n/10 De-vel-oped in 1983 by David Wheeler
  []
 
-[11]
+[10] [11]
 
 LaTeX Warning: Citation 'muFastAccurateRead2012' on page 12 undefined on input line 212.
 
@@ -685,16 +694,16 @@ Overfull \hbox (36.27878pt too wide) in paragraph at lines 254--255
 \OT1/cmr/m/n/10 and Ac-cu-rate read align-ment for re-se-quenc-ing [[]] 
  []
 
+
+LaTeX Warning: Citation 'muFastAccurateRead2012' on page 14 undefined on input line 259.
+
 [14]
-
-LaTeX Warning: Citation 'muFastAccurateRead2012' on page 15 undefined on input line 259.
-
 
 LaTeX Warning: Citation 'lunterStampyStatisticalAlgorithm2011' on page 15 undefined on input line 274.
 
 
-Overfull \hbox (157.27179pt too wide) in paragraph at lines 274--275
-\OT1/cmr/m/n/10 Link to Stampy Git https://github.com/uwb-linux/stampy [[]] 
+Overfull \hbox (155.04958pt too wide) in paragraph at lines 274--275
+\OT1/cmr/m/n/10 Link to Stampy Git https://github.com/uwb-linux/stampy[[]] 
  []
 
 [15]
@@ -744,6 +753,9 @@ LaTeX Warning: Citation 'misraAnatomyHashbasedLong2011' on page 16 undefined on 
 LaTeX Warning: Citation 'muFastAccurateRead2012' on page 16 undefined on input line 300.
 
 
+LaTeX Warning: Citation '(' on page 16 undefined on input line 300.
+
+
 Overfull \hbox (5.5815pt too wide) in paragraph at lines 300--301
 []\OT1/cmr/bx/n/10 NOTE: \OT1/cmr/m/n/10 Al-though I tried to make sure I cited ap-pro-r-i-ate jour-nals/publications
  []
@@ -778,298 +790,589 @@ Overfull \hbox (441.53894pt too wide) in paragraph at lines 300--301
 \OT1/cmr/m/n/10 [[]], [[]],[[]][[]],
  []
 
-[16] [17]
+[16] [17] [18]
 
-LaTeX Warning: Citation 'kimBeginnersGuideAssembling2022' on page 18 undefined on input line 305.
+LaTeX Warning: Citation 'manconiRemovingDuplicateReads2016' on page 19 undefined on input line 316.
 
-[18] [19]
-Overfull \hbox (16.70064pt too wide) in paragraph at lines 348--349
+
+LaTeX Warning: Citation 'pingHowErrorCorrection2025' on page 19 undefined on input line 317.
+
+
+Overfull \hbox (16.95796pt too wide) in paragraph at lines 316--320
+\OT1/cmr/m/n/10 [[]], [[]].
+ []
+
+[19]
+
+./analysis_plan.tex:361: LaTeX Error: Environment enumerate: undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.361     \begin{enumerate:}
+                            
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./analysis_plan.tex:362: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.362         \item \textbf
+                           {MarkDuplicates PICArd:} Was used by Rosenblum et...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[20]
+
+./analysis_plan.tex:363: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.363         \item \textbf
+                           {CD-HIT-DUP:}  Does read correction and allows fo...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:364: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.364         \item \textbf
+                           {SamTools rmdup:}  Commonly used toool that appea...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:365: LaTeX Error: \begin{document} ended by \end{eunmerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.365     \end{eunmerate}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[21]
+Overfull \hbox (14.05273pt too wide) in paragraph at lines 370--370
+\OT1/cmr/bx/n/12 a ref-er-ence genome? The-o-ret-i-cally this should be enough
+ []
+
+
+Overfull \hbox (106.59789pt too wide) in paragraph at lines 375--376
+[]\OT1/cmr/bx/n/10 QUAST: \OT1/cmr/m/n/10 https://academic.oup.com/bioinformatics/article/29/8/1072/228832?guestAccessKey= 
+ []
+
+
+Overfull \hbox (118.09085pt too wide) in paragraph at lines 376--377
+[]\OT1/cmr/bx/n/10 GenomeScope: \OT1/cmr/m/n/10 https://academic.oup.com/bioinformatics/article/33/14/2202/3089939?login=true
+ []
+
+
+Overfull \hbox (83.1883pt too wide) in paragraph at lines 377--378
+[]\OT1/cmr/bx/n/10 kat: \OT1/cmr/m/n/10 https://academic.oup.com/bioinformatics/article/33/4/574/2664339?guestAccessKey= 
+ []
+
+
+Overfull \hbox (2.80588pt too wide) in paragraph at lines 379--380
+[]\OT1/cmr/bx/n/10 GenomeQC: \OT1/cmr/m/n/10 https://link.springer.com/article/10.1186/s12864-020-6568-
+ []
+
+
+Overfull \hbox (76.80612pt too wide) in paragraph at lines 380--381
+[]\OT1/cmr/bx/n/10 BlobToolkit:\OT1/cmr/m/n/10 https://academic.oup.com/g3journal/article/10/4/1361/6026202?login=true 
+ []
+
+./analysis_plan.tex:388: Missing $ inserted.
+<inserted text> 
+                $
+l.388         \item \textbf{LTR_retriever:}
+                                           
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:388: Extra }, or forgotten $.
+<recently read> \egroup 
+                        
+l.388         \item \textbf{LTR_retriever:}
+                                           
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+./analysis_plan.tex:389: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.389         \item
+                    \textbf{Merqury:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:389: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.389         \item \textbf
+                           {Merqury:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:389: LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.389         \item \textbf
+                           {Merqury:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:390: LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.390         \item
+                    \textbf{GenomeScope2.0:} Is speific to polyploid
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+./analysis_plan.tex:390: Missing $ inserted.
+<inserted text> 
+                $
+l.390         \item \textbf
+                           {GenomeScope2.0:} Is speific to polyploid
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+./analysis_plan.tex:390: Missing } inserted.
+<inserted text> 
+                }
+l.390         \item \textbf
+                           {GenomeScope2.0:} Is speific to polyploid
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+[22] [23]
+
+./analysis_plan.tex:414: LaTeX Error: Environment eunmerate undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.414     \begin{eunmerate}
+                           
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+./analysis_plan.tex:415: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.415         \item\textbf
+                          {GATK:} Used by rosenblum et al.   Inudstry standard
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:416: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.416         \item \textbf
+                           {DeepVariant:} Google based AI tool.  Don't know ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:417: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.417         \item \textbf
+                           {Strelka2:} Probable best for smaller datasets.  ...
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:418: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.418         \item \textbf
+                           {FreeBayes:} Baysian based model
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:419: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.419         \item \textbf
+                           {VarScan2:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:420: LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.420         \item \textbf
+                           {NextGENe:}
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+./analysis_plan.tex:421: LaTeX Error: \begin{document} ended by \end{eunmerate}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.421     \end{eunmerate}
+                         
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[24] [25]
+
+LaTeX Warning: Citation 'kimBeginnersGuideAssembling2022' on page 26 undefined on input line 430.
+
+[26] [27]
+Overfull \hbox (16.70064pt too wide) in paragraph at lines 473--474
 \OT1/cmr/m/n/10 https://www.seqanswers.com/forum/bioinformatics/bioinformatics-
  []
 
 
-Overfull \hbox (57.47862pt too wide) in paragraph at lines 348--349
+Overfull \hbox (57.47862pt too wide) in paragraph at lines 473--474
 \OT1/cmr/m/n/10 aa/37399-introducing-bbduk-adapter-quality-trimming-and-filtering?t=42776 
  []
 
-[20]
-Overfull \hbox (110.49628pt too wide) in paragraph at lines 370--370
+[28]
+Overfull \hbox (110.49628pt too wide) in paragraph at lines 495--495
  []                \OT1/cmtt/m/n/10 # Github link: https://github.com/malloc3/bd_genetics_analysis.git[] 
  []
 
 
-Overfull \hbox (236.49518pt too wide) in paragraph at lines 370--370
+Overfull \hbox (236.49518pt too wide) in paragraph at lines 495--495
  []                \OT1/cmtt/m/n/10 # commit 2bd99208b569fa5eb02994aa11b892a83cf0aa78 (HEAD -> main, origin/main, origin/HEAD)[] 
  []
 
 
-Overfull \hbox (47.49683pt too wide) in paragraph at lines 370--370
+Overfull \hbox (47.49683pt too wide) in paragraph at lines 495--495
  []                \OT1/cmtt/m/n/10 #   Author: Cannon Mallory <mallorycannon15@gmail.com>[] 
  []
 
 
-Overfull \hbox (199.7455pt too wide) in paragraph at lines 405--405
+Overfull \hbox (199.7455pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \[] 
  []
 
 
-Overfull \hbox (173.49573pt too wide) in paragraph at lines 405--405
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \[] 
  []
 
 
-Overfull \hbox (36.99692pt too wide) in paragraph at lines 405--405
+Overfull \hbox (36.99692pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 "$full_input_file_path_1" "$full_input_file_path_2"\[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 405--405
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 405--405
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \[] 
  []
 
 
-Overfull \hbox (73.7466pt too wide) in paragraph at lines 405--405
+Overfull \hbox (73.7466pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 ILLUMINACLIP:Trimmomatic/adapters/NexteraPE-PE.fa:2:30:10 \[] 
  []
 
-[21]
-Overfull \hbox (252.24504pt too wide) in paragraph at lines 405--405
+[29]
+Overfull \hbox (252.24504pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)[] 
  []
 
 
-Overfull \hbox (183.99564pt too wide) in paragraph at lines 405--405
+Overfull \hbox (183.99564pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #ILLUMINACLIP:  NexteraPE-PE.fa: :<seed mismatches>:<palindrome clip threshold>:[] 
  []
 
 
-Overfull \hbox (173.49573pt too wide) in paragraph at lines 405--405
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :[] 
  []
 
 
-Overfull \hbox (372.99399pt too wide) in paragraph at lines 405--405
+Overfull \hbox (372.99399pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually![] 
  []
 
 
-Overfull \hbox (346.74422pt too wide) in paragraph at lines 405--405
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP[] 
  []
 
 
-Overfull \hbox (346.74422pt too wide) in paragraph at lines 405--405
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed[] 
  []
 
 
-Overfull \hbox (530.49261pt too wide) in paragraph at lines 405--405
+Overfull \hbox (530.49261pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.[] 
  []
 
 
-Overfull \hbox (383.4939pt too wide) in paragraph at lines 405--405
+Overfull \hbox (383.4939pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.[] 
  []
 
 
-Overfull \hbox (393.9938pt too wide) in paragraph at lines 405--405
+Overfull \hbox (393.9938pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].[] 
  []
 
 
-Overfull \hbox (1176.23698pt too wide) in paragraph at lines 405--405
+Overfull \hbox (1176.23698pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.[] 
  []
 
 
-Overfull \hbox (299.49463pt too wide) in paragraph at lines 405--405
+Overfull \hbox (299.49463pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases.[] 
  []
 
 
-Overfull \hbox (42.24687pt too wide) in paragraph at lines 405--405
+Overfull \hbox (42.24687pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 #                Its clever and should do good for us[] 
  []
 
 
-Overfull \hbox (126.24614pt too wide) in paragraph at lines 405--405
+Overfull \hbox (126.24614pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 # Remove leading low quality or N bases (below quality 3) (LEADING:3)[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 405--405
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 # Remove trailing low quality or N bases (below quality 3) (TRAILING:3)[] 
  []
 
 
-Overfull \hbox (435.99344pt too wide) in paragraph at lines 405--405
+Overfull \hbox (435.99344pt too wide) in paragraph at lines 530--530
  []                \OT1/cmtt/m/n/10 # Scan the read with a 4-base wide sliding window, cutting when the average quality per base drops below 15 (SLIDINGWINDOW:4:15)[] 
  []
 
-[22]
-Overfull \hbox (199.7455pt too wide) in paragraph at lines 453--453
+[30]
+Overfull \hbox (199.7455pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \[] 
  []
 
 
-Overfull \hbox (173.49573pt too wide) in paragraph at lines 453--453
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \[] 
  []
 
 
-Overfull \hbox (36.99692pt too wide) in paragraph at lines 453--453
+Overfull \hbox (36.99692pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 "$full_input_file_path_1" "$full_input_file_path_2"\[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 453--453
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 453--453
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \[] 
  []
 
 
-Overfull \hbox (15.9971pt too wide) in paragraph at lines 453--453
+Overfull \hbox (15.9971pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE.fa\[] 
  []
 
 
-Overfull \hbox (252.24504pt too wide) in paragraph at lines 453--453
+Overfull \hbox (252.24504pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 # HEADCROP:15 removes the first 15 bases without question (I htink I need this not 100% sure)[] 
  []
 
 
-Overfull \hbox (173.49573pt too wide) in paragraph at lines 453--453
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #ILLUMINACLIP:  TruSeq3-PE.fa: :<seed mismatches>:<palindrome clip threshold>:[] 
  []
 
 
-Overfull \hbox (173.49573pt too wide) in paragraph at lines 453--453
+Overfull \hbox (173.49573pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #       <simple clip threshold>:<minAdapterLengthPalindrome>:<keepBothReads> :[] 
  []
 
 
-Overfull \hbox (372.99399pt too wide) in paragraph at lines 453--453
+Overfull \hbox (372.99399pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## NexteraPE-PE.fa - is the folder that has the adapters we want to remove.  Specifcally the full path actually![] 
  []
 
 
-Overfull \hbox (346.74422pt too wide) in paragraph at lines 453--453
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #                   The specific format of this folder is IMPORTANT beyond just normal fasta files.  LOOK IT UP[] 
  []
 
 
-Overfull \hbox (346.74422pt too wide) in paragraph at lines 453--453
+Overfull \hbox (346.74422pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## seedMismatches: specifies the maximum mismatch count which will still allow a full match to be performed[] 
  []
 
 
-Overfull \hbox (530.49261pt too wide) in paragraph at lines 453--453
+Overfull \hbox (530.49261pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## palindromeClipThreshold: specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment.[] 
  []
 
 
-Overfull \hbox (383.4939pt too wide) in paragraph at lines 453--453
+Overfull \hbox (383.4939pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## simpleClipThreshold: specifies how accurate the match between any adapter etc. sequence must be against a read.[] 
  []
 
 
-Overfull \hbox (393.9938pt too wide) in paragraph at lines 453--453
+Overfull \hbox (393.9938pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## minAdapterLengthPalindrome: (optional int) specifies the minimum adapter length in palindrome mode [default = 8].[] 
  []
 
 
-Overfull \hbox (1176.23698pt too wide) in paragraph at lines 453--453
+Overfull \hbox (1176.23698pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #   ## keepBothReads: (optional boolean) specifies if both reads should be kept in palindrome mode even when redundant information is found (small inserts)[default = False]. Note: minAdapterLengthPalindrome needs to be set manually to be able to activate keepBothReads.[] 
  []
 
 
-Overfull \hbox (299.49463pt too wide) in paragraph at lines 453--453
+Overfull \hbox (299.49463pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #  MAXINFO uses their special algorthm to maintain maximum read length while getting rid of bad bases.[] 
  []
 
 
-Overfull \hbox (42.24687pt too wide) in paragraph at lines 453--453
+Overfull \hbox (42.24687pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 #                Its clever and should do good for us[] 
  []
 
 
-Overfull \hbox (126.24614pt too wide) in paragraph at lines 453--453
+Overfull \hbox (126.24614pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 # Remove leading low quality or N bases (below quality 3) (LEADING:3)[] 
  []
 
 
-Overfull \hbox (136.74605pt too wide) in paragraph at lines 453--453
+Overfull \hbox (136.74605pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 # Remove trailing low quality or N bases (below quality 3) (TRAILING:3)[] 
  []
 
 
-Overfull \hbox (446.49335pt too wide) in paragraph at lines 453--453
+Overfull \hbox (446.49335pt too wide) in paragraph at lines 578--578
  []                \OT1/cmtt/m/n/10 # Scan the read with a 4-base wide sliding window, cutting when tethe average quality per base drops below 15 (SLIDINGWINDOW:4:15)[] 
  []
 
-[23]
-Overfull \hbox (178.74568pt too wide) in paragraph at lines 469--469
+[31]
+Overfull \hbox (178.74568pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 java -jar "./Trimmomatic/target/trimmomatic-0.40.jar" PE -threads $number_threads \[] 
  []
 
 
-Overfull \hbox (152.49591pt too wide) in paragraph at lines 469--469
+Overfull \hbox (152.49591pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 -trimlog "$trim_log_file" -summary "$summary_file" -compressLevel 9 -version \[] 
  []
 
 
-Overfull \hbox (15.9971pt too wide) in paragraph at lines 469--469
+Overfull \hbox (15.9971pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 "$full_input_file_path_1" "$full_input_file_path_2"\[] 
  []
 
 
-Overfull \hbox (115.74623pt too wide) in paragraph at lines 469--469
+Overfull \hbox (115.74623pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 "$full_output_file_path_1_paired" "$full_output_file_path_1_unpaired" \[] 
  []
 
 
-Overfull \hbox (115.74623pt too wide) in paragraph at lines 469--469
+Overfull \hbox (115.74623pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 "$full_output_file_path_2_paired" "$full_output_file_path_2_unpaired" \[] 
  []
 
 
-Overfull \hbox (5.4972pt too wide) in paragraph at lines 469--469
+Overfull \hbox (5.4972pt too wide) in paragraph at lines 594--594
  []            \OT1/cmtt/m/n/10 ILLUMINACLIP:Trimmomatic/adapters/TruSeq3-PE-2.fa\[] 
  []
 
 
-Overfull \hbox (547.24266pt too wide) in paragraph at lines 486--486
+Overfull \hbox (547.24266pt too wide) in paragraph at lines 611--611
  []                    \OT1/cmtt/m/n/10 conda run -n bowtie_environ bowtie2 -x "$reference_genome_name" -1 "$first_file" -2 "$second_file" -p 36 -S "$sam_save_file" --very-sensitive[] 
  []
 
 
-Overfull \hbox (547.24266pt too wide) in paragraph at lines 493--493
+Overfull \hbox (547.24266pt too wide) in paragraph at lines 618--618
  []                    \OT1/cmtt/m/n/10 ./bwa-mem2-2.2.1_x64-linux/bwa-mem2 mem -o "$sam_save_file" -t "$number_of_threads" -v 3 "$reference_index_path" "$first_file" "$second_file"[] 
  []
 
-[24]
-Overfull \hbox (678.49152pt too wide) in paragraph at lines 499--499
+[32]
+Overfull \hbox (678.49152pt too wide) in paragraph at lines 624--624
  []                    \OT1/cmtt/m/n/10 conda run -n $conda_environ ./stampy/stampy.py -g near_complete -h near_complete -t $number_of_threads --sensitive -o "$sam_save_file" -M "$first_file" "$second_file"[] 
  []
 
 
-Overfull \hbox (488.49298pt too wide) in paragraph at lines 506--506
+Overfull \hbox (488.49298pt too wide) in paragraph at lines 631--631
  []            \OT1/cmtt/m/n/10 ./seqyclean/bin/seqyclean -qual -dup -detrep -at 0.75 -v "$vector_file" -1 "$full_file_path_1" -2 "$full_file_path_2" -o "$output_prefex_full"[] 
  []
 
-[25] [26]
+[33] [34]
 
-LaTeX Warning: Empty bibliography on input line 537.
+LaTeX Warning: Empty bibliography on input line 665.
 
 (./analysis_plan.aux)
  ***********
@@ -1081,7 +1384,7 @@ L3 programming layer <2024-02-20>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `analysis_plan.out' has not changed.
-(rerunfilecheck)             Checksum: 7FD5BAC505D4CAFBB34A19200C1D220F;4116.
+(rerunfilecheck)             Checksum: 86DDE06D2387A8ABD4A4C60BB5EBE2C7;7225.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                analysis_plan
@@ -1092,18 +1395,18 @@ Package logreq Info: Writing requests to 'analysis_plan.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16101 strings out of 474116
- 279603 string characters out of 5743682
- 1946187 words of memory out of 5000000
- 38220 multiletter control sequences out of 15000+600000
- 566781 words of font info for 70 fonts, out of 8000000 for 9000
+ 16180 strings out of 474116
+ 280326 string characters out of 5743682
+ 1947187 words of memory out of 5000000
+ 38231 multiletter control sequences out of 15000+600000
+ 567400 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,1584b,1348s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (26 pages, 213813 bytes).
+</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on analysis_plan.pdf (34 pages, 240443 bytes).
 PDF statistics:
- 356 PDF objects out of 1000 (max. 8388607)
- 304 compressed objects within 4 object streams
- 98 named destinations out of 1000 (max. 500000)
- 177 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 497 PDF objects out of 1000 (max. 8388607)
+ 434 compressed objects within 5 object streams
+ 164 named destinations out of 1000 (max. 500000)
+ 225 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,14 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'analysis_plan.blg'
-[98] biber-darwin:340> INFO - === Wed Apr  1, 2026, 16:51:56
-[113] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
-[213] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
-[228] Biber.pm:4419> INFO - Processing section 0
-[238] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
-[324] bibtex.pm:1713> INFO - LaTeX decoding ...
-[1528] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
-[1824] Utils.pm:410> ERROR - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_tIk_/80087aa76ea48bdfe65609dbaba609fd_46005.utf8, line 6102, syntax error: found "@article", expected end of entry ("}" or ")") (skipping to next "@")
-[1824] Biber.pm:131> WARN - ISBN '979-8-3817-0798-4' in entry 'byrneGenomicPerspectivesPathogenic2020' is invalid - run biber with '--validate_datamodel' for details.
-[1824] Biber.pm:131> WARN - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_tIk_/80087aa76ea48bdfe65609dbaba609fd_46005.utf8, line 6098, warning: possible runaway string started at line 6097
-[1824] Biber.pm:133> INFO - WARNINGS: 2
-[1824] Biber.pm:136> INFO - ERRORS: 1
+[81] biber-darwin:340> INFO - === Sun Apr  5, 2026, 11:47:02
+[97] Biber.pm:419> INFO - Reading 'analysis_plan.bcf'
+[196] Biber.pm:979> INFO - Found 21 citekeys in bib section 0
+[209] Biber.pm:4419> INFO - Processing section 0
+[219] Biber.pm:4610> INFO - Looking for bibtex file 'full_reference_library.bib' for section 0
+[301] bibtex.pm:1713> INFO - LaTeX decoding ...
+[1450] bibtex.pm:1519> INFO - Found BibTeX data source 'full_reference_library.bib'
+[1729] Utils.pm:410> ERROR - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_6JJM/80087aa76ea48bdfe65609dbaba609fd_61031.utf8, line 6102, syntax error: found "@article", expected end of entry ("}" or ")") (skipping to next "@")
+[1730] Biber.pm:131> WARN - ISBN '979-8-3817-0798-4' in entry 'byrneGenomicPerspectivesPathogenic2020' is invalid - run biber with '--validate_datamodel' for details.
+[1730] Biber.pm:131> WARN - BibTeX subsystem: /var/folders/4r/1lyp_38d5bb3x24hl6ccjcrm0000gn/T/biber_tmp_6JJM/80087aa76ea48bdfe65609dbaba609fd_61031.utf8, line 6098, warning: possible runaway string started at line 6097
+[1730] Biber.pm:133> INFO - WARNINGS: 2
+[1730] Biber.pm:136> INFO - ERRORS: 1
