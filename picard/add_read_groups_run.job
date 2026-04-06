@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J'picard_add_group_names_test'            # this names the job
-#SBATCH --ntasks=5                      # this sets the number of cores we may use
+#SBATCH --ntasks=10                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog_add_group                       # this will create an output log
 #SBATCH -e errlog_add_group                       # this will create an error log
