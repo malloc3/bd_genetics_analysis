@@ -2,14 +2,12 @@
 #SBATCH -J'picard_mark_duplicates_test'            # this names the job
 #SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_seqy                       # this will create an output log
-#SBATCH -e errlog_seqy                       # this will create an error log
+#SBATCH -o outlog_test3                       # this will create an output log
+#SBATCH -e errlog_test3                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
-
-number_of_threads=36  #set equal to the number of threads given the program
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 
@@ -114,19 +112,19 @@ mkdir "$metrics_folder_name"
 
 
 
-today_day = $(date '+%Y-%m-%d')
+today_day=$(date '+%Y-%m-%d')
 
 
 echo "Okay lets run duplicate testing!"
 for i in "${!sam_file_names[@]}"; do
-    sam_file_path ="${sam_file_names[$i]}"
+    sam_file_path="${sam_file_names[$i]}"
 
-    sam_file_name = ${sam_file_path##*/}
+    sam_file_name=${sam_file_path##*/}
 
-    output_name = "picard_mark_dups_""$today_day""--""$sam_file_name"  # should give me just the file name from the whole path
+    output_name="picard_mark_dups_""$today_day""--""$sam_file_name"  # should give me just the file name from the whole path
 
-    sam_results_save_file = "./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
-    metrics_save_file = "./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
+    sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
+    metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
 
     java -jar ./picard/build/libs/picard.jar MarkDuplicates \
         I="$sam_file_path"\
