@@ -358,13 +358,13 @@
     \end{enumerate}
 
     Upon reflection on all of this.   And recognition that my system is likely highly repetitive with frequent large structureal repepates in the form of CCNV I think I want to use a deduplication system that allows no mismatching.  That being said I do want to run a few tools so I will point towards these:
-    \begin{enumerate:}
+    \begin{enumerate}
         \item \textbf{MarkDuplicates PICArd:} Was used by Rosenblum et.al.
-        \item \textbf{CD-HIT-DUP:}  Does read correction and allows for some mismatching
+        \item \textbf{CD-HIT-DUP:}  Does read correction and allows for some mismatching - Will reduce to only using PICARD an SAMTOOLS for simplicity sake
         \item \textbf{SamTools rmdup:}  Commonly used toool that appears to perform well.
-    \end{eunmerate}
+    \end{enumerate}
 
-    Last note:   Some people argue that a pcr error-crrection step should be performed prior to deduplication.   THis theoretically would account for mistakes in the pcr amplification steps of library prep and then more accurately mark duplicates.   In my opinon this at best does little and may actually introduce additional mistakes reducing the observation of genuine unique dna sequences.   As such this step will not be performed.
+    Last note:   Some people argue that a pcr error-correction step should be performed prior to deduplication.   THis theoretically would account for mistakes in the pcr amplification steps of library prep and then more accurately mark duplicates.   In my opinon this at best does little and may actually introduce additional mistakes reducing the observation of genuine unique dna sequences.   As such this step will not be performed.
 
     \newpage
     \subsection{\textbf{Final Assembly Assesement: (question: Is this step neccessary for a genome resequencing and build from a reference genome?   Theoretically this should be enough so long as our sequences had relatively good alignment with the reference genome.  POnder.)}}  Now that we have assembled a genome, polished it some, and then deduplicated our reads.   We should take a moment and asses our genome for quality!   There are two primary areas to peak at.   1. We should look at some generic statitistic s of the genomes such as N50, NG50, L50, LG50, NG50, LA50, LA50, and NA50 etc.     2. We should also look at our assemblies for completeness and contamination. Something of note here!    Many of these tools look for equal balance of contig depth etc as you see with traditional diploid genomes and thus may throw errors for us examining CCNV.   As such I recommend "GenomeScope2.0 which is specifically designed for polyploid genome assemblies).

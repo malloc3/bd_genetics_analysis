@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  6 APR 2026 11:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  6 APR 2026 12:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -802,71 +802,7 @@ Overfull \hbox (16.95796pt too wide) in paragraph at lines 316--320
 \OT1/cmr/m/n/10 [[]], [[]].
  []
 
-[19]
-
-./analysis_plan.tex:361: LaTeX Error: Environment enumerate: undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.361     \begin{enumerate:}
-                            
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-./analysis_plan.tex:362: LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.362         \item \textbf
-                           {MarkDuplicates PICArd:} Was used by Rosenblum et...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[20]
-
-./analysis_plan.tex:363: LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.363         \item \textbf
-                           {CD-HIT-DUP:}  Does read correction and allows fo...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./analysis_plan.tex:364: LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.364         \item \textbf
-                           {SamTools rmdup:}  Commonly used toool that appea...
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./analysis_plan.tex:365: LaTeX Error: \begin{document} ended by \end{eunmerate}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.365     \end{eunmerate}
-                         
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[21]
+[19] [20] [21]
 Overfull \hbox (14.05273pt too wide) in paragraph at lines 370--370
 \OT1/cmr/bx/n/12 a ref-er-ence genome? The-o-ret-i-cally this should be enough
  []
@@ -1395,18 +1331,18 @@ Package logreq Info: Writing requests to 'analysis_plan.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16180 strings out of 474116
- 280326 string characters out of 5743682
+ 16183 strings out of 474116
+ 280350 string characters out of 5743682
  1947187 words of memory out of 5000000
  38231 multiletter control sequences out of 15000+600000
  567400 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,1584b,1348s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (34 pages, 240443 bytes).
+Output written on analysis_plan.pdf (34 pages, 240605 bytes).
 PDF statistics:
- 497 PDF objects out of 1000 (max. 8388607)
- 434 compressed objects within 5 object streams
- 164 named destinations out of 1000 (max. 500000)
+ 500 PDF objects out of 1000 (max. 8388607)
+ 437 compressed objects within 5 object streams
+ 167 named destinations out of 1000 (max. 500000)
  225 words of extra memory for PDF output out of 10000 (max. 10000000)
 

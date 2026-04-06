@@ -1,0 +1,16 @@
+#!/bin/bash -l
+#SBATCH -J'Bowtie_run_number_XX'            # this names the job
+#SBATCH --ntasks=5                      # this sets the number of cores we may use
+#SBATCH --nodes=1                       # this setst the number of nodes we will use
+#SBATCH -o outlog                       # this will create an output log
+#SBATCH -e errLog                      # this will create an error log
+#SBATCH -t 10:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
+#SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
+#SBATCH --mail-type ALL                 # This will send updates at every step
+
+
+
+#First run the unpaired script
+cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+
+./gradlew test  # This runs all the test files for picard!   Should run the built in tests but on the server!
