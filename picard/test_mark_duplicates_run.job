@@ -123,13 +123,17 @@ for i in "${!sam_file_names[@]}"; do
 
     output_name="picard_mark_dups_""$today_day""--""$sam_file_name"  # should give me just the file name from the whole path
 
+    echo "$same_file_path"
+    echo "$same_file_name"
+    echo "=================="
+
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
     metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
 
     java -jar ./picard/build/libs/picard.jar MarkDuplicates \
-        I="$sam_file_path"\
-        M="$metrics_save_file" \
-        O="$sam_results_save_file"\
+        -I "$sam_file_path"\
+        -M "$metrics_save_file" \
+        -O "$sam_results_save_file"\
         --REMOVE_DUPLICATES true \
         --REFERENCE_SEQUENCE "$reference_genome_path"
 
