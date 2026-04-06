@@ -1,6 +1,6 @@
 #!/bin/bash -l
 #SBATCH -J'picard_add_group_names_test'            # this names the job
-#SBATCH --ntasks=10                      # this sets the number of cores we may use
+#SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
 #SBATCH -o outlog_add_group                       # this will create an output log
 #SBATCH -e errlog_add_group                       # this will create an error log
@@ -19,7 +19,7 @@ rgpl="ILLUMINA"
 
 sam_files_text_path="$SLURM_SUBMIT_DIR""/test_files.txt"   #Each .txt file should have the full path
 
-save_folder_name_prefix="test_folder"
+save_folder_name_prefix="add_group_test_folder"
 
 
 #First run the unpaired script
@@ -78,7 +78,7 @@ fi
 # Make the output folder
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-base_save_folder="./""$save_folder_name_prefix-""add_read_groups""$todays_date"
+base_save_folder="./""$save_folder_name_prefix-""add_read_groups_""$todays_date"
 mkdir "$base_save_folder"
 
 
