@@ -112,7 +112,7 @@ for i in "${!sam_file_names[@]}"; do
 
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
     metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
-    java -jar picard.jar ValidateSamFile \
+    java -jar ./picard/build/libs/picard.jar ValidateSamFile \
         -I "$sam_file_path" \
         -MODE SUMMARY
 
