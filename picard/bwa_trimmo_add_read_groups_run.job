@@ -27,5 +27,3 @@ time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that
 
 echo "Job finished normally"
 scancel $SLURM_JOB_ID
-
-
