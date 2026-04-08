@@ -38,8 +38,6 @@ echo "============================"
 
 
 
-
-
 # Checks that all of our files exist!
 echo "Checking that all sam files exist"
 sam_files=()  # Creates a list of the FULL file paths to each and every sample
