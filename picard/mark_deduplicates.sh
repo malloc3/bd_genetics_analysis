@@ -109,7 +109,7 @@ for i in "${!sam_file_names[@]}"; do
 
     echo "$sam_file_path"
     echo "$sam_file_name"
-    echo "=================="
+    
 
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
     metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
@@ -121,5 +121,6 @@ for i in "${!sam_file_names[@]}"; do
         --REMOVE_DUPLICATES true \
         --REFERENCE_SEQUENCE "$reference_genome_path"
 
+    echo "=================="
 
 done
