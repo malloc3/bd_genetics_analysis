@@ -1,31 +1,10 @@
-#!/bin/bash -l
-#SBATCH -J'picard_mark_duplicates_test'            # this names the job
-#SBATCH --ntasks=2                      # this sets the number of cores we may use
-#SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_test3                       # this will create an output log
-#SBATCH -e errlog_test3                       # this will create an error log
-#SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
-#SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
-#SBATCH --mail-type ALL                 # This will send updates at every step
 
-num_tasks=2 # Update to match the number of tasks from sbatch request
-num_nodes=1 # Update to match the number of nodes from sbatch request
+reference_genome_path=$1
+sam_files_text_path=$2
+save_folder_name_prefix=$3
+num_tasks=$4
+num_nodes=$5
 
-echo "Current Run Info"
-echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatch request
-echo "Num Nodes: ""$num_nodes"
-echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
-
-reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
-
-sam_files_text_path="$SLURM_SUBMIT_DIR""/test_files.txt"   #Each .txt file should have the full path
-
-save_folder_name_prefix="test_folder"
-
-
-#First run the unpaired script
-cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
-echo "the current path now is: $SLURM_SUBMIT_DIR"
 
 # maps the text files that we will be using into a single array for use later
 if [ -f $sam_files_text_path ]; then
@@ -137,7 +116,7 @@ for i in "${!sam_file_names[@]}"; do
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
     metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
 
-    java -jar ../picard/build/libs/picard.jar MarkDuplicates \
+    java -jar ./picard/build/libs/picard.jar MarkDuplicates \
         -I "$sam_file_path"\
         -M "$metrics_save_file" \
         -O "$sam_results_save_file"\
@@ -146,13 +125,3 @@ for i in "${!sam_file_names[@]}"; do
 
 
 done
-
-
-
-/bin/hostname  # This reports what specific node this code is running on!
-time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
-
-echo "Job finished normally"
-scancel $SLURM_JOB_ID
-
-
