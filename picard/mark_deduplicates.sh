@@ -99,7 +99,7 @@ mkdir "$metrics_folder_name"
 today_day=$(date '+%Y-%m-%d')
 
 
-echo "Okay lets run duplicate testing!"
+echo "Okay lets deduplicate some things!"
 for i in "${!sam_file_names[@]}"; do
     sam_file_path="${sam_file_names[$i]}"
 
