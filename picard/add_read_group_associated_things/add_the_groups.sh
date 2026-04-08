@@ -85,7 +85,7 @@ for i in "${!sam_file_names[@]}"; do
     echo "$sam_results_save_file"
     echo "======================="
 
-    java -jar ./picard/build/libs/picard.jar AddOrReplaceReadGroups \
+    java -jar .../picard/build/libs/picard.jar AddOrReplaceReadGroups \
         -I "$sam_file_path"\
         -O "$sam_results_save_file" \
         -RGID "$rgid" \

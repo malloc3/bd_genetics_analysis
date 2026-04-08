@@ -8,6 +8,13 @@
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
+num_tasks=8 # Update to match the number of tasks from sbatch request
+num_nodes=1 # Update to match the number of nodes from sbatch request
+
+echo "Current Run Info"
+echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatch request
+echo "Num Nodes: ""$num_nodes"
+echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
 
 sam_files_text_path="$SLURM_SUBMIT_DIR""/bwa_mem-seqy_clean_files.txt"   #Each .txt file should have the full path
 

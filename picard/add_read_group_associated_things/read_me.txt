@@ -1,0 +1,1 @@
+Moved into this sub folder.  Haven't tested since the move since I ran it all previously.    I have updated the code so that I think it should still run however it might fail.   Look for errors associated with wrong paths (specifically wrong path to run scripts).   Some might need a ../BLABLA so that it looks one folder up before doing the hunt that has worked in the past.

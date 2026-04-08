@@ -1,17 +1,24 @@
 #!/bin/bash -l
-#SBATCH -J'picard_add_group_names_stampy_trimmo'            # this names the job
-#SBATCH --ntasks=8                      # this sets the number of cores we may use
+#SBATCH -J'picard_add_group_names_test'            # this names the job
+#SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o stampy_trimmo_outlog_add_group                       # this will create an output log
-#SBATCH -e stampy_trimmo_errlog_add_group                       # this will create an error log
+#SBATCH -o outlog_add_group                       # this will create an output log
+#SBATCH -e errlog_add_group                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
+num_tasks=2 # Update to match the number of tasks from sbatch request
+num_nodes=1 # Update to match the number of nodes from sbatch request
 
-sam_files_text_path="$SLURM_SUBMIT_DIR""/stampy_trimmo_files.txt"   #Each .txt file should have the full path
+echo "Current Run Info"
+echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatch request
+echo "Num Nodes: ""$num_nodes"
+echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
 
-save_folder_name_prefix="stampy_trimmo"
+sam_files_text_path="$SLURM_SUBMIT_DIR""/test_files.txt"   #Each .txt file should have the full path
+
+save_folder_name_prefix="test_folder"
 
 
 #First run the unpaired script
