@@ -6,13 +6,13 @@ num_tasks=$4
 num_nodes=$5
 
 
+
 # maps the text files that we will be using into a single array for use later
 if [ -f $sam_files_text_path ]; then
     mapfile -t sam_file_names < <(awk -F',' '{for(i=1;i<=NF;i++) print $i}' $sam_files_text_path)
 else
     echo "File path $sam_files_text_path does not exist"; exit 1
 fi
-
 
 
 echo "============================"
@@ -86,15 +86,6 @@ todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 base_save_folder="./""$save_folder_name_prefix""mark_duplicates_""$todays_date"
 mkdir "$base_save_folder"
 
-run_results_folder="$base_save_folder""/""sequence_files"
-mkdir "$run_results_folder"
-
-metrics_folder_name="$base_save_folder""/""metrics_text_files"
-
-#Make the text metrics file
-mkdir "$metrics_folder_name"
-
-
 
 today_day=$(date '+%Y-%m-%d')
 
@@ -106,28 +97,25 @@ for i in "${!sam_file_names[@]}"; do
 
     sam_file_name=${sam_file_path##*/}
 
-    output_name="picard_mark_dups_""$today_day""--""$sam_file_name"  # should give me just the file name from the whole path
+    output_name="picard_coordinate_sort""$today_day""--""$sam_file_name"  # should give me just the file name from the whole path
     echo "Input file information"
     echo "$sam_file_path"
     echo "$sam_file_name"
 
     
 
-    sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
-    metrics_save_file="./""$metrics_folder_name""/""$output_name"  # Sets the save location of the metrics file
+    sam_results_save_file="./""$base_save_folder""/""$output_name"                      # Sets the save location of the deduplication
 
     echo ""
     echo ""
     echo "Output  File information"
     echo "$sam_results_save_file"
-    echo "$metrics_save_file"
 
-    java -jar ./picard/build/libs/picard.jar MarkDuplicates \
+    java -jar ../picard/build/libs/picard.jar SortSam \
         -I "$sam_file_path"\
-        -M "$metrics_save_file" \
         -O "$sam_results_save_file"\
-        --REMOVE_DUPLICATES true \
-        --REFERENCE_SEQUENCE "$reference_genome_path"
+        -SO coordinate
+        -R "
 
     echo "=================="
 

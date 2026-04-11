@@ -1,17 +1,15 @@
 #!/bin/bash -l
-#SBATCH -J'picard_mark_duplicates_bwa_trimmo'            # this names the job
-#SBATCH --ntasks=8                      # this sets the number of cores we may use
+#SBATCH -J'picard_sort_sams_test'            # this names the job
+#SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_dedup_bwa_trimmo                       # this will create an output log
-#SBATCH -e errlog_dedup_bwa_trimmo                       # this will create an error log
+#SBATCH -o outlog_test                      # this will create an output log
+#SBATCH -e errlog_test                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
 
-num_tasks=8 # Update to match the number of tasks from sbatch request
+num_tasks=2 # Update to match the number of tasks from sbatch request
 num_nodes=1 # Update to match the number of nodes from sbatch request
-
-task_start_time=$(date '+%Y-%m-%d_%H-%M-00')
 
 echo "Current Run Info"
 echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatch request
@@ -20,9 +18,9 @@ echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
 
 reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 
-sam_files_text_path="$SLURM_SUBMIT_DIR""/read_group_bwa_trimmo_all_sams.txt"   #Each .txt file should have the full path
+sam_files_text_path="$SLURM_SUBMIT_DIR""/coordinate_sort_test_sams.txt"   #Each .txt file should have the full path
 
-save_folder_name_prefix="bwa_trimmo_deduplication_results"
+save_folder_name_prefix="sorted_sams_test"
 
 
 #First run the unpaired script
@@ -34,21 +32,17 @@ echo "==========================="
 
 echo "Run the .sh run file now"
 
-./mark_deduplicates.sh $reference_genome_path $sam_files_text_path $save_folder_name_prefix $num_tasks $num_nodes
+./coordinate_sort.sh  $reference_genome_path $sam_files_text_path $save_folder_name_prefix $num_tasks $num_nodes
 
 
 echo "========================="
-echo "Job finished normally"
+
+
 
 /bin/hostname  # This reports what specific node this code is running on!
 time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
 
-task_end_time=$(date '+%Y-%m-%d_%H-%M-00')
-
-echo "Time elapsed"
-echo "Start Time: ""$task_start_time"
-echo "End Time: ""$task_end_time"
-
+echo "Job finished normally"
 scancel $SLURM_JOB_ID
 
 

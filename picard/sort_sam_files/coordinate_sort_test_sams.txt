@@ -1,0 +1,2 @@
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/picard/stampy_seqy-add_read_groups_2026-04-07_17-49-00/picard_add_groups_2026-04-07--stampy-seqy_clean_2026-02-09_10-12-00-CJB4_5720-IR-1_GCGTAGTA-C.sam
+/home/cmallory/Genetic_analysis/bd_genetics_analysis/picard/bwa_trimmo-add_read_groups_2026-04-06_17-36-00/picard_add_groups_2026-04-06--trimmo-bwa_mems-2026-01-27_19-34-00CJB4_5720-IR-1_GCGTAGTA-CTAGTCGA_S1_R_001.sam
