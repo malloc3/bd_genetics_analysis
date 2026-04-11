@@ -115,7 +115,6 @@ for i in "${!sam_file_names[@]}"; do
         -I "$sam_file_path"\
         -O "$sam_results_save_file"\
         -SO coordinate
-        -R "$reference_genome_path"
 
     echo "=================="
 
