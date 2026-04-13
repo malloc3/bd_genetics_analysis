@@ -122,7 +122,7 @@ for i in "${!sam_file_names[@]}"; do
     echo "$sam_results_save_file"
     echo "$metrics_save_file"
 
-    java -jar ./picard/build/libs/picard.jar MarkDuplicates \
+    java -jar ./../picard/build/libs/picard.jar MarkDuplicates \
         -I "$sam_file_path"\
         -M "$metrics_save_file" \
         -O "$sam_results_save_file"\
