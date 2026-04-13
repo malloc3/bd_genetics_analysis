@@ -18,7 +18,7 @@ echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
 
 reference_genome_path="/home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 
-sam_files_text_path="$SLURM_SUBMIT_DIR""/coordinate_sort_test_sams.txt"   #Each .txt file should have the full path
+sam_files_text_path="$SLURM_SUBMIT_DIR""/read_group_stampy_seqy_all_sams.txt"   #Each .txt file should have the full path
 
 save_folder_name_prefix="ss_sorted_sams"
 
