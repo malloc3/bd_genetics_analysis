@@ -1,9 +1,9 @@
 #!/bin/bash -l
-#SBATCH -J'picard_mark_duplicates_stampy_seqy'            # this names the job
+#SBATCH -J'ss_mark_dedups'            # this names the job
 #SBATCH --ntasks=8                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o outlog_dedup_stampy_seqy                       # this will create an output log
-#SBATCH -e errlog_dedup_stampy_seqy                       # this will create an error log
+#SBATCH -o ss_outlog                       # this will create an output log
+#SBATCH -e ss_errlog                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
@@ -16,11 +16,11 @@ echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatc
 echo "Num Nodes: ""$num_nodes"
 echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
 
-reference_genome_path="$SLURM_SUBMIT_DIR""/../bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
+reference_genome_path="/home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
 
-sam_files_text_path="$SLURM_SUBMIT_DIR""/read_group_stampy_seqy_all_sams.txt"   #Each .txt file should have the full path
+sam_files_text_path="$SLURM_SUBMIT_DIR""/ss_mark_dups.txt"   #Each .txt file should have the full path
 
-save_folder_name_prefix="stampy_seqy_deduplication_results"
+save_folder_name_prefix="ss_deduplication_results"
 
 
 #First run the unpaired script

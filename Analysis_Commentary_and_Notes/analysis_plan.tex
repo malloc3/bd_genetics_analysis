@@ -649,7 +649,8 @@
         \item \textbf{stampy:} Ran all imani seqy clean samples on Stampy with same settings as above (04/01/26)
         \item \textbf{NOTE:} (04/04/26) All recent bowtie runs appear to not be saving.   I think it needs to be saved in a folder called "sam output file" or something like that.  However that folder doesn't exist thus it isn't saved.   No matter for now I think I will stick with bwa mems and Stampy.
         \item \textbf{Read groups:} (04/06/26-04/08/26) It appears that both stampy and BWA either drop or simply ignore readgroups.   THis is not an issue for me as I only have one read/library per sample.   Hwoever if I was to merge multiple libraries post sequencing to increase my read accuracy then I would want to have read groups to identify which library was run when etc.    This sin't much of an issue for me however Picard won't run properly when the read groups identifyer is invalid (as I have checked with the sam file validator).    Thus I will go through and modify all sam files and add a read group ID to a specific made up string.  NOTE:  Took a few days for it to all run.   This is bcause the pod didn't have Java on all the nodes so it was delayed randomly.   Didn't do anything else during this period though so it should be clear.
-        \item \textbf{Coordinate Sorted:}  Neither BWA nor STAMPY coordinate sort the samples.   For Picard to work we MUST cooridnate sort all of our sequences.   SOoooooooo lets do that with Picard Sort Sam funciton.
+        \item \textbf{Coordinate Sorted:} {04/11/2026}  Neither BWA nor STAMPY coordinate sort the samples.   For Picard to work we MUST cooridnate sort all of our sequences.   SOoooooooo lets do that with Picard Sort Sam funciton.
+        \item \textbf{Coordinate Sorted:} {04/13/26}  Coordinate sort with Picard Sort Sam function on the ss samples.   The initial ran was done on the test.txt file not the true samples
    
         
          
