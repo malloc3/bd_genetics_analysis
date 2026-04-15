@@ -310,6 +310,14 @@
         \item \textbf{CONSENT:} https://www.nature.com/articles/s41598-020-80757-5
     \end{enumerate}
 
+    \newpage{\textbf{SAM file  reformatting:}} Sam files coming from alignment tools are often not structured in a way that is super helpful.   I have found that they often need: 
+    \begin{itemize}
+        \item Addition of reading groups, this is sometimes needed when multiple replicates of the same sample are sequenced on different Illumina runs.    Not applicable for me but it is important in some systems.
+        \item Coordination sorting of reads.   When aligned each read isn't really moved around in the file.   Each read is simply given a location that it belongs in.    It can be helpful to reorder all the dna reads so that they reflect some standard pattern.  I think if you include the reference genome it orders it like the reference genome is ordered!
+    \end{itemize}
+    
+    I did all of this using Picard wich might use SAM tools under the hood.  Really not sure.   I am only going to use Picard though since it is working and neither of these clean up steps are particularly variable.
+
     \newpage
     \subsection{\textbf{Duplicate Marking and Indexing:}} We have multiple reads now that probably look pretty decent.   However when our library was created we it was likely PCR amplified.   THis amplification thoretically chould amplify a region MORE than other regions which may cause artificially increased read depth of those regions.   This may be an issue for CCNV analysis and for phylogentic analysis as these repetitive regions may throw our results.    FOR CCNV analysis it is averaged out across a chromosome so a single over represented region really isn't an issue.  It is more of an issue for CNV situations though.  Regardless we probably should remove and mark duplications before we proceed with additional analysis.
     
@@ -650,7 +658,8 @@
         \item \textbf{NOTE:} (04/04/26) All recent bowtie runs appear to not be saving.   I think it needs to be saved in a folder called "sam output file" or something like that.  However that folder doesn't exist thus it isn't saved.   No matter for now I think I will stick with bwa mems and Stampy.
         \item \textbf{Read groups:} (04/06/26-04/08/26) It appears that both stampy and BWA either drop or simply ignore readgroups.   THis is not an issue for me as I only have one read/library per sample.   Hwoever if I was to merge multiple libraries post sequencing to increase my read accuracy then I would want to have read groups to identify which library was run when etc.    This sin't much of an issue for me however Picard won't run properly when the read groups identifyer is invalid (as I have checked with the sam file validator).    Thus I will go through and modify all sam files and add a read group ID to a specific made up string.  NOTE:  Took a few days for it to all run.   This is bcause the pod didn't have Java on all the nodes so it was delayed randomly.   Didn't do anything else during this period though so it should be clear.
         \item \textbf{Coordinate Sorted:} {04/11/2026}  Neither BWA nor STAMPY coordinate sort the samples.   For Picard to work we MUST cooridnate sort all of our sequences.   SOoooooooo lets do that with Picard Sort Sam funciton.
-        \item \textbf{Coordinate Sorted:} {04/13/26}  Coordinate sort with Picard Sort Sam function on the ss samples.   The initial ran was done on the test.txt file not the true samples
+        \item \textbf{Coordinate Sorted:} {04/13/26}  Coordinate sort with Picard Sort Sam function on the ss samples.   The initial run was done on the test.txt file not the true samples.
+        \item 
    
         
          
