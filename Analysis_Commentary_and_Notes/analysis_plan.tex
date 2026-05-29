@@ -25,9 +25,15 @@
     \tableofcontents
     \newpage
     \section{Helpful Papers}
-        Here are some papers that I found very helpful in the processes of coming up with this plan.  I will attempt to cite which papers did what where but that may not be completely accurate during the main body of the text.   Feel safe in knowing that these specific papers are the primary sources for all the information that I have compiled though!
+    
+    Before reading any part of this document I highly recommend reading the two great works of Zinheng Yang.   His 2006 textbook of the title Computational Molecular Evolution and his 2014 update titled Molecular Evolution: A statistical Approach.   These works are essential for considering and thinkging about evolution and have set the standard in the field.    If you are considering doing any amount of phylogenetics especially I would recommend the works fo Ziheng Yang.   Alos refere to Sishuo Wang's github that has solutions to many of the questions and problems presented by Zinheng Yang in his books.   The git hub can be found here: https://github.com/sishuowang/Solutions_Manual_CME2006_MESA2014
+    
+    
+    Here are some papers that I found very helpful in the processes of coming up with this plan.  I will attempt to cite which papers did what where but that may not be completely accurate during the main body of the text.   Feel safe in knowing that these specific papers are the primary sources for all the information that I have compiled though!
 
-        \citation{kimBeginnersGuideAssembling2022}
+    \citation{kimBeginnersGuideAssembling2022}
+
+        
 
     \begin{itemize}
         \item A beginner’s guide to assembling a draft genome and analyzing structural variants with long-read sequencing technologies. \cite{kimBeginnersGuideAssembling2022}
@@ -659,10 +665,8 @@
         \item \textbf{Read groups:} (04/06/26-04/08/26) It appears that both stampy and BWA either drop or simply ignore readgroups.   THis is not an issue for me as I only have one read/library per sample.   Hwoever if I was to merge multiple libraries post sequencing to increase my read accuracy then I would want to have read groups to identify which library was run when etc.    This sin't much of an issue for me however Picard won't run properly when the read groups identifyer is invalid (as I have checked with the sam file validator).    Thus I will go through and modify all sam files and add a read group ID to a specific made up string.  NOTE:  Took a few days for it to all run.   This is bcause the pod didn't have Java on all the nodes so it was delayed randomly.   Didn't do anything else during this period though so it should be clear.
         \item \textbf{Coordinate Sorted:} {04/11/2026}  Neither BWA nor STAMPY coordinate sort the samples.   For Picard to work we MUST cooridnate sort all of our sequences.   SOoooooooo lets do that with Picard Sort Sam funciton.
         \item \textbf{Coordinate Sorted:} {04/13/26}  Coordinate sort with Picard Sort Sam function on the ss samples.   The initial run was done on the test.txt file not the true samples.
-        \item 
-   
-        
-         
+        \item \textbf{Mark Duplicates Picard:} {04-13-2026} Used picard to mark duplicates on SS, ST, BS, BT
+        \item \textbf{Time to build a phylogony:}  But first lest download all these samples onto the laptop and look at them in geneious
 
         \end{itemize}
 

@@ -1,1 +1,13 @@
 The git hub for raxml is located here: https://github.com/stamatak/standard-RAxML
+
+I have loaded the HPC-MPI-AVX version of RAXML.   This is better for high performance clusters but requires a few extra steps
+
+1. Make sure you specify the exact number of cores available
+2. Include the -# or -N option!
+
+
+Warning: Reduced functionality of MPI version! The current MPI version only works properly if you
+specify the # or N option in the command line, since it has been designed to do multiple
+inferences or rapid/standard BS (bootstrap) searches in parallel!
+For all remaining options, the usage of this type of coarse-grained parallelism does not make much
+sense!
