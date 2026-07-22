@@ -376,12 +376,27 @@
         \item \textbf{MarkDuplicates PICArd:} Was used by Rosenblum et.al.
         \item \textbf{CD-HIT-DUP:}  Does read correction and allows for some mismatching - Will reduce to only using PICARD an SAMTOOLS for simplicity sake
         \item \textbf{SamTools rmdup:}  Commonly used toool that appears to perform well.
+        \item \textbf{MarkDuplicatesWithMateCigar} An update on markduplicates (picard) but with the mat CIGAR attachment.   It changes the way it breaks ties.  I am currently unsure exactly how it is different from the older markduplicates tool but it is supposedly far superior.
     \end{enumerate}
 
     Last note:   Some people argue that a pcr error-correction step should be performed prior to deduplication.   THis theoretically would account for mistakes in the pcr amplification steps of library prep and then more accurately mark duplicates.   In my opinon this at best does little and may actually introduce additional mistakes reducing the observation of genuine unique dna sequences.   As such this step will not be performed.
 
     \newpage
-    \subsection{\textbf{Final Assembly Assesement: (question: Is this step neccessary for a genome resequencing and build from a reference genome?   Theoretically this should be enough so long as our sequences had relatively good alignment with the reference genome.  POnder.)}}  Now that we have assembled a genome, polished it some, and then deduplicated our reads.   We should take a moment and asses our genome for quality!   There are two primary areas to peak at.   1. We should look at some generic statitistic s of the genomes such as N50, NG50, L50, LG50, NG50, LA50, LA50, and NA50 etc.     2. We should also look at our assemblies for completeness and contamination. Something of note here!    Many of these tools look for equal balance of contig depth etc as you see with traditional diploid genomes and thus may throw errors for us examining CCNV.   As such I recommend "GenomeScope2.0 which is specifically designed for polyploid genome assemblies).
+    \subsection{\textbf{Alignment statistics}}:
+    Now we have an aligned sequences and we have organized things well and have marked all the duplicates.  However we still have it as a nice looking SAM file.    We should create some statistics on these files so we can get a sense for how our alignment worked.   Perhaps the best tool for this is SAMtools.   WHich makes all sorts of lovely alignment centric metrics.   It won't give us the typical N50, N60 etc metrics we usually love but we need to create the consensus sequence prior to that.   And we will lose some info if we do that!   So lets use sam tools.   Here are the list of samtools I think I want to use:
+    \begin{enumerate}
+        \item \textbf{samtools stats:} Creates a detailed report of the whole genomes.   Summary numbers which will be hlepful, quality scores, gc contetnt, coverage depth, and good readdepth disptributions.
+        \item \textbf{samtools idxstats} This will give us chromosome or contig level metrics.  Including read depth etc.   THis read depth will give us insight into the CCNV of each chromosome.   I still will need to run the relative snp frequency analysis (somethign that GenomeScope2.0o does on a whole genome but puerhaps not on individual chromosome level) but this weill give us a sense.
+        \item \textbf{samtools coverage} This will give us individual contig cocerage depths.   Probaly not needed if I do idxstats
+    \end{enumerate}
+
+    \newpage
+    \subsection{\textbf{Concensus Sequence:}}
+    We have a some SAM and BAM files that are looking great.  However It would be good to have a consensus sequence of it all tbh right?   Usign sam tools it should take the aligned fragments and create a consensus sequence that tells us how everythign looks!
+    
+
+    \newpage
+    \subsection{\textbf{Final Assembly Assesement: (question: Is this step neccessary for a genome resequencing and build from a reference genome?   Theoretically this should be enough so long as our sequences had relatively good alignment with the reference genome.  POnder.)}}  Now that we have assembled a genome, polished  it some, and then deduplicated our reads.  We should take a moment and asses our genome for quality!   There are two primary areas to peak at.   1. We should look at some generic statitistic s of the genomes such as N50, NG50, L50, LG50, NG50, LA50, LA50, and NA50 etc.     2. We should also look at our assemblies for completeness and contamination. Something of note here!    Many of these tools look for equal balance of contig depth etc as you see with traditional diploid genomes and thus may throw errors for us examining CCNV.   As such I recommend "GenomeScope2.0 which is specifically designed for polyploid genome assemblies).
 
     Here are some generic tools for assembly assesement looking at fundamental statistics:
     \begin{enumerate}
@@ -401,7 +416,7 @@
         \item \textbf{PhylOligo;}
         \item \textbf{LTR_retriever:}
         \item \textbf{Merqury:}
-        \item \textbf{GenomeScope2.0:} Is speific to polyploid
+        \item \textbf{GenomeScope2.0:} Is speific to polyploid.   GenomesScope2. and SMUDGE actually look like quite handy tools.   It uses raw reads to build ploidy estimates (among other stats) aboput the whole genome.   It is specifically designed for polyploid systems however it is not compatable with aneuploids.   I wonder, however, if I can give it filtered contig specific reads for it to then run on....   Somthign to think about.
     \end{enumerate}
 
 
@@ -465,7 +480,7 @@
 
 
     \newpage
-    \section{What I have done (in rough order with dates)}
+    \section{Imani Sequences What I have done (in rough order with dates)}
         \subsection{Genious Stuff}
         
         I did some random things in Geneious including making some aligments to the genome and some rough phylo trees.   I hadn't cleaned anything yet though so that was bad!   
@@ -668,9 +683,63 @@
         \item \textbf{Mark Duplicates Picard:} {04-13-2026} Used picard to mark duplicates on SS, ST, BS, BT
         \item \textbf{Time to build a phylogony:}  But first lest download all these samples onto the laptop and look at them in geneious
         \item \textbf{Time to build a phylogony:} {05-29-2026} for longer term storage.  Moved teh BWAMems, seqy-clean outputs, picard-mark-duplicates, stampy.  Need to move more but it takes a bit and requires so many login nodes.  Probably could automate this tbh moved
+        
+        \item \textbf{Pac bio sequence batch start:} {05-29-2026} Hi there world
+        
+        \item \textbf{Pac bio sequence batch start:} {06-01-26}  I just got my first batch of pac bio sequences back from UC davis.   There appears to be a significant coverage of the whole genome which is rad.  I don't have any Hi-C sequencing but I think this will be just fine.   Conviniently these samples appear to be cleaned prepped and converted to fastq and fasta files direclty from UC davis so they should be ready for assembly.   I am conflicted with ho wI want to do the assembly.   I think I want to do a denovo assembly first to see how they look and if they look good then keep on doing that for all.  Otherwise I will assemble with th enice pacbio reference genome as I did with all of Imanis NGS samples.   My first stab at the assembly will be with the "hifiasm" software.   I don't think this is ideal software since it doesn't appear to accomodate polyploids super well... but I am not sure.   It also trys and to collapse everything into a single contig for inbred/homologous genomes which might be appropreate for us... but that being said we might have multiple allels so I think at first at least I will attempt the assembly with just the regular heterzygot genome assembly settings and then redo with the inbred/homologous genomes.    I will also eventually explore other options for assembly.
+        \item \textbf{hifiasm homologous genome} {06-01-26} Started the denovo assembly of the homozygous genome assembly with hifiasm.   following these specific parameters:
+        	\begin{verbatim}
+		The homo run:
+		./hifiasm/hifiasm -o $save_file -t$number_of_threads --hg-size 24m -l0 $fastq_file
+		
+		The hetero run settings
+		./hifiasm/hifiasm -o $save_file -t$number_of_threads --hg-size 24m --primary -l1 --n-hap 4 $fastq_file
+		
+	\end{verbatim}
+	
+	\item \textbf{hifi-asm}  Okay skratch the hifi asm stuff here.  I will make another section where I will be tracking the hifi assembly and processing work!
+	
+    \item \textbf{}
+        
     
 
-        \end{itemize}
+    \end{itemize}
+        
+        
+    \newpage
+    \section{PacBio_Sequences)}
+    Batch 1 refers to the first batch of 6 samples I had run on the pacbio revio at UCDavis.   THis first batch of samples included EX124, EX178, EX179, EX187B, EX189B, and EX191A.   If I only do something to ONE sequence then I will call out that sequence alone.   Otherwise if I say "Batch 1" that will reference this entire group of samples.
+    
+    \begin{itemize}
+    
+   	 \item{Batch 1:}  EX124, EX178, EX179, EX187B, EX189B, EX191A
+    
+    \end{itemize}
+    
+    Here begins the notes of what was done when for the pac bio sequences:
+    
+    \begin{itemize}
+    	\item \textbf{PAC BIO SEQUENCES BATCH 1 START} {06-01-26}  I just got my first batch of pac bio sequences back from UC davis.   There appears to be a significant coverage of the whole genome which is rad.  I don't have any Hi-C sequencing but I think this will be just fine.   Conviniently these samples appear to be cleaned prepped and converted to fastq and fasta files direclty from UC davis so they should be ready for assembly.   I am conflicted with ho wI want to do the assembly.   I think I want to do a denovo assembly first to see how they look and if they look good then keep on doing that for all.  Otherwise I will assemble with th enice pacbio reference genome as I did with all of Imanis NGS samples.   My first stab at the assembly will be with the "hifiasm" software.   I don't think this is ideal software since it doesn't appear to accomodate polyploids super well... but I am not sure.   It also trys and to collapse everything into a single contig for inbred/homologous genomes which might be appropreate for us... but that being said we might have multiple allels so I think at first at least I will attempt the assembly with just the regular heterzygot genome assembly settings and then redo with the inbred/homologous genomes.    I will also eventually explore other options for assembly.
+	
+	\item \textbf{hifiasm}  In the end I do not think hifiasm is the way to go.   It  doesn't resolve haplotypes super well by itself.  It needs HiC data which is fine I guess.   That being said it can create partially phased contigs!   However you need to be sure not to include the --primary or the -l0 flags otherwise it will create only the primary contigs.    I don't want the code do deduplicate things at all at this stage.   So if I use the -l0 phasing that should prevent the duplication purging.   I will later need to sort stuff out based on read depth but I can do that with other post processing software I think.    Additionally I think I should probably just use a different denovo alignment software.   But we will get to that in time!
+	
+     ./hifiasm/hifiasm -o $save_file -t$number_of_threads --hg-size 24m -l0 $fastq_file
+     
+    \item \textbf{hifiasm build the assembly} {06-23-26}  I still don't think hifiasm is the final way to go.   That being said I do want to convert it to an assembly that i can use and look at!   So lets figure out how to do that and import it over to Genious on my laptop to better understand what it puts out!   FOr starters I want to focus on EX124 from Batch 1.    Currently it has several file types that are importat (yes they are ALL important but a few are most intersting)
+    \begin{itemize}
+        \item `prefix`.r_utg.gfa: haplotype-resolved raw unitig graph. This graph keeps all haplotype information.
+        \item `prefix`.p_utg.gfa: haplotype-resolved processed unitig graph without small bubbles.
+        \item `prefix`.p_ctg.gfa: assembly graph of primary contigs.
+        \item `prefix`.a_ctg.gfa: assembly graph of alternate contigs.
+    \end{itemize}     
+    The software can create more file types than these.  But with the settings I used for my runs (essnetially only the homo run method) it should only creat these files.   In the end I want a different tool but this is what I am using now.
+
+    \item \textbf{GFAVIZ} {o6-23-26} I have also installed gfaviz onto my personal laptop to try and see if I can visualize the gfa files.   So far tthe tool has been awful to get working.
+
+    \item \textbf{Note:} TEXShop will not save your latex file if it cannot full run everything (e.g. if there is an error).  I just lost a whole days worth of notes and comments on alternate methods for assembly and a whole discussion on what I think is best in this context.   BE cautious and just use VS code cause it will save no matter what
+	
+	
+    \end{itemize}
 
 
 
