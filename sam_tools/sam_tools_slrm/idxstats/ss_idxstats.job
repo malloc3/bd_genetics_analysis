@@ -1,9 +1,9 @@
 #!/bin/bash -l
-#SBATCH -J'bs_mark_dedups'            # this names the job
-#SBATCH --ntasks=8                      # this sets the number of cores we may use
+#SBATCH -J'ss_idxstats'            # this names the job
+#SBATCH --ntasks=2                      # this sets the number of cores we may use
 #SBATCH --nodes=1                       # this setst the number of nodes we will use
-#SBATCH -o bs_outlog                       # this will create an output log
-#SBATCH -e bs_errlog                       # this will create an error log
+#SBATCH -o ss_outlog                       # this will create an output log
+#SBATCH -e ss_errlog                       # this will create an error log
 #SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
 #SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
 #SBATCH --mail-type ALL                 # This will send updates at every step
