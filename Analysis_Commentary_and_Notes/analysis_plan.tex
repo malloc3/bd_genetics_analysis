@@ -392,8 +392,8 @@
 
     \newpage
     \subsection{\textbf{Concensus Sequence:}}
-    We have a some SAM and BAM files that are looking great.  However It would be good to have a consensus sequence of it all tbh right?   Usign sam tools it should take the aligned fragments and create a consensus sequence that tells us how everythign looks!
-    
+    We have a some SAM and BAM files that are looking great.  However It would be good to have a consensus sequence of it all tbh right?   Usign sam tools it should take the aligned fragments and create a consensus sequence that tells us how everythign looks!  This will format it as a FASTA or FASTQ file depending on settings.   There are other tools that can do this but from what I understand they won't make much of a difference in the end.  Do note, however, that for the CCNV analysis I will need to use the base SAM alignment files otherwise I will not get the right snp frequencies.
+
 
     \newpage
     \subsection{\textbf{Final Assembly Assesement: (question: Is this step neccessary for a genome resequencing and build from a reference genome?   Theoretically this should be enough so long as our sequences had relatively good alignment with the reference genome.  POnder.)}}  Now that we have assembled a genome, polished  it some, and then deduplicated our reads.  We should take a moment and asses our genome for quality!   There are two primary areas to peak at.   1. We should look at some generic statitistic s of the genomes such as N50, NG50, L50, LG50, NG50, LA50, LA50, and NA50 etc.     2. We should also look at our assemblies for completeness and contamination. Something of note here!    Many of these tools look for equal balance of contig depth etc as you see with traditional diploid genomes and thus may throw errors for us examining CCNV.   As such I recommend "GenomeScope2.0 which is specifically designed for polyploid genome assemblies).
