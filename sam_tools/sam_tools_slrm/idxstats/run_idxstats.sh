@@ -4,6 +4,7 @@ sam_files_text_path=$2
 save_folder_name_prefix=$3
 num_tasks=$4
 num_nodes=$5
+conda_environ=$6
 
 
 # maps the text files that we will be using into a single array for use later
@@ -112,7 +113,10 @@ for i in "${!sam_file_names[@]}"; do
     echo "Output  File information"
     echo "$sam_results_save_file"
 
-    /home/cmallory/Genetic_analysis/bd_genetics_analysis/sam_tools/sam_bin/bin/samtools idxstats -X $sam_file_path > $sam_results_save_file
+    #conda run -n $conda_environ /home/cmallory/Genetic_analysis/bd_genetics_analysis/sam_tools/sam_bin/bin/samtools idxstats -X $sam_file_path > $sam_results_save_file
+
+    conda run -n $conda_environ samtools idxstats -X $sam_file_path > $sam_results_save_file
+
 
     echo "=================="
 
