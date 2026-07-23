@@ -98,7 +98,7 @@ for i in "${!sam_file_names[@]}"; do
     sam_file_name=${sam_file_path##*/}  # This gets only the file name but includes the file type extention
     only_file_name=${sam_file_name%.sam} # This drops the file type extention as well!
 
-    output_name="samtools-idxstats""$today_day""--""$only_file_name"".txt"  # should give me just the file name from the whole path
+    output_name=$base_save_folder"/""samtools-idxstats""$today_day""--""$only_file_name"".txt"  # should give me just the file name from the whole path
     echo "Input file information"
     echo "$sam_file_path"
     echo "$sam_file_name"
