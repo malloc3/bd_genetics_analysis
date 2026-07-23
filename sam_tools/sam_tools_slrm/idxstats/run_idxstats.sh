@@ -115,7 +115,7 @@ for i in "${!sam_file_names[@]}"; do
 
     #conda run -n $conda_environ /home/cmallory/Genetic_analysis/bd_genetics_analysis/sam_tools/sam_bin/bin/samtools idxstats -X $sam_file_path > $sam_results_save_file
 
-    conda run -n $conda_environ samtools idxstats -X $sam_file_path > $sam_results_save_file
+    conda run -n $conda_environ samtools idxstats $sam_file_path > $sam_results_save_file
 
 
     echo "=================="
