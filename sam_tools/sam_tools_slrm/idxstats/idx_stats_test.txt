@@ -1,1 +1,1 @@
-/home/cmallory/Genetic_analysis/bd_genetics_analysis/picard/mark_duplicates/ss_deduplication_resultsmark_duplicates_2026-04-13_17-04-00/sequence_files/
+picard_mark_dups_2026-04-13--picard_coordinate_sort2026-04-13--picard_add_groups_2026-04-07--stampy-seqy_clean_2026-02-09_20-27-00-TSK542_5912-IR-9_AGTGACCT-CT.sam
