@@ -687,6 +687,7 @@
         \item \textbf{Pac bio sequence batch start:} {05-29-2026} Hi there world
         
         \item \textbf{Pac bio sequence batch start:} {06-01-26}  I just got my first batch of pac bio sequences back from UC davis.   There appears to be a significant coverage of the whole genome which is rad.  I don't have any Hi-C sequencing but I think this will be just fine.   Conviniently these samples appear to be cleaned prepped and converted to fastq and fasta files direclty from UC davis so they should be ready for assembly.   I am conflicted with ho wI want to do the assembly.   I think I want to do a denovo assembly first to see how they look and if they look good then keep on doing that for all.  Otherwise I will assemble with th enice pacbio reference genome as I did with all of Imanis NGS samples.   My first stab at the assembly will be with the "hifiasm" software.   I don't think this is ideal software since it doesn't appear to accomodate polyploids super well... but I am not sure.   It also trys and to collapse everything into a single contig for inbred/homologous genomes which might be appropreate for us... but that being said we might have multiple allels so I think at first at least I will attempt the assembly with just the regular heterzygot genome assembly settings and then redo with the inbred/homologous genomes.    I will also eventually explore other options for assembly.
+    
         \item \textbf{hifiasm homologous genome} {06-01-26} Started the denovo assembly of the homozygous genome assembly with hifiasm.   following these specific parameters:
         	\begin{verbatim}
 		The homo run:
@@ -699,7 +700,29 @@
 	
 	\item \textbf{hifi-asm}  Okay skratch the hifi asm stuff here.  I will make another section where I will be tracking the hifi assembly and processing work!
 	
-    \item \textbf{}
+    \item \textbf{Statistics Imani samples} 06-22-24 and 06-23-24  I wanted some statistics on how the assemilage went! 
+    So using samtools I ran:
+    \begin{enumerate}
+        \item Flagstats = which should give statistics on the whole assembly prior to generating the consensus sequence
+        \begin{verbatim}
+            conda run -n $conda_environ samtools flagstats $sam_file_path > $sam_results_save_file
+        \end{verbatim}
+        \item idxstats = Which should give contig specific coverage information
+        \begin{verbatim}
+            conda run -n $conda_environ samtools idxstats $sam_file_path > $sam_results_save_file
+        \end{verbatim}
+        \item stats = Which should give statistics on the sequenceing results themselves but doesn't particularly comment on the assembly
+        \begin{verbatim}
+            conda run -n $conda_environ samtools stats $sam_file_path > $sam_results_save_file
+        \end{verbatim}
+    \end{enumerate}
+    These all ran with no particular setting chagnes.   I then ported all the results over to the lenovo so I can assess them later.   Upon a brief look through STAMPY and SeqyClean appear to perform slightly better than BWA-MEMS and Trimmo.   That being said they are all pretty darn close so idk.  Probably doesn't really matter that much!
+
+
+    \item \textbf{Consensus Sequence} 06-24-26  Imani samples.   I ran the Sam tools consensus sequence tool on all the bt, bs, ss, and st samples.    Using standard settings (see below).   Saving the results into a fastq file.    It is useing the samtools base Baysian consensus tool.   I wanted it to keep any insertions but it will not replace sections with the reference genomes sequence.    So we ultimatly should only have the sequenced genome (I think).
+    \begin{verbatim}
+        conda run -n $conda_environ samtools consensus -f fastq $sam_file_path -@ $num_tasks -o $output_name
+    \end{verbatim}
         
     
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  23 JUL 2026 12:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.14)  24 JUL 2026 11:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -508,7 +508,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ./analysis_plan.toc:31: Missing $ inserted.
 <inserted text> 
                 $
-l.31 ...rline {8}PacBio_Sequences)}{39}{section.8}
+l.31 ...rline {8}PacBio_Sequences)}{40}{section.8}
                                                   %
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -516,7 +516,7 @@ you left one out. Proceed, with fingers crossed.
 ./analysis_plan.toc:31: Extra }, or forgotten $.
 <argument> ...t {\numberline {8}PacBio_Sequences)}
                                                   \Hy@toclinkend 
-l.31 ...rline {8}PacBio_Sequences)}{39}{section.8}
+l.31 ...rline {8}PacBio_Sequences)}{40}{section.8}
                                                   %
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -527,7 +527,7 @@ deleted material, e.g., by typing `I$}'.
 ./analysis_plan.toc:31: Missing $ inserted.
 <inserted text> 
                 $
-l.31 ...rline {8}PacBio_Sequences)}{39}{section.8}
+l.31 ...rline {8}PacBio_Sequences)}{40}{section.8}
                                                   %
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -538,7 +538,7 @@ my insertion and my current dilemma will both disappear.
 ./analysis_plan.toc:31: Missing } inserted.
 <inserted text> 
                 }
-l.31 ...rline {8}PacBio_Sequences)}{39}{section.8}
+l.31 ...rline {8}PacBio_Sequences)}{40}{section.8}
                                                   %
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1380,64 +1380,84 @@ Overfull \hbox (1.60248pt too wide) in paragraph at lines 685--686
  []
 
 [37]
-Overfull \hbox (120.99619pt too wide) in paragraph at lines 698--698
+Overfull \hbox (120.99619pt too wide) in paragraph at lines 699--699
  []  \OT1/cmtt/m/n/10 ./hifiasm/hifiasm -o $save_file -t$number_of_threads --hg-size 24m -l0 $fastq_file[] 
  []
 
 
-Overfull \hbox (225.99527pt too wide) in paragraph at lines 698--698
+Overfull \hbox (225.99527pt too wide) in paragraph at lines 699--699
  []  \OT1/cmtt/m/n/10 ./hifiasm/hifiasm -o $save_file -t$number_of_threads --hg-size 24m --primary -l1 --n-hap 4 $fastq_file[] 
  []
 
+
+Overfull \hbox (216.49554pt too wide) in paragraph at lines 709--709
+ []            \OT1/cmtt/m/n/10 conda run -n $conda_environ samtools flagstats $sam_file_path > $sam_results_save_file[] 
+ []
+
+
+Overfull \hbox (211.24559pt too wide) in paragraph at lines 713--713
+ []            \OT1/cmtt/m/n/10 conda run -n $conda_environ samtools idxstats $sam_file_path > $sam_results_save_file[] 
+ []
+
+
+Overfull \hbox (195.49573pt too wide) in paragraph at lines 717--717
+ []            \OT1/cmtt/m/n/10 conda run -n $conda_environ samtools stats $sam_file_path > $sam_results_save_file[] 
+ []
+
 [38]
-./analysis_plan.tex:710: Missing $ inserted.
+Overfull \hbox (246.99509pt too wide) in paragraph at lines 725--725
+ []        \OT1/cmtt/m/n/10 conda run -n $conda_environ samtools consensus -f fastq $sam_file_path -@ $num_tasks -o $output_name[] 
+ []
+
+[39]
+./analysis_plan.tex:733: Missing $ inserted.
 <inserted text> 
                 $
-l.710     \section{PacBio_Sequences)}
+l.733     \section{PacBio_Sequences)}
                                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./analysis_plan.tex:710: Missing $ inserted.
+./analysis_plan.tex:733: Missing $ inserted.
 <inserted text> 
                 $
-l.710     \section{PacBio_Sequences)}
+l.733     \section{PacBio_Sequences)}
                                      
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `subscript' on input line 710.
+(hyperref)                removing `subscript' on input line 733.
 
-./analysis_plan.tex:726: Missing $ inserted.
+./analysis_plan.tex:749: Missing $ inserted.
 <inserted text> 
                 $
-l.726 .../hifiasm/hifiasm -o $save_file -t$number_
+l.749 .../hifiasm/hifiasm -o $save_file -t$number_
                                                   of_threads --hg-size 24m -...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./analysis_plan.tex:726: Missing $ inserted.
+./analysis_plan.tex:749: Missing $ inserted.
 <inserted text> 
                 $
-l.726 ...mber_of_threads --hg-size 24m -l0 $fastq_
+l.749 ...mber_of_threads --hg-size 24m -l0 $fastq_
                                                   file
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./analysis_plan.tex:727: Missing $ inserted.
+./analysis_plan.tex:750: Missing $ inserted.
 <inserted text> 
                 $
-l.727 
+l.750 
       
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./analysis_plan.tex:727: Missing } inserted.
+./analysis_plan.tex:750: Missing } inserted.
 <inserted text> 
                 }
-l.727 
+l.750 
       
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1445,10 +1465,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./analysis_plan.tex:727: Extra }, or forgotten \endgroup.
+./analysis_plan.tex:750: Extra }, or forgotten \endgroup.
 \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
-l.727 
+l.750 
       
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1456,75 +1476,75 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-[39]
-./analysis_plan.tex:730: Missing $ inserted.
+[40]
+./analysis_plan.tex:753: Missing $ inserted.
 <inserted text> 
                 $
-l.730         \item `prefix`.r_
+l.753         \item `prefix`.r_
                                utg.gfa: haplotype-resolved raw unitig graph....
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-./analysis_plan.tex:731: LaTeX Error: Command \item invalid in math mode.
+./analysis_plan.tex:754: LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.731         \item
+l.754         \item
                     `prefix`.p_utg.gfa: haplotype-resolved processed unitig ...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:731: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:754: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.731         \item `
+l.754         \item `
                      prefix`.p_utg.gfa: haplotype-resolved processed unitig ...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:731: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:754: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.731         \item `
+l.754         \item `
                      prefix`.p_utg.gfa: haplotype-resolved processed unitig ...
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:732: LaTeX Error: Command \item invalid in math mode.
+./analysis_plan.tex:755: LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.732         \item
+l.755         \item
                     `prefix`.p_ctg.gfa: assembly graph of primary contigs.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./analysis_plan.tex:732: Missing $ inserted.
+./analysis_plan.tex:755: Missing $ inserted.
 <inserted text> 
                 $
-l.732         \item `
+l.755         \item `
                      prefix`.p_ctg.gfa: assembly graph of primary contigs.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./analysis_plan.tex:732: Missing } inserted.
+./analysis_plan.tex:755: Missing } inserted.
 <inserted text> 
                 }
-l.732         \item `
+l.755         \item `
                      prefix`.p_ctg.gfa: assembly graph of primary contigs.
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1533,14 +1553,14 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (209.22957pt too wide) in paragraph at lines 730--732
+Overfull \hbox (209.22957pt too wide) in paragraph at lines 753--755
 []\OT1/cmr/m/n/10 `prefix`.r$[]\OML/cmm/m/it/10 tg:gfa \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 haplotype \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 resolvedrawunitiggraph:Thisgraphkeepsallhaplotypeinformation:\OT1/cmr/m/n/10 `\OML/cmm/m/it/10 prefix\OT1/cmr/m/n/10 `\OML/cmm/m/it/10 :p[]tg:gfa \OT1/cmr/m/n/10 :
  []
 
-./analysis_plan.tex:732: Extra }, or forgotten \endgroup.
+./analysis_plan.tex:755: Extra }, or forgotten \endgroup.
 \par ...m \@noitemerr {\@@par }\fi \else {\@@par }
                                                   \fi 
-l.732         \item `
+l.755         \item `
                      prefix`.p_ctg.gfa: assembly graph of primary contigs.
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1548,90 +1568,90 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./analysis_plan.tex:732: Missing $ inserted.
+./analysis_plan.tex:755: Missing $ inserted.
 <inserted text> 
                 $
-l.732         \item `prefix`.p_
+l.755         \item `prefix`.p_
                                ctg.gfa: assembly graph of primary contigs.
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 
-./analysis_plan.tex:733: LaTeX Error: Command \item invalid in math mode.
+./analysis_plan.tex:756: LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.733         \item
+l.756         \item
                     `prefix`.a_ctg.gfa: assembly graph of alternate contigs.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:733: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:756: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.733         \item `
+l.756         \item `
                      prefix`.a_ctg.gfa: assembly graph of alternate contigs.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:733: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:756: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.733         \item `
+l.756         \item `
                      prefix`.a_ctg.gfa: assembly graph of alternate contigs.
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:734: LaTeX Error: Command \end{itemize} invalid in math mode.
+./analysis_plan.tex:757: LaTeX Error: Command \end{itemize} invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.734     \end{itemize}
+l.757     \end{itemize}
                        
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:734: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:757: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.734     \end{itemize}
+l.757     \end{itemize}
                        
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./analysis_plan.tex:734: LaTeX Error: Something's wrong--perhaps a missing \item.
+./analysis_plan.tex:757: LaTeX Error: Something's wrong--perhaps a missing \item.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.734     \end{itemize}
+l.757     \end{itemize}
                        
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./analysis_plan.tex:734: Missing $ inserted.
+./analysis_plan.tex:757: Missing $ inserted.
 <inserted text> 
                 $
-l.734     \end{itemize}
+l.757     \end{itemize}
                        
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1640,13 +1660,13 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Overfull \hbox (120.89978pt too wide) in paragraph at lines 732--736
+Overfull \hbox (120.89978pt too wide) in paragraph at lines 755--759
 []\OT1/cmr/m/n/10 `prefix`.p$[]\OML/cmm/m/it/10 tg:gfa \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 assemblygraphofprimarycontigs:\OT1/cmr/m/n/10 `\OML/cmm/m/it/10 prefix\OT1/cmr/m/n/10 `\OML/cmm/m/it/10 :a[]tg:gfa \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 assemblygraphofalternatecontigs:$
  []
 
-[40]
+[41]
 
-LaTeX Warning: Empty bibliography on input line 752.
+LaTeX Warning: Empty bibliography on input line 775.
 
 (./analysis_plan.aux)
  ***********
@@ -1669,18 +1689,18 @@ Package logreq Info: Writing requests to 'analysis_plan.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16204 strings out of 474116
- 280591 string characters out of 5743682
+ 16208 strings out of 474116
+ 280622 string characters out of 5743682
  1947187 words of memory out of 5000000
  38239 multiletter control sequences out of 15000+600000
  568647 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,6n,81p,1584b,1348s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on analysis_plan.pdf (40 pages, 270027 bytes).
+Output written on analysis_plan.pdf (41 pages, 271709 bytes).
 PDF statistics:
- 553 PDF objects out of 1000 (max. 8388607)
- 482 compressed objects within 5 object streams
- 180 named destinations out of 1000 (max. 500000)
+ 562 PDF objects out of 1000 (max. 8388607)
+ 490 compressed objects within 5 object streams
+ 184 named destinations out of 1000 (max. 500000)
  249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

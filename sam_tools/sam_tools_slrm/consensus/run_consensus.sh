@@ -84,7 +84,7 @@ fi
 # Make the output folder
 todays_date=$(date '+%Y-%m-%d_%H-%M-00')
 #Make a directoryt o save settings files and setting information
-base_save_folder="./""$save_folder_name_prefix""flagstats""$todays_date"
+base_save_folder="./""$save_folder_name_prefix""samtools_consensus""$todays_date"
 mkdir "$base_save_folder"
 
 
@@ -99,7 +99,7 @@ for i in "${!sam_file_names[@]}"; do
     sam_file_name=${sam_file_path##*/}  # This gets only the file name but includes the file type extention
     only_file_name=${sam_file_name%.sam} # This drops the file type extention as well!
 
-    output_name=$base_save_folder"/""samtools-flagstats""$today_day""--""$only_file_name"".fq"  # should give me just the file name from the whole path
+    output_name=$base_save_folder"/""samtools-consensus""$today_day""--""$only_file_name"".fq"  # should give me just the file name from the whole path
     echo "Input file information"
     echo "$sam_file_path"
     echo "$sam_file_name"
