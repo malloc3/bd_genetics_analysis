@@ -1,0 +1,50 @@
+#!/bin/bash -l
+#SBATCH -J'bs_consensuss'            # this names the job
+#SBATCH --ntasks=8                      # this sets the number of cores we may use
+#SBATCH --nodes=1                       # this setst the number of nodes we will use
+#SBATCH -o bs_outlog                       # this will create an output log
+#SBATCH -e bs_errlog                       # this will create an error log
+#SBATCH -t 30:00:00                     # this sets the MAX time the job will run (hh:mm:ss)
+#SBATCH --mail-user=cmallory@ucsb.edu   # This is asking for email updates
+#SBATCH --mail-type ALL                 # This will send updates at every step
+
+num_tasks=8 # Update to match the number of tasks from sbatch request
+num_nodes=1 # Update to match the number of nodes from sbatch request
+
+echo "Current Run Info"
+echo "Num Tasks: ""$num_tasks"  # Update to match the number of tasks from sbatch request
+echo "Num Nodes: ""$num_nodes"
+echo "Current Nodes for run: ""$SLURM_JOB_NODELIST"
+
+reference_genome_path="/home/cmallory/Genetic_analysis/bd_genetics_analysis/bowtie_alignment/fast_q_files/Reference_genomes/Near_complete_2025_non_ncbi_fasta/CMM_BatrDend_JEL423_V3.genome.fasta" # Full path to the reference genome
+
+sam_files_text_path="$SLURM_SUBMIT_DIR""/text_bs.txt"   #Each .txt file should have the full path
+
+save_folder_name_prefix="bs_stats"
+
+conda_environ="sam_tools_env"
+
+
+#First run the unpaired script
+cd $SLURM_SUBMIT_DIR # THis will set the current direcotry to location that the job was submitted from.    
+echo "the current path now is: $SLURM_SUBMIT_DIR"
+
+
+echo "==========================="
+
+echo "Run the .sh run file now"
+
+./run_consensus.sh $reference_genome_path $sam_files_text_path $save_folder_name_prefix $num_tasks $num_nodes $conda_environ
+
+
+echo "========================="
+echo "Return to primary run script"
+
+
+/bin/hostname  # This reports what specific node this code is running on!
+time mpirun -np $SLURM_NTASKS  ~pcw/vasp # This will report the actual time that was taken to run my script!
+
+echo "Job finished normally"
+scancel $SLURM_JOB_ID
+
+

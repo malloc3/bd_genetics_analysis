@@ -90,7 +90,7 @@ mkdir "$base_save_folder"
 
 today_day=$(date '+%Y-%m-%d')
 
-ß
+
 echo "Okay lets deduplicate some things!"
 
 for i in "${!sam_file_names[@]}"; do
@@ -99,7 +99,7 @@ for i in "${!sam_file_names[@]}"; do
     sam_file_name=${sam_file_path##*/}  # This gets only the file name but includes the file type extention
     only_file_name=${sam_file_name%.sam} # This drops the file type extention as well!
 
-    output_name=$base_save_folder"/""samtools-flagstats""$today_day""--""$only_file_name"".txt"  # should give me just the file name from the whole path
+    output_name=$base_save_folder"/""samtools-flagstats""$today_day""--""$only_file_name"".fq"  # should give me just the file name from the whole path
     echo "Input file information"
     echo "$sam_file_path"
     echo "$sam_file_name"
@@ -107,14 +107,12 @@ for i in "${!sam_file_names[@]}"; do
 
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
 
-ß    echo ""
+    echo ""
     echo ""
     echo "Output  File information"
     echo "$sam_results_save_file"
 
-    #conda run -n $conda_environ /home/cmallory/Genetic_analysis/bd_genetics_analysis/sam_tools/sam_bin/bin/samtools flagstats -X $sam_file_path > $sam_results_save_file
-
-    conda run -n $conda_environ samtools flagstats $sam_file_path > $sam_results_save_file
+    conda run -n $conda_environ samtools consensus -f fastq $sam_file_path -@ $num_tasks -o $output_name
 
 
     echo "=================="
