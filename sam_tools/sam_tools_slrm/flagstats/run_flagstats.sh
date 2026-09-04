@@ -90,7 +90,7 @@ mkdir "$base_save_folder"
 
 today_day=$(date '+%Y-%m-%d')
 
-ß
+
 echo "Okay lets deduplicate some things!"
 
 for i in "${!sam_file_names[@]}"; do
@@ -107,7 +107,7 @@ for i in "${!sam_file_names[@]}"; do
 
     sam_results_save_file="./""$run_results_folder""/""$output_name"                      # Sets the save location of the deduplication
 
-ß    echo ""
+    echo ""
     echo ""
     echo "Output  File information"
     echo "$sam_results_save_file"

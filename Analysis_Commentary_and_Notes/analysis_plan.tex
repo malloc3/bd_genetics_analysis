@@ -459,6 +459,30 @@
     \subsection{Generaly pacbio analysis notes}: Creating a de-novo assembly from long read PcaBio sequencing is a really great idea!   We have the data and while performing the de-novo assembly we are more likely to identify SV's and new genes.   Since we already have a hifi pacbio sequence I recommend doing a hybrid type assembly where we do a de-novo assembly and then scaffold this genome to a good reference genome.  At which point we can make our structural variant calls and gene annotations (see a Begginers Guid \cite{kimBeginnersGuideAssembling2022}).
 
 
+    \subsection{Haplotype level assembly tools for pacbio sequencing:}  See below in notes section for hifiasm methods of assembling pacbio sequenves.   HIfiasm is easy to use however it is really only optimzed for diploid organisms and isn't a great candidate for our application.   I was able to run it successfully and it identified a primary and secondary chromosome for each cromatig assembly howevber I want a higher level.
+
+    Typically if you are doing haplotype level assembgly you need HiC which will tell us how bits of DNA connect to each other.  Howevber I do nhot have HiC and do not think i coule even get it if I had the funds.   I think, howevver, that I might can get the assembly I need without HiC becausxe of the rather absured read depth that i have gotten. 
+
+    Haplotype level assembly without hic may be really tricky.  However I think there is a way to do this if I am clever.   I have a good reference genome and I have really really deep coverage of each cell.   Instead of doing a denovo assembly:
+
+    1. Map hifi reads to the referenve genome.      
+        a. this should allow me to get all sorts of metrics and separate out each read to their own little corner.   I can then treat each subset of reads that are associated with a specific chromosome as it's own problem to be solved.
+    2. Estimate:
+        a. Copy number
+        b. allele-frequency (similar to what is done in ngs for ccnv)  this shoud give me the stuff I need for my CCNV projecr
+        c. Structural variantgsx
+        d. heterozygosity
+        e. at this point I could also probably drop the mitocondrial genome information.  But maybe not.  gtetting mt count couyld be neat idk
+        f.
+    
+    Letsdiscuss some denovo assembly tools for Pabio Sequencing.
+    \begin{enumerate}
+        \item hifiasm
+        \item HiCanu
+        \item Verkko
+        \item LJA
+        \item 
+    \end{enumerate}
     \newpage
     \section{Population and intra population Phylogenetics}
     I will discuss at length the idea phylogenetics in this section.   I challenge the reader and myself, however, to question if phylogenetics is even the end goal of my work here.   My goal with these samples is to better understand the similarity of the different strains and gain some insight into the microevolutionary history of these samples.   I want to learn how related and from which pond did these strains perhaps spread.   This sounds like phlogenetics but it is perhaps not.    Ultimately all I may want is a single metric that classifies the "similarity" of these strains, which of its self is likely an impossible task.
@@ -681,8 +705,74 @@
         \item \textbf{Coordinate Sorted:} {04/11/2026}  Neither BWA nor STAMPY coordinate sort the samples.   For Picard to work we MUST cooridnate sort all of our sequences.   SOoooooooo lets do that with Picard Sort Sam funciton.
         \item \textbf{Coordinate Sorted:} {04/13/26}  Coordinate sort with Picard Sort Sam function on the ss samples.   The initial run was done on the test.txt file not the true samples.
         \item \textbf{Mark Duplicates Picard:} {04-13-2026} Used picard to mark duplicates on SS, ST, BS, BT
-        \item \textbf{Time to build a phylogony:}  But first lest download all these samples onto the laptop and look at them in geneious
-        \item \textbf{Time to build a phylogony:} {05-29-2026} for longer term storage.  Moved teh BWAMems, seqy-clean outputs, picard-mark-duplicates, stampy.  Need to move more but it takes a bit and requires so many login nodes.  Probably could automate this tbh moved
+        \item \textbf{Download and check:}  But first lest download all these samples onto the laptop and look at them in geneious
+        \item \textbf{Move samples:} {05-29-2026} for longer term storage.  Moved teh BWAMems, seqy-clean outputs, picard-mark-duplicates, stampy.  Need to move more but it takes a bit and requires so many login nodes.  Probably could automate this tbh moved
+        \item \textbf{UPDATE:}(09/04/26) \begin{verbatim}
+            Again it has been a little while since I worked with these samples.  I should now have reasonably well aligned and cleaned smaples with duplicates marked.   I am going to move forward with a subset of the SS samples.  Stampy and seqy_clean appear to give the best alignment I think.  Plus after MUCH reading I don't think those steps will really alter the end result too much.   Now that I have good alignments it is time for the actual CCNV analysis.   I am going to roughly follow the methods used in Almeida et al 2018 Chromosomal copy number variation analysis by next generation sequencing confirms ploidy stability in Trypanosoma brucei subspecies.
+        \end{verbatim}
+        
+        I will do this analysis specifically on:
+        \begin{itemize}
+            \item \begin{verbatim}
+                /home/cmallory/Genetic_analysis/bd_genetics_analysis/picard/sort_sam_files/ss_sorted_samsmark_duplicates_2026-04-13_11-37-00/picard_coordinate_sort2026-04-13--picard_add_groups_2026-04-07--stampy-seqy_clean_2026-02-09_20-27-00-IDR0911_5720-IR-8_ACTGAGCG-A.sam
+            \end{verbatim}
+
+            \item \begin{verbatim}
+                /home/cmallory/Genetic_analysis/bd_genetics_analysis/picard/sort_sam_files/ss_sorted_samsmark_duplicates_2026-04-13_11-37-00/picard_coordinate_sort2026-04-13--picard_add_groups_2026-04-07--stampy-seqy_clean_2026-02-09_20-27-00-IDR0928_5720-IR-9_TACGCTGC-A.sam
+            \end{verbatim}
+        \end{itemize}
+
+        The plan now will roughly follow these two methods:
+        \begin{itemize}
+            \item Allele frequency of heterozygous positions
+            \item Read Depth Coverage (RDC)
+        \end{itemize}
+
+        \item \textbf{Method Outline: Allele Frequency of heterozygous positions}  This method will roughly follow these steps:
+        \begin{itemize}
+            \item Perform initialy clean and alignment - COmpleted already
+            \item Mark Duplicates (picard) - Completed already
+
+            \item Realign with GAKT RealignerTargetCreator - NO LONGER NEEDED IN GAKT4
+
+            \item Obtain SNP records with GATK HaplotypeCaller (minimal at 30, minomum 10phred)
+            \item GATK SelectVariants - To identify only SNPs and not insertaions and deletions
+            \item VCFfilter for SNPS with read depth > 10 and quality higher than 10phred
+            \item Retrieve all HETEROZYGOSE SNPS
+            \item Filter heterozygous SNPS for only SNPs where all variants had at least a read depth of 5
+            \item Calculate the proportion of read depth of variant allele (round to the nearest 0.1)
+            \item Plot distribution of base/variatn frequency across the chromosome
+        \end{itemize}
+        
+        \item \textbf{Method Outline: Read Depth Coverage (RDC)}
+        \begin{verbatim}
+            Theoretically the read depth of a chromosome should be proportional to the number of copies of that chromosome.
+            Chromosomes with elevated copy numbers should have a deeper read depth than chromosomes with a lower copy number.
+            In most systems where people look for an abberhant copy number (meaning that a single or only a few chromosomes vary from the expected ploidy).   They really just compair dc/da where dc = depth of coverage of a single chromosomes and da = the average read depth across the whole genome.    Almeida et al 2018 does this in the following steps.
+        \end{verbatim}
+        \begin{itemize}
+            \item Calculate the MEDIAN of whole genome coverage (expluding Mitochondrial genome and other regions of variable GENEE copy nubmer).   They excluded known Expression Site Associated Genes (ESAG) and Variant Surface Glycoproteines (VSGs).   I will exclude the mitochondrial genome for sure, but I think I will not filter out ESAG and VSGs since I don't know where those are in Bd.
+            \item Calculate the MEDIAN coverage of each chromosome following the same process as above.
+            \item Exclude any genes with coverage <50\% of the length of the gene.
+            \item Exclude any genes with outlyer coverage based on the iterative Grubbs Test with p<0.05
+            \item Calculate dc/dg for each chromosome
+        \end{itemize}
+
+        \item \textbf{NOTE on DetermineGermlineContigPloidy:} GAKT4 has an interesting tool called DetermineGermlineContigPloidy.  THis tool uses read depth to estimate the total ploidy of each contig.   This does not work well in mosaic populatios (where there may be subpopulations with different copy numbers).  Mosaic populations would yeild a fractional copy number estimate which is rounded and distorted by the software.   If we assume that my cells are indeed clonal and that there wasn't variance within my sequenced population of cells this tool should work fine.   Largely this would replace the RDC estimate noted above.   This should be complimented by a SNP variant asessment as well.   This tool only uses the read depth to estimate contigs.
+        
+        Additional note.   We must create a good prior estimate for the model however.   By defaul this tool does not allow more than trisomy.   This shoudl be updatable by formating and creating an addtional TSV with the proper priors.
+
+        Note on priors:  With good read depth the priors really shouldn't matter too much.  This is good because I do not have a great way to estimate the priors.  Perhaps I could use the data that Allie had back in their old paper but I am not sure.   Fundamentally the diploid state is most probable for all samples but I do not know how to estimate any of the others.   That being said from what I understand with good read data the priors really do not matter much.
+
+        To use this tool we must follow this protocol
+        \begin{itemize}
+            \item GAKT4 PreprocessIntervals - This should be performed on the reference sequence!
+            \item GAKT4 CollectReadCounts - This should be performed on the sample
+            \item GAKT4 DetermineGermlineContigPloidy - Thi s should be performed on the sample
+        \end{itemize}
+
+        
+
         
         \item \textbf{Pac bio sequence batch start:} {05-29-2026} Hi there world
         
